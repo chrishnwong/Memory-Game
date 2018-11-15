@@ -1,60 +1,69 @@
 #include "player.h"
 
-Player(){
+Player::Player(){
     _name = "Default";
-    _side = Top;
+    _side = BoardSide::Top;
     _rubyCount = 9999;
 }
 
-Player(string name, BoardSide side, int rubyCount = 0){
-    _name = name
+Player::Player(string name, BoardSide side){
+    _name = name;
     _side = side;
     _rubyCount = 0;
 }
 
-string getName() const{
+string Player::getName() const{
     return _name;
 }
 
-void setActive(bool flag){
+void Player::setActive(bool flag){
     _active = flag;
 }
 
-bool isActive(){
+bool Player::isActive(){
     return _active;
 }
 
-int getNRubies() const{
+int Player::getNRubies() const{
     return _rubyCount;
 }
 
-void addReward(const Reward& r){
+void Player::addReward(const Reward& r){
     //TODO
 }
 
-void setDisplayMode(bool endOfGame){
+void Player::setDisplayMode(bool endOfGame){
     _end = endOfGame;
 }
 
-string getEnumName() const{
+string Player::getEnumName() const{
     string str;
 
-    switch _side {
-        case Top:
+    switch (_side) {
+        case BoardSide::Top:
             str = "Top";
-        case Botttom:
+        case BoardSide::Bottom:
             str = "Bottom";
-        case Left:
+        case BoardSide::Left:
             str = "Left";
-        case Right:
+        case BoardSide::Right:
             str = "Right";
         default:
-            throw Exception("Bad BoardSide");
+            str = "Unknown side";
     }
 
     return str;
 }
 
-bool isEndOfGame() const{
+bool Player::isEndOfGame() const{
     return _end;
+}
+
+ostream& operator << (ostream& os, const Player& p){
+    if(p.isEndOfGame())
+        os << p.getName() << ": " << p.getEnumName() << endl << endl;
+    else
+        os << p.getName() << ": " << p.getNRubies() << " rubies" << endl << endl;
+
+    return os;
 }

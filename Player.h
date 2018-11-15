@@ -1,10 +1,22 @@
 #ifndef player_H
 #define player_H
 
+#include <iostream>
 #include <string>
+#include <exception>
 
 using std::string;
 using std::endl;
+using std::ostream;
+
+class Reward;
+
+enum class BoardSide {
+    Top,
+    Bottom,
+    Left,
+    Right
+};
 
 class Player {
     string _name;
@@ -14,15 +26,8 @@ class Player {
     bool _end;//Does this belong here?
 
     public:
-    enum BoardSide {
-        Top,
-        Bottom,
-        Left,
-        Right
-        };
-
     Player();
-    Player(string name, BoardSide side, int rubyCount = 0);
+    Player(string name, BoardSide side);
     string getName() const;
     void setActive(bool flag);
     bool isActive();
@@ -32,16 +37,9 @@ class Player {
 
     string getEnumName() const;
     bool isEndOfGame() const;
-    };
 };
 
-ostream& operator<<(ostream& os, const Player& p)  {
-    if(p.isEndOfGame())
-        os << p.name << ": " << p.getEnumName() << endl << endl;
-    else
-        os << p.name << ": " << p.getNRubies() << " rubies" << endl << endl;
 
-    return os;
-}
+ostream& operator << (ostream& os, const Player& p);
 
 #endif
