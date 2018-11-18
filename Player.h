@@ -11,7 +11,7 @@ using std::ostream;
 
 class Reward;
 
-enum class BoardSide {
+enum Side {
     Top,
     Bottom,
     Left,
@@ -20,26 +20,24 @@ enum class BoardSide {
 
 class Player {
     string _name;
-    enum BoardSide _side;
+    Side _side;
     int _rubyCount;
     bool _active;
-    bool _end;//Does this belong here?
 
     public:
     Player();
-    Player(string name, BoardSide side);
+    Player(string n, Side s);
     string getName() const;
     void setActive(bool flag);
     bool isActive();
     int getNRubies() const;
     void addReward(const Reward& r);
     void setDisplayMode(bool endOfGame);
+    Side getSide();
+    void setSide(Side s);
 
-    string getEnumName() const;
-    bool isEndOfGame() const;
+    Side getSide() const;
+    Player& operator << (const Player& p);
 };
-
-
-ostream& operator << (ostream& os, const Player& p);
 
 #endif

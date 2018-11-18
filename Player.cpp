@@ -1,14 +1,14 @@
-#include "player.h"
+#include "Player.h"
 
 Player::Player(){
     _name = "Default";
-    _side = BoardSide::Top;
+    _side = Side::Top;
     _rubyCount = 9999;
 }
 
-Player::Player(string name, BoardSide side){
-    _name = name;
-    _side = side;
+Player::Player(string n, Side s){
+    _name = n;
+    _side = s;
     _rubyCount = 0;
 }
 
@@ -33,37 +33,27 @@ void Player::addReward(const Reward& r){
 }
 
 void Player::setDisplayMode(bool endOfGame){
-    _end = endOfGame;
+    //TODO
 }
 
-string Player::getEnumName() const{
-    string str;
+Side Player::getSide(){
+    return _side;
 
-    switch (_side) {
-        case BoardSide::Top:
-            str = "Top";
-        case BoardSide::Bottom:
-            str = "Bottom";
-        case BoardSide::Left:
-            str = "Left";
-        case BoardSide::Right:
-            str = "Right";
-        default:
-            str = "Unknown side";
-    }
-
-    return str;
 }
 
-bool Player::isEndOfGame() const{
-    return _end;
+void Player::setSide(Side s){
+    _side = s;
+
 }
 
-ostream& operator << (ostream& os, const Player& p){
+Player& Player::operator << (const Player& p){
+    /*
+
     if(p.isEndOfGame())
         os << p.getName() << ": " << p.getEnumName() << endl << endl;
     else
         os << p.getName() << ": " << p.getNRubies() << " rubies" << endl << endl;
-
-    return os;
+*/
+//TODO
+    return *this;
 }
