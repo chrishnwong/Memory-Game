@@ -1,59 +1,70 @@
+#include <iostream>
 #include "Player.h"
 
-Player::Player(){
-    _name = "Default";
-    _side = Side::Top;
-    _rubyCount = 9999;
+using namespace std;
+
+string Player::getName() const {
+    return name;
 }
 
-Player::Player(string n, Side s){
-    _name = n;
-    _side = s;
-    _rubyCount = 0;
-}
-
-string Player::getName() const{
-    return _name;
-}
-
-void Player::setActive(bool flag){
-    _active = flag;
+void Player::setActive(bool _active){
+    active = _active;
 }
 
 bool Player::isActive(){
-    return _active;
+    return active;
 }
 
-int Player::getNRubies() const{
-    return _rubyCount;
+int Player:: getNRubies() const{
+    return nRubies;
 }
 
-void Player::addReward(const Reward& r){
-    //TODO
+void Player::addReward(const Reward &reward){
+    nRubies += reward.getNRubies();
 }
 
-void Player::setDisplayMode(bool endOfGame){
-    //TODO
+void Player::setDisplayMode(bool _endOfGame){
+    endOfGame = _endOfGame;
 }
 
 Side Player::getSide(){
-    return _side;
-
+    return side;
 }
 
-void Player::setSide(Side s){
-    _side = s;
-
+void Player::setSide(Side _side){
+    side = _side;
 }
 
-Player& Player::operator << (const Player& p){
-    /*
+ostream& operator<<(ostream& os, const Player& player) {
+    if (player.endOfGame) {
+        string side;
 
-    if(p.isEndOfGame())
-        os << p.getName() << ": " << p.getEnumName() << endl << endl;
-    else
-        os << p.getName() << ": " << p.getNRubies() << " rubies" << endl << endl;
-*/
-//TODO
-    return *this;
+        switch (player.side) {
+            case 0:
+                side = "top";
+                break;
+            case 1:
+                side = "bottom";
+                break;
+            case 2:
+                side = "left";
+                break;
+            case 3:
+                side = "right";
+                break;
+            default:
+                break;
+
+        }
+
+        string activeStr = (player.active ? "active" : "inactive");
+
+        os << player.name << ": " << side << " (" << activeStr << ")";
+    } else {
+        os << player.name << ": " << player.nRubies << " rubies";
+    }
+    return os;
 }
+
+
+

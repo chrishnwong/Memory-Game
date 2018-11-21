@@ -1,43 +1,42 @@
-#ifndef player_H
-#define player_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
-#include <iostream>
 #include <string>
-#include <exception>
+#include "Reward.h"
 
-using std::string;
-using std::endl;
-using std::ostream;
+enum Side {top, bottom, left, right};
 
-class Reward;
 
-enum Side {
-    Top,
-    Bottom,
-    Left,
-    Right
-};
-
-class Player {
-    string _name;
-    Side _side;
-    int _rubyCount;
-    bool _active;
+class Player
+{
+    private:
+        string name;
+        int nRubies;
+        bool active;
+        bool endOfGame;
+        Side side;
 
     public:
-    Player();
-    Player(string n, Side s);
-    string getName() const;
-    void setActive(bool flag);
-    bool isActive();
-    int getNRubies() const;
-    void addReward(const Reward& r);
-    void setDisplayMode(bool endOfGame);
-    Side getSide();
-    void setSide(Side s);
+        Player();
+        Player(string _name, Side _side): name(_name), side(_side){
+            active = false;
+            endOfGame = false;
+            nRubies = 0;
+        }
 
-    Side getSide() const;
-    Player& operator << (const Player& p);
+        string getName() const;
+        void setActive(bool);
+        bool isActive();
+        int getNRubies() const;
+        void addReward(const Reward&);
+        void setDisplayMode(bool endOfGame);
+        Side getSide();
+        void setSide(Side);
+
+        friend ostream& operator<<(ostream&, const Player&);
+
+
+
 };
 
-#endif
+#endif // PLAYER_H

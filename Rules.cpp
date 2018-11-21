@@ -1,17 +1,21 @@
 #include "Rules.h"
 
-bool Rules::isValid(const Game& g){
-
+bool Rules::isValid(const Game& game) {
+    if(game.getPreviousCard() == game.getCurrentCard()){
+        return true;
+    }else{
+        return false;
+    }
 }
 
-bool Rules::gameOver(const Game& g){
-    return(g.getRound()==7);
+bool Rules::gameOver(const Game& game) {
+    if(game.getRound() >= 7){
+        return true;
+    }else{
+        return false;
+    }
 }
 
-bool Rules::roundOver(const Game& g){
-
-}
-
-const Player& getNextPlayer(const Game& g){
-    //return g.
+bool Rules::roundOver(const Game& game) {
+    return true;
 }

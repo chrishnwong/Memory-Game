@@ -1,39 +1,49 @@
-#ifndef rules_H
-#define rules_H
+#ifndef GAME_H
+#define GAME_H
 
-#include <iostream>
+
 #include <string>
 #include <vector>
-
+#include "Board.h"
 #include "Player.h"
 #include "Card.h"
-#include "Board.h"
+#include "Rules.h"
 
-using std::vector;
+using std::string;
+
+//class Board;
 
 class Game {
-    bool _expDisplay;
-    bool _expMode;
-    Board _b;
-    vector<Player> _p;
-    int _round;
-
+    private:
+        //friend Board;
+        Board board;
+        vector<Player> players;
+        CardDeck * cards;
+        int round;
+        int gameVersion;
+        const Card * previousCard;
+        const Card * currentCard;
 
     public:
-        int getRound();
-        void addPlayer( const Player& p);
-        Player& getPlayer(Side s);
-        const Card* getCurrentCard();
-        void setCurrentCard(const Card* c);
-        Card* getCard(const Letter& l, const Number& n);
-        void setCard(const Letter& l, const Number& n, Card* c);
+        Game() = default;
+        Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion) {
+            players.reserve(numPlayers);
+            previousCard = 0;
+            currentCard = 0;
+            //board = Board();
+        }
+        ~Game();
+        int getRound() const;
+        void addPlayer(const Player&);
+        Player& getPlayer(Side);
+        const Card* getPreviousCard() const;
+        const Card* getCurrentCard() const;
+        void setCurrentCard(const Card*);
+        Card* getCard(const Letter&, const Number&);
+        void setCard(const Letter&, const Number&, Card*);
 
-        void setAllActive();
-        void expModeOn();
-        void expDispOn();
-        void incRound();
-
-        Game& operator << (const Game& g);
+        //string toString() const;
+        friend ostream& operator<<(ostream&, const Game&);
 };
 
-#endif
+#endif // GAME_H

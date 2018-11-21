@@ -1,36 +1,30 @@
-#ifndef card_H
-#define card_H
+#ifndef CARD_H
+#define CARD_H
 
-#include <iostream>
-#include <string>
+#include<string>
+#include<iostream>
 
-enum class FaceAnimal {
-    Crab,
-    Penguin,
-    Octopus,
-    Turtle,
-    Walrus
-};
+using namespace std;
 
-enum class FaceBackground {
-    Red,
-    Green,
-    Purple,
-    Blue,
-    Yellow
-};
+enum FaceAnimal {Crab, Penguin, Octopus, Turtle, Walrus};
+enum FaceBackground {Red, Green, Purple, Blue, Yellow};
 
-class Card {
-    FaceAnimal _animal;
-    FaceBackground _colour;
+class CardDeck;
+
+class Card
+{
     public:
-        Card(FaceAnimal animal, FaceBackground colour);
-        char getColour() const;
-        char getAnimal() const;
+        int getNRows() const;
+        string operator()(int row);
+        string printCard();
 
-        Card& operator << (const Card& c);
+    private:
+        FaceAnimal animal;
+        FaceBackground color;
+        const int nRows = 3;
+        friend CardDeck;
+
+        Card(FaceAnimal, FaceBackground);
 };
 
-
-
-#endif
+#endif // CARD_H

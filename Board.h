@@ -1,10 +1,12 @@
-#ifndef board_H
-#define board_H
+#ifndef BOARD_H
+#define BOARD_H
 
-#include <iostream>
 #include <string>
+#include "Card.h"
 
-enum class Letter {
+using namespace std;
+
+enum Letter {
     A,
     B,
     C,
@@ -12,24 +14,43 @@ enum class Letter {
     E
 };
 
-enum class Number {
-    1,
-    2,
-    3,
-    4,
-    5
+enum Number {
+    ONE,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE
 };
+
+struct cardRecords{
+    Card* card;
+    bool cardStatus;
+    string cardDisplayStr;
+};
+
+CardDeck* cards;
 
 class Board {
-    string* _display;
+    private:
+        int row = 5;
+        int column = 5;
+        //string lines[row*5+1];
+        //Card* cards[row][column];
+        //bool cardsStatus[row][column];
+
+        cardRecords cRecords[5][5];
 
     public:
+        Board();
+        ~Board();
+
         bool isFaceUp(const Letter&, const Number&) const;
         bool turnFaceUp(const Letter&, const Number&);
-        bool turnFaceDown( const Letter&, const Number& );
+        bool turnFaceDown(const Letter&, const Number&);
+        Card* getCard(const Letter&, const Number&);
+        void setCard(const Letter&, const Number&, Card*);
         void reset();
-
-        Board& operator << (const Board& b);
+        string toString();
 };
 
-#endif
+#endif // BOARD_H

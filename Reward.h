@@ -1,20 +1,31 @@
-#ifndef reward_H
-#define reward_H
+#ifndef REWARD_H
+#define REWARD_H
 
 #include <iostream>
-#include <string>
 
+using namespace std;
 
-class Reward {
-    friend class RewardDeck;
-    int _nRubies;
-    public:
-        Reward& operator << (const Reward& r);
-        operator int();
-    private:
-        Reward();
+class RewardDeck;
+
+enum Rubies{
+    one,
+    two,
+    three,
+    four
 };
 
 
+class Reward
+{
+    friend RewardDeck;
 
-#endif
+    public:
+        int getNRubies() const;
+        friend ostream& operator<<(ostream&, const Reward&);
+
+    private:
+        Rubies nRubies;
+        Reward(Rubies);
+};
+
+#endif // REWARD_H
