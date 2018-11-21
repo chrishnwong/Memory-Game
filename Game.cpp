@@ -1,30 +1,62 @@
+#include <iostream>
+#include <vector>
 #include "Game.h"
+#include "Player.h"
 
-
-int getRound(){
+Game::~Game() {
 
 }
 
-void addPlayer(const Player& p){
-    _p.push_back(p);
+int Game::getRound() const {
+    return round;
 }
 
-Player& getPlayer(Side s){
-    for (auto& elem: _p) {
-        if(&elem.getSide()==s)
-            return &elem;
+void Game::addPlayer(const Player& p) {
+    players.push_back(p);
+
+}
+
+Player& Game::getPlayer(Side side) {
+    for(std::vector<Player>::iterator it = players.begin(); it != players.end(); ++it){
+        if(it->getSide() == side){
+            return *it;
+        }
+//        }else{
+//            return nullptr;
+//        }
     }
-}
-
-const Card* getCurrentCard(){
 
 }
 
-void setCurrentCard(const Card* c){
+const Card* Game::getPreviousCard() const {
+    return previousCard;
+}
+
+const Card* Game::getCurrentCard() const {
+    return currentCard;
+}
+
+void Game::setCurrentCard(const Card* c) {
+    //if (previousCard == nullptr)
+    delete previousCard;
+    previousCard = currentCard;
+    currentCard = c;
 
 }
 
-Game& Game::operator << (const Game& g){
+Card* Game::getCard(const Letter& let, const Number& num){
+    return board.getCard(let, num);
+}
 
-    return *this;
+void Game::setCard(const Letter& let, const Number& num, Card* c){
+    return board.setCard(let, num, c);
+}
+
+//string Game::toString() const {
+//    return "";
+//}
+
+ostream& operator<<(ostream& os, const Game& game) {
+    //os << board.toString();
+    return os;
 }
