@@ -3,6 +3,18 @@
 #include "Game.h"
 #include "Player.h"
 
+Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
+    players.reserve(numPlayers);
+    previousCard = 0;
+    currentCard = 0;
+    board = Board();
+    //players
+    //cards
+    round = 0;
+    gameVersion = _gameVersion;
+    
+}
+
 Game::~Game() {
 
 }
@@ -50,6 +62,11 @@ Card* Game::getCard(const Letter& let, const Number& num){
 
 void Game::setCard(const Letter& let, const Number& num, Card* c){
     return board.setCard(let, num, c);
+    // why is a void type returning
+}
+
+void Game::setBoard(Board b){
+    board = b;
 }
 
 //string Game::toString() const {

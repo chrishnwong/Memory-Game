@@ -1,5 +1,9 @@
 #include "Rules.h"
 
+Rules::Rules(){
+    // TODO Should something be here?
+}
+
 bool Rules::isValid(const Game& game) {
     if(game.getPreviousCard() == game.getCurrentCard()){
         return true;

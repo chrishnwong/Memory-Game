@@ -25,13 +25,8 @@ class Game {
         const Card * currentCard;
 
     public:
-        Game() = default;
-        Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion) {
-            players.reserve(numPlayers);
-            previousCard = 0;
-            currentCard = 0;
-            //board = Board();
-        }
+        //Game() = default;
+        Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion);
         ~Game();
         int getRound() const;
         void addPlayer(const Player&);
@@ -41,6 +36,7 @@ class Game {
         void setCurrentCard(const Card*);
         Card* getCard(const Letter&, const Number&);
         void setCard(const Letter&, const Number&, Card*);
+        void setBoard(Board);
 
         //string toString() const;
         friend ostream& operator<<(ostream&, const Game&);

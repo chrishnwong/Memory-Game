@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    Game game;
+    //Game game;
     int gameVersion;
     int numPlayers;
 
@@ -16,7 +16,7 @@ int main() {
     cout << "Number of players: 2-4" << endl;
     cin >> numPlayers;
 
-    game = Game(gameVersion, numPlayers);
+    Game game = Game(gameVersion, numPlayers);
 
     for (int i = 0; i < numPlayers; i++) {
         string name;
@@ -30,8 +30,16 @@ int main() {
 
     CardDeck cardDeck = CardDeck::make_CardDeck();
     //RewardDeck rewardDeck = RewardDeck::make_RewardDeck();
-    Rules rules;
-    //Board board2 = game.board;
+    Rules rules = rules();
+
+    Board board = game.board;
+
+    vs.
+
+    Board board = Board();
+    game.setBoard(board);
+
+    
     //cout << board2.toString();
     //Board board;
 
@@ -39,14 +47,14 @@ int main() {
     //display game
 
     while (!rules.gameOver(game)) {
-        // set cards to facedown
+        board.reset();
+        game.setAllActive();
 
+        for (int i = 0; i < numPlayers; i++) {
+            Player player = game.getPlayer(i);
+            player.setActive(true);
+        }
 
-//        for (int i = 0; i < numPlayers; i++) {
-//            Player player = game.getPlayer();
-//            player.setActive(true);
-//        }
-//
 //        for (int i = 0; i < numPlayers; i++) {
 //            Player player = game.getPlayer();
 //            // temporarily reveal 3 cards directly in front of player

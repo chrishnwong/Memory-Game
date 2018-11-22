@@ -37,9 +37,9 @@ void Player::setSide(Side _side){
 
 ostream& operator<<(ostream& os, const Player& player) {
     if (player.endOfGame) {
-        string side;
+        string side=player.getEnumSides[player.side];
 
-        switch (player.side) {
+        /*switch (player.side) {
             case 0:
                 side = "top";
                 break;
@@ -54,8 +54,7 @@ ostream& operator<<(ostream& os, const Player& player) {
                 break;
             default:
                 break;
-
-        }
+        }//project told us to avoid using switch cases*/
 
         string activeStr = (player.active ? "active" : "inactive");
 
@@ -65,6 +64,3 @@ ostream& operator<<(ostream& os, const Player& player) {
     }
     return os;
 }
-
-
-

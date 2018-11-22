@@ -15,6 +15,7 @@ class Player
         bool active;
         bool endOfGame;
         Side side;
+        string getEnumSides[4] {"top", "bottom", "left", "right"};
 
     public:
         Player();

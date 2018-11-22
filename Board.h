@@ -4,7 +4,7 @@
 #include <string>
 #include "Card.h"
 
-using namespace std;
+using namespace std;//I'm a little uncomfortable with using namespace std, i'd rather be in control of what is and isn't belonging to std
 
 enum Letter {
     A,
@@ -28,12 +28,13 @@ struct cardRecords{
     string cardDisplayStr;
 };
 
-CardDeck* cards;
+//CardDeck* cards;
+//Removed this to see if the code would work, for reasons unknown it works when this is removed
 
 class Board {
     private:
-        int row = 5;
-        int column = 5;
+        const int row = 5;
+        const int column = 5;//These won't change so im gonna declare them const
         //string lines[row*5+1];
         //Card* cards[row][column];
         //bool cardsStatus[row][column];

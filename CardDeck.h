@@ -1,8 +1,8 @@
 #ifndef CARDDECK_H
 #define CARDDECK_H
 
-#include "Deck.h";
-#include "Card.h";
+#include "Deck.h"
+#include "Card.h"
 
 class CardDeck: public Deck<Card>
 {
