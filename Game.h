@@ -18,15 +18,15 @@ class Game {
         //friend Board;
         Board board;
         vector<Player> players;
-        CardDeck * cards;
+        CardDeck* cards;
         int round;
         int gameVersion;
         const Card * previousCard;
         const Card * currentCard;
 
     public:
-        //Game() = default;
-        Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion);
+        //Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion);
+        Game(int _gameVersion, int numPlayers);
         ~Game();
         int getRound() const;
         void addPlayer(const Player&);
@@ -37,6 +37,11 @@ class Game {
         Card* getCard(const Letter&, const Number&);
         void setCard(const Letter&, const Number&, Card*);
         void setBoard(Board);
+
+        void setCardDeck(CardDeck*);
+        Board& getBoard();
+        vector<Player>& getPlayerVector();
+
 
         //string toString() const;
         friend ostream& operator<<(ostream&, const Game&);

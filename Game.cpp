@@ -7,12 +7,12 @@ Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
     players.reserve(numPlayers);
     previousCard = 0;
     currentCard = 0;
-    board = Board();
-    //players
-    //cards
+    Board board = Board();
+
+    players.reserve(numPlayers);
+
     round = 0;
     gameVersion = _gameVersion;
-    
 }
 
 Game::~Game() {
@@ -72,6 +72,18 @@ void Game::setBoard(Board b){
 //string Game::toString() const {
 //    return "";
 //}
+
+void setCardDeck(CardDeck* _cards){
+    cards = _cards;
+}
+
+Board& getBoard(){
+    return board*;
+}
+
+vector<Player>& getPlayerVector(){
+    return players*;
+}
 
 ostream& operator<<(ostream& os, const Game& game) {
     //os << board.toString();
