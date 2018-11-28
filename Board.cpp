@@ -17,6 +17,21 @@ Board::~Board() {
 
 }
 
+Board& Board::operator=(const Board& b){
+    //this->cRecords = b.cRecords;
+    //deep copy
+
+    for (int i = 0; i < 5; i++){
+        for(int j = 0; i < 5; i++){
+            this->cRecords[i][j].card = b.cRecords[i][j].card;
+            this->cRecords[i][j].cardStatus = b.cRecords[i][j].cardStatus;
+            this->cRecords[i][j].cardDisplayStr = b.cRecords[i][j].cardDisplayStr;
+        }
+    }
+
+    return *this;
+}
+
 bool Board::isFaceUp(const Letter& let, const Number& num) const {
     if ( row < static_cast<int>(let) || column < static_cast<int>(num) ) {
         throw std::out_of_range("Letter or Number Index given is out of range.");

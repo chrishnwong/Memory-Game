@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    //Game game;
+    ///Game game;
     int gameVersion;
     int numPlayers;
 
@@ -29,60 +29,54 @@ int main() {
     }
 
     CardDeck cardDeck = CardDeck::make_CardDeck();
-    //RewardDeck rewardDeck = RewardDeck::make_RewardDeck();
-    Rules rules = rules();
+    RewardDeck rewardDeck = RewardDeck::make_RewardDeck();
+    Rules rules = Rules();
 
-    Board board = game.board;
 
-    vs.
-
-    Board board = Board();
-    game.setBoard(board);
-
-    
     //cout << board2.toString();
-    //Board board;
+    Board board = Board();
 
     //shuffles
-    //display game
+
+    cout<<game<<endl;
 
     while (!rules.gameOver(game)) {
         board.reset();
-        game.setAllActive();
 
         for (int i = 0; i < numPlayers; i++) {
-            Player player = game.getPlayer(i);
+            Player player = game.getPlayer(static_cast<Side>(i));
             player.setActive(true);
         }
 
-//        for (int i = 0; i < numPlayers; i++) {
-//            Player player = game.getPlayer();
+        for (int i = 0; i < numPlayers; i++) {
+            Player player = game.getPlayer(static_cast<Side>(i));
 //            // temporarily reveal 3 cards directly in front of player
-//        }
-//
-//        while (!rules.roundOver(game)) {
-//            Player player = game.getPlayer();
-//
-//            // turn card faceup
-//            // update board
-//
-//            if (!rules.isValid(game)) {
-//                player.setActive(false);
-//            }
-//
-//            // display game
-//        }
-//
-//        for (int i = 0; i < numPlayers; i++) {
-//            Player player = game.getPlayer();
-//            if (player.isActive()) {
-//                // Reward *reward = rewardDeck.getNext();
-//                // player.addReward(*reward);
-//            }
-//        }
-//
-//        // update board
-//    }
+        }
+
+/*
+        while (!rules.roundOver(game)) {
+            Player player = game.getPlayer();
+            //TODO get player based on turn
+
+            // turn card faceup
+            // update board
+
+            if (!rules.isValid(game))
+                player.setActive(false);
+
+            // display game
+        }
+
+        for (int i = 0; i < numPlayers; i++) {
+            Player player = game.getPlayer(static_cast<Side>(i));
+            if (player.isActive()) {
+                Reward *reward = rewardDeck.getNext();
+                player.addReward(*reward);
+            }
+        }*/
+
+        // update board
+    }
 
 
     string result;
@@ -92,5 +86,4 @@ int main() {
     cout << result;
 
     return 0;
-}
 }

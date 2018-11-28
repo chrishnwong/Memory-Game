@@ -39,8 +39,8 @@ class Game {
         void setBoard(Board);
 
         void setCardDeck(CardDeck*);
-        Board& getBoard();
-        vector<Player>& getPlayerVector();
+        //Board& getBoard() const;
+        const vector<Player>* getPlayerVector() const;
 
 
         //string toString() const;

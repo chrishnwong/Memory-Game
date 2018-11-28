@@ -11,7 +11,7 @@ void Player::setActive(bool _active){
     active = _active;
 }
 
-bool Player::isActive(){
+bool Player::isActive() const{
     return active;
 }
 

@@ -33,8 +33,8 @@ struct cardRecords{
 
 class Board {
     private:
-        const int row = 5;
-        const int column = 5;//These won't change so im gonna declare them const
+        int row = 5;
+        int column = 5;//These won't change so im gonna declare them const
         //string lines[row*5+1];
         //Card* cards[row][column];
         //bool cardsStatus[row][column];
@@ -44,6 +44,9 @@ class Board {
     public:
         Board();
         ~Board();
+        Board& operator=(const Board&);
+        // assignment operator here
+
 
         bool isFaceUp(const Letter&, const Number&) const;
         bool turnFaceUp(const Letter&, const Number&);
@@ -52,6 +55,9 @@ class Board {
         void setCard(const Letter&, const Number&, Card*);
         void reset();
         string toString();
+    private:
+        cardRecords* getcRecords();
+
 };
 
 #endif // BOARD_H

@@ -27,7 +27,7 @@ class Player
 
         string getName() const;
         void setActive(bool);
-        bool isActive();
+        bool isActive() const;
         int getNRubies() const;
         void addReward(const Reward&);
         void setDisplayMode(bool endOfGame);

@@ -73,16 +73,16 @@ void Game::setBoard(Board b){
 //    return "";
 //}
 
-void setCardDeck(CardDeck* _cards){
+void Game::setCardDeck(CardDeck* _cards){
     cards = _cards;
 }
 
-Board& getBoard(){
-    return board*;
-}
+//Board& Game::getBoard() const{
+//    return *board;
+//}
 
-vector<Player>& getPlayerVector(){
-    return players*;
+const vector<Player>* Game::getPlayerVector() const{
+    return &players;
 }
 
 ostream& operator<<(ostream& os, const Game& game) {
