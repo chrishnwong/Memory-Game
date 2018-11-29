@@ -7,7 +7,6 @@
 using namespace std;
 
 int main() {
-    ///Game game;
     int gameVersion;
     int numPlayers;
 
@@ -44,36 +43,47 @@ int main() {
         board.reset();
 
         for (int i = 0; i < numPlayers; i++) {
-            Player player = game.getPlayer(static_cast<Side>(i));
+            Player player = game.getPlayer((Side) i);
             player.setActive(true);
         }
 
         for (int i = 0; i < numPlayers; i++) {
-            Player player = game.getPlayer(static_cast<Side>(i));
-//            // temporarily reveal 3 cards directly in front of player
+            Player player = game.getPlayer((Side) i);
+            // temporarily reveal 3 cards directly in front of player
         }
+
+
+    while (!rules.roundOver(game)) {
+        //Player player = game.getPlayer();
+        //TODO get player based on turn
+        Node* first;
+        first.p = game.getPlayerVector()->at(0);
+
+        for(int i = 1; i < numPlayers; i++){
+            Node* n;
+            n.p = game.getPlayerVector()->at(i);
+            first.add(n);
+        }
+
+        // turn card faceup
+        // update board
+
+        if (!rules.isValid(game))
+            player.setActive(false);
+
+        // display game
+    }
+
 
 /*
-        while (!rules.roundOver(game)) {
-            Player player = game.getPlayer();
-            //TODO get player based on turn
-
-            // turn card faceup
-            // update board
-
-            if (!rules.isValid(game))
-                player.setActive(false);
-
-            // display game
+    for (int i = 0; i < numPlayers; i++) {
+        Player player = game.getPlayer((Side) i);
+        if (player.isActive()) {
+            Reward *reward = rewardDeck.getNext();
+            player.addReward(*reward);
         }
-
-        for (int i = 0; i < numPlayers; i++) {
-            Player player = game.getPlayer(static_cast<Side>(i));
-            if (player.isActive()) {
-                Reward *reward = rewardDeck.getNext();
-                player.addReward(*reward);
-            }
-        }*/
+    }
+*/
 
         // update board
     }

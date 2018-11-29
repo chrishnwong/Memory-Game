@@ -47,4 +47,18 @@ class Game {
         friend ostream& operator<<(ostream&, const Game&);
 };
 
+struct Node{
+    Player* p;
+    Node* next;
+    Node* prev;
+
+    public:
+        Node* getNextNode();
+        Node* getPrevNode();
+        void add(Node* n);
+        void remove();
+    private:
+        traverseAdd(Node* n);
+};
+
 #endif // GAME_H

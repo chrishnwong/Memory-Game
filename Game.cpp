@@ -89,3 +89,37 @@ ostream& operator<<(ostream& os, const Game& game) {
     //os << board.toString();
     return os;
 }
+
+
+
+Node* Node::getNextNode(){
+    return next;
+}
+
+Node* Node::getPrevNode(){
+    return prev;
+}
+
+void Node::add(Node* n){
+    this.prev = n;
+    n.next = this;
+
+    traverseAdd(n);
+}
+
+void Node::traverseAdd(Node* n){
+    if(next!=nullptr)
+        this.next->add(n);
+    else{
+        this.next = n;
+        n.prev = this;
+    }
+}
+
+void Node::remove(){
+    this->next->prev = this->prev;
+    this->prev->next = this->next;
+
+    this->next = nullptr;
+    this->prev = nullptr;
+}
