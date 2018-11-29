@@ -55,10 +55,9 @@ struct Node{
     public:
         Node* getNextNode();
         Node* getPrevNode();
-        void add(Node* n);
+        void add(Node*);
         void remove();
-    private:
-        traverseAdd(Node* n);
+        void traverseAdd(Node*, Node*);
 };
 
 #endif // GAME_H

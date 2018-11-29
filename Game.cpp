@@ -101,18 +101,18 @@ Node* Node::getPrevNode(){
 }
 
 void Node::add(Node* n){
-    this.prev = n;
-    n.next = this;
+    this->prev = n;
+    n->next = this;
 
-    traverseAdd(n);
+    this->traverseAdd(n, this);
 }
 
-void Node::traverseAdd(Node* n){
-    if(next!=nullptr)
-        this.next->add(n);
+void Node::traverseAdd(Node* n, Node* start){
+    if(next!=start)
+        this->next->traverseAdd(n, start);
     else{
-        this.next = n;
-        n.prev = this;
+        this->next = n;
+        n->prev = this;
     }
 }
 
