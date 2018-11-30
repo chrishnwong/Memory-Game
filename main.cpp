@@ -52,26 +52,30 @@ int main() {
             // temporarily reveal 3 cards directly in front of player
         }
 
+    Node* start;
+    start->p = game.getPlayer(top);
+
+    for(int i = 1; i < numPlayers; i++){
+        Node* n;
+        n->p = game.getPlayer((Side) i);
+        start->add(n);
+    }
+
+    Node* current = start;
 
     while (!rules.roundOver(game)) {
-        //Player player = game.getPlayer();
-        //TODO get player based on turn
-        Node* first;
-        first.p = game.getPlayerVector()->at(0);
 
-        for(int i = 1; i < numPlayers; i++){
-            Node* n;
-            n.p = game.getPlayerVector()->at(i);
-            first.add(n);
-        }
 
         // turn card faceup
         // update board
 
-        if (!rules.isValid(game))
-            player.setActive(false);
+        if (!rules.isValid(game)){
+            current->getPlayer().setActive(false);
+            current->remove();
+        }
 
         // display game
+        current = current->getNextNode();
     }
 
 

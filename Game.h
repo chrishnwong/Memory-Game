@@ -48,16 +48,18 @@ class Game {
 };
 
 struct Node{
-    Player* p;
+    Player& p;
     Node* next;
     Node* prev;
 
     public:
+        Node();
         Node* getNextNode();
         Node* getPrevNode();
         void add(Node*);
         void remove();
         void traverseAdd(Node*, Node*);
+        Player& getPlayer();
 };
 
 #endif // GAME_H

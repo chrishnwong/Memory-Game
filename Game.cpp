@@ -90,8 +90,6 @@ ostream& operator<<(ostream& os, const Game& game) {
     return os;
 }
 
-
-
 Node* Node::getNextNode(){
     return next;
 }
@@ -120,6 +118,10 @@ void Node::remove(){
     this->next->prev = this->prev;
     this->prev->next = this->next;
 
-    this->next = nullptr;
-    this->prev = nullptr;
+    //this->next = nullptr;
+    //this->prev = nullptr;
+}
+
+Player& Node::getPlayer(){
+    return p;
 }
