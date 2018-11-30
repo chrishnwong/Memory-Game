@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Game.h"
+#include "Deck.h"
 #include "CardDeck.h"
 #include "RewardDeck.h"
 #include "Rules.h"
@@ -35,7 +36,8 @@ int main() {
     //cout << board2.toString();
     Board board = Board();
 
-    //shuffles
+    //cardDeck.shuffle();
+    //rewardDeck.shuffle();
 
     cout<<game<<endl;
 
@@ -52,52 +54,57 @@ int main() {
             // temporarily reveal 3 cards directly in front of player
         }
 
-    Node* start;
-    start->p = game.getPlayer(top);
+        Node* start;
+        start->p = game.getPlayer(top);
 
-    for(int i = 1; i < numPlayers; i++){
-        Node* n;
-        n->p = game.getPlayer((Side) i);
-        start->add(n);
-    }
-
-    Node* current = start;
-
-    while (!rules.roundOver(game)) {
-
-
-        // turn card faceup
-        // update board
-
-        if (!rules.isValid(game)){
-            current->getPlayer().setActive(false);
-            current->remove();
+        for(int i = 1; i < numPlayers; i++){
+            Node* n;
+            n->p = game.getPlayer((Side) i);
+            start->add(n);
         }
 
-        // display game
-        current = current->getNextNode();
-    }
+        Node* current = start;
 
+        while (!rules.roundOver(game)) {
+
+
+            // turn card faceup
+            // update board
+
+            if (!rules.isValid(game)){
+                current->getPlayer().setActive(false);
+                current->remove();
+            }
+
+            // display game
+            current = current->getNextNode();
+        }
+
+
+    /*
+        for (int i = 0; i < numPlayers; i++) {
+            Player player = game.getPlayer((Side) i);
+            if (player.isActive()) {
+                Reward *reward = rewardDeck.getNext();
+                player.addReward(*reward);
+            }
+        }
+    */
+
+            // update board
+    }
 
 /*
-    for (int i = 0; i < numPlayers; i++) {
-        Player player = game.getPlayer((Side) i);
-        if (player.isActive()) {
-            Reward *reward = rewardDeck.getNext();
-            player.addReward(*reward);
-        }
-    }
-*/
-
-        // update board
-    }
-
-
     string result;
     for(int i=0; i<5; i++){
         result += (char) (i+65);
     }
     cout << result;
+*/
+
+    string result;
+
+    game.getPlacements();
 
     return 0;
 }

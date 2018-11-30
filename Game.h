@@ -4,12 +4,11 @@
 
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "Board.h"
 #include "Player.h"
 #include "Card.h"
 #include "Rules.h"
-
-using std::string;
 
 //class Board;
 
@@ -23,7 +22,7 @@ class Game {
         int gameVersion;
         const Card * previousCard;
         const Card * currentCard;
-
+        string place[4] = {"1st", "2nd", "3rd", "4th"};
     public:
         //Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion);
         Game(int _gameVersion, int numPlayers);
@@ -41,7 +40,8 @@ class Game {
         void setCardDeck(CardDeck*);
         //Board& getBoard() const;
         const vector<Player>* getPlayerVector() const;
-
+        bool sortRubies(const Player&, const Player&);
+        void getPlacements();
 
         //string toString() const;
         friend ostream& operator<<(ostream&, const Game&);

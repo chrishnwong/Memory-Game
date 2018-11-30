@@ -3,6 +3,8 @@
 #include "Game.h"
 #include "Player.h"
 
+using namespace std;
+
 Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
     players.reserve(numPlayers);
     previousCard = 0;
@@ -29,7 +31,7 @@ void Game::addPlayer(const Player& p) {
 }
 
 Player& Game::getPlayer(Side side) {
-    for(std::vector<Player>::iterator it = players.begin(); it != players.end(); ++it){
+    for(vector<Player>::iterator it = players.begin(); it != players.end(); ++it){
         if(it->getSide() == side){
             return *it;
         }
@@ -83,6 +85,28 @@ void Game::setCardDeck(CardDeck* _cards){
 
 const vector<Player>* Game::getPlayerVector() const{
     return &players;
+}
+
+bool Game::sortRubies(const Player& i, const Player& j){
+    return i.getNRubies()>j.getNRubies();
+}
+
+void Game::getPlacements(){
+
+    int i = 0;
+    sort(players.begin(), players.end());
+
+    cout<<"The game has ended, here are the placements:"<<endl<<endl;
+
+
+    for(Player &p : players){
+        cout << place[i] << " - " << p.getName() << " with " << p.getNRubies() << " Rubies" << endl;
+        i++;
+    }
+
+    cout << endl << "Thank you for playing!" << endl;
+
+
 }
 
 ostream& operator<<(ostream& os, const Game& game) {

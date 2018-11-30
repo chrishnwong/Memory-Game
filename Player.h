@@ -15,7 +15,7 @@ class Player
         bool active;
         bool endOfGame;
         Side side;
-        string getEnumSides[4] {"top", "bottom", "left", "right"};
+        string getEnumSides[4] {"top", "left", "bottom", "right"};
 
     public:
         Player();
@@ -35,7 +35,7 @@ class Player
         void setSide(Side);
 
         friend ostream& operator<<(ostream&, const Player&);
-
+        bool operator<(const Player &rhs) const { return nRubies < rhs.getNRubies(); }
 
 
 };
