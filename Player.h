@@ -4,7 +4,7 @@
 #include <string>
 #include "Reward.h"
 
-enum Side {top, bottom, left, right};
+enum Side {top, left, bottom, right};
 
 
 class Player
