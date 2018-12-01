@@ -105,8 +105,39 @@ void Game::getPlacements(){
     }
 
     cout << endl << "Thank you for playing!" << endl;
+}
 
+void Game::threeCardReveal(Side side){
+/*
+    switch (side) {
+        case Side::top:
+        board.getCard((Letter) A, (Number) TWO)->printCard();
+        board.getCard((Letter) A, (Number) THREE)->printCard();
+        board.getCard((Letter) A, (Number) FOUR)->printCard();
+        break;
+    case Side::left:
+        board.turnFaceUp((Letter) B, (Number) ONE)->printCard();
+        board.turnFaceUp((Letter) C, (Number) ONE)->printCard();
+        board.turnFaceUp((Letter) D, (Number) ONE)->printCard();
+        break;
+    case Side::bottom:
+        board.turnFaceUp((Letter) E, (Number) TWO)->printCard();
+        board.turnFaceUp((Letter) E, (Number) THREE)->printCard();
+        board.turnFaceUp((Letter) E, (Number) FOUR)->printCard();
+        break;
+    case Side::right:
+        board.turnFaceUp((Letter) B, (Number) FIVE)->printCard();
+        board.turnFaceUp((Letter) C, (Number) FIVE)->printCard();
+        board.turnFaceUp((Letter) D, (Number) FIVE)->printCard();
+        break;
+    default:
+        cout << "Invalid side" << endl;
+        break;
+    }*/
+}
 
+void Game::clearScreen(){
+    cout<< endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 }
 
 ostream& operator<<(ostream& os, const Game& game) {

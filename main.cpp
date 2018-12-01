@@ -10,9 +10,12 @@ using namespace std;
 int main() {
     int gameVersion;
     int numPlayers;
+    int gameDisplay;
 
-    cout << "Game version: Base (1), Expert(2)" << endl;
+    cout << "Game version: Base (1), Expert mode(2)" << endl;
     cin >> gameVersion;
+    cout << "Expert display mode: Off (0), On (1)" << endl;
+    cin >> gameDisplay;
     cout << "Number of players: 2-4" << endl;
     cin >> numPlayers;
 
@@ -47,11 +50,11 @@ int main() {
         for (int i = 0; i < numPlayers; i++) {
             Player player = game.getPlayer((Side) i);
             player.setActive(true);
-        }
 
-        for (int i = 0; i < numPlayers; i++) {
-            Player player = game.getPlayer((Side) i);
-            // temporarily reveal 3 cards directly in front of player
+            cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
+            game.threeCardReveal(player.getSide());
+            game.clearScreen();
+
         }
 
         Node* start;
@@ -67,7 +70,7 @@ int main() {
 
         while (!rules.roundOver(game)) {
 
-
+            // select cards
             // turn card faceup
             // update board
 

@@ -43,6 +43,9 @@ class Game {
         bool sortRubies(const Player&, const Player&);
         void getPlacements();
 
+        void threeCardReveal(Side);
+        void clearScreen();
+
         //string toString() const;
         friend ostream& operator<<(ostream&, const Game&);
 };
