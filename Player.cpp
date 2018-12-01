@@ -39,15 +39,15 @@ ostream& operator<<(ostream& os, const Player& player) {
     if (player.endOfGame) {
         string side=player.getEnumSides[player.side];
 
-        /*switch (player.side) {
+        switch (player.side) {
             case 0:
                 side = "top";
                 break;
             case 1:
-                side = "bottom";
+                side = "left";
                 break;
             case 2:
-                side = "left";
+                side = "bottom";
                 break;
             case 3:
                 side = "right";
