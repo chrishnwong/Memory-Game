@@ -6,8 +6,8 @@ CardDeck::CardDeck()
 {
     items = new Card*[size];
     int k = 0;
-    for (int i = Crab; i <=Walrus; i++) {
-        for (int j = Red; j <=Yellow; j++) {
+    for (int i = FaceAnimal::Crab; i <= FaceAnimal::Walrus; i++) {
+        for (int j = FaceBackground::Red; j <= FaceBackground::Yellow; j++) {
             items[k++] = new Card(static_cast<FaceAnimal>(i), static_cast<FaceBackground>(j));
         }
     }
