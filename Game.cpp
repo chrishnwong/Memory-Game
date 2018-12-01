@@ -108,32 +108,35 @@ void Game::getPlacements(){
 }
 
 void Game::threeCardReveal(Side side){
-/*
+    string arr[3] = {"","",""};
+
     switch (side) {
         case Side::top:
-        board.getCard((Letter) A, (Number) TWO)->printCard();
-        board.getCard((Letter) A, (Number) THREE)->printCard();
-        board.getCard((Letter) A, (Number) FOUR)->printCard();
+        board.getCard((Letter) A, (Number) TWO)->printCard(arr);
+        board.getCard((Letter) A, (Number) THREE)->printCard(arr);
+        board.getCard((Letter) A, (Number) FOUR)->printCard(arr);
         break;
     case Side::left:
-        board.turnFaceUp((Letter) B, (Number) ONE)->printCard();
-        board.turnFaceUp((Letter) C, (Number) ONE)->printCard();
-        board.turnFaceUp((Letter) D, (Number) ONE)->printCard();
+        board.getCard((Letter) B, (Number) ONE)->printCard(arr);
+        board.getCard((Letter) C, (Number) ONE)->printCard(arr);
+        board.getCard((Letter) D, (Number) ONE)->printCard(arr);
         break;
     case Side::bottom:
-        board.turnFaceUp((Letter) E, (Number) TWO)->printCard();
-        board.turnFaceUp((Letter) E, (Number) THREE)->printCard();
-        board.turnFaceUp((Letter) E, (Number) FOUR)->printCard();
+        board.getCard((Letter) E, (Number) TWO)->printCard(arr);
+        board.getCard((Letter) E, (Number) THREE)->printCard(arr);
+        board.getCard((Letter) E, (Number) FOUR)->printCard(arr);
         break;
     case Side::right:
-        board.turnFaceUp((Letter) B, (Number) FIVE)->printCard();
-        board.turnFaceUp((Letter) C, (Number) FIVE)->printCard();
-        board.turnFaceUp((Letter) D, (Number) FIVE)->printCard();
+        board.getCard((Letter) B, (Number) FIVE)->printCard(arr);
+        board.getCard((Letter) C, (Number) FIVE)->printCard(arr);
+        board.getCard((Letter) D, (Number) FIVE)->printCard(arr);
         break;
     default:
         cout << "Invalid side" << endl;
         break;
-    }*/
+    }
+
+    cout << arr[0] << endl << arr[1] << endl << arr[2] << endl;
 }
 
 void Game::clearScreen(){
