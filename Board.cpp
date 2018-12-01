@@ -134,11 +134,22 @@ string Board::toString() {
 //    }
 
         string res;
-
-        for(int i=0; i<row; i++){
-            for(int j=0; j<column; j++){
-                    res += (cRecords[i][j].cardStatus? "t":"f");
+        if(!expertDisplay){
+            for(int i=0; i<row; i++){
+                for(int j=0; j<column; j++){
+                        res += (cRecords[i][j].cardStatus? "t":"f");
+                }
             }
         }
+        else{
+            //implement expert display
+        }
         return res;
+}
+void Board::setExpDisp(bool disp){
+    expertDisplay = disp;
+}
+
+void Board::setExpRules(bool rules){
+    expertRules = rules;
 }

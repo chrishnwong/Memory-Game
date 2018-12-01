@@ -32,6 +32,11 @@ struct cardRecords{
 //Removed this to see if the code would work, for reasons unknown it works when this is removed
 
 class Board {
+    //   A           top
+    //   B     left      right
+    //   .          bottom
+    //   .
+    //   .      1   2   .  .  .
     private:
         int row = 5;
         int column = 5;//These won't change so im gonna declare them const
@@ -40,7 +45,8 @@ class Board {
         //bool cardsStatus[row][column];
 
         cardRecords cRecords[5][5];
-
+        bool expertDisplay = false;
+        bool expertRules = false;
     public:
         Board();
         ~Board();
@@ -55,6 +61,8 @@ class Board {
         void setCard(const Letter&, const Number&, Card*);
         void reset();
         string toString();
+        void setExpDisp(bool);
+        void setExpRules(bool);
     private:
         cardRecords* getcRecords();
 
