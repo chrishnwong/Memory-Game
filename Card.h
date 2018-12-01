@@ -16,7 +16,9 @@ class Card
     public:
         int getNRows() const;
         string operator()(int row);
-        string printCard();
+        void printCard(string*);
+
+        Card& operator=(const Card&);
 
     private:
         FaceAnimal animal;
