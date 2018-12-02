@@ -15,7 +15,8 @@ int Card::getNRows() const{
 void Card::printCard(string arr[3]){
     string colorChar, animalChar;
 
-    switch (this->color) {
+
+    switch (getBackground()) {
         case FaceBackground::Red:
             colorChar = "r";
             cout << color << endl;
@@ -42,7 +43,7 @@ void Card::printCard(string arr[3]){
             break;
     }
 
-    switch (this->animal) {
+    switch (getAnimal()) {
         case FaceAnimal::Crab:
             animalChar = "C";
             cout << animal << endl;
@@ -128,6 +129,14 @@ string Card::operator()(int row) {
     }
 
 }
+
+FaceAnimal Card::getAnimal(){
+    return animal;
+}
+FaceBackground Card::getBackground(){
+    return color;
+}
+
 
 Card& Card::operator=(const Card& c){
     this->animal = c.animal;
