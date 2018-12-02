@@ -104,9 +104,6 @@ int main() {
     }
     cout << result;
 
-
-    string result;
-
     game.getPlacements();
 
     return 0;
