@@ -24,12 +24,16 @@ bool Rules::roundOver(const Game& game) {
     bool flag = true;
 
     for(int i = 0; i < game.getPlayerVector()->size(); i++){
-        if(!(game.getPlayerVector()->at(i).isActive())){
+        if(game.getPlayerVector()->at(i).isActive()){
             flag = false;
             break;
         }
 
     }
 
+    //if(flag)
+    //    cout<<"true"<<endl;
+    //else
+    //    cout<<"false"<<endl;
     return flag;
 }
