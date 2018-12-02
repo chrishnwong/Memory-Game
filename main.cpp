@@ -39,59 +39,76 @@ int main() {
     //cout << board2.toString();
     Board board = Board();
 
-    cardDeck.shuffle();
-    rewardDeck.shuffle();
+    //cardDeck.shuffle();
+    //rewardDeck.shuffle();
 
-    cout<<game<<endl;
+    cout << game << endl;
+
 
     while (!rules.gameOver(game)) {
         board.reset();
 
+
         for (int i = 0; i < numPlayers; i++) {
-            Player player = game.getPlayer((Side) i);
+            Player& player = game.getPlayer((Side) i);
             player.setActive(true);
 
             cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
-            game.threeCardReveal(player.getSide());
-            game.clearScreen();
-
+            //game.threeCardReveal(player.getSide());
+            //game.clearScreen();
+            //string asdf;
+            //cin >> asdf;
         }
 
-        Node* start;
-        start->p = game.getPlayer(top);
 
-        for(int i = 1; i < numPlayers; i++){
-            Node* n;
-            n->p = game.getPlayer((Side) i);
-            start->add(n);
-        }
+        //Node start = Node(game.getPlayer(top));
 
-        Node* current = start;
+
+        /*for(int i = 1; i < numPlayers; i++){
+            Node n = Node(game.getPlayer((Side) i));
+            start.add(n);
+            cout << "Round 2";
+        }*/
+
+        //Node current = start;
+
+        Player* current = &game.getPlayer((Side) 0);
+        game.resetCurrent();
+        cout<< "starting round"<<endl;
 
         while (!rules.roundOver(game)) {
-
+            cout << "Round " << game.getRound() << ":" << endl;
+            cout << "It is now Player " << current->getName() << "'s turn" << endl;
+            //string test;
+            //cin >> test;
             // select cards
             // turn card faceup
             // update board
 
-            if (!rules.isValid(game)){
-                current->getPlayer().setActive(false);
-                current->remove();
-            }
+            //if (!rules.isValid(game)){
+                current->setActive(false);
+            //}
 
             // display game
-            current = current->getNextNode();
+            for(int i=0;i<numPlayers;i++){
+                current = &game.getNextPlayer(numPlayers);
+                if(current->isActive()){
+                    break;
+                }
+            }
+
         }
+        game.incRound();
 
 
-
+/*
         for (int i = 0; i < numPlayers; i++) {
             Player player = game.getPlayer((Side) i);
             if (player.isActive()) {
-                Reward *reward = rewardDeck.getNext();
+                //Reward *reward = rewardDeck.getNext();
                 player.addReward(*reward);
             }
-        }
+        }*/
 
 
             // update board

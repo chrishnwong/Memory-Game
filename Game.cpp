@@ -13,8 +13,10 @@ Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
 
     players.reserve(numPlayers);
 
-    round = 0;
+    round = 1;
     gameVersion = _gameVersion;
+
+    current = 0;
 }
 
 Game::~Game() {
@@ -23,6 +25,10 @@ Game::~Game() {
 
 int Game::getRound() const {
     return round;
+}
+
+void Game::incRound(){
+    round++;
 }
 
 void Game::addPlayer(const Player& p) {
@@ -143,22 +149,38 @@ void Game::clearScreen(){
     cout<< endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 }
 
+Player& Game::getNextPlayer(int n){
+    current++;
+    current=current%n;
+    return getPlayer((Side) current);
+}
+
+void Game::resetCurrent(){
+    current = 0;
+}
+
 ostream& operator<<(ostream& os, const Game& game) {
     //os << board.toString();
     return os;
 }
-
-Node* Node::getNextNode(){
+/*
+Node::Node(Player* _p){
+    p = _p;
+    next = nullptr;
+    prev = nullptr;
+}*/
+/*
+Node* Node::getNextNode() const{
     return next;
 }
 
-Node* Node::getPrevNode(){
+Node* Node::getPrevNode() const{
     return prev;
 }
 
-void Node::add(Node* n){
+void Node::add(Node& n){
     this->prev = n;
-    n->next = this;
+    n.next = this;
 
     this->traverseAdd(n, this);
 }
@@ -180,6 +202,20 @@ void Node::remove(){
     //this->prev = nullptr;
 }
 
-Player& Node::getPlayer(){
+Node& Node::operator=(const Node& n){
+    this->p = n.p;
+    this->next = n.next;
+    this->prev = n.prev;
+
+    return *this;
+}
+
+bool Node::operator!=(const Node& n){
+    cout<<"success";
+    return this->p->getSide()==n.p->getSide();
+}
+
+Player* Node::getPlayer() const{
     return p;
 }
+*/
