@@ -36,6 +36,7 @@ class Game {
         Card* getCard(const Letter&, const Number&);
         void setCard(const Letter&, const Number&, Card*);
         void setBoard(Board);
+        Board getBoard();
 
         void setCardDeck(CardDeck*);
         //Board& getBoard() const;

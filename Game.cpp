@@ -67,6 +67,10 @@ void Game::setCard(const Letter& let, const Number& num, Card* c){
     // why is a void type returning
 }
 
+Board Game::getBoard() {
+    return board;
+}
+
 void Game::setBoard(Board b){
     board = b;
 }
