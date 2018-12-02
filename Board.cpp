@@ -75,7 +75,7 @@ bool Board::turnFaceDown(const Letter& let, const Number& num) {
     }
 }
 
-Card* Board::getCard(const Letter& let, const Number& num) {
+Card* Board::getCard(const Letter& let, const Number& num) const{
     if ( row < static_cast<int>(let) || column < static_cast<int>(num) ) {
         throw std::out_of_range("Letter or Number Index given is out of range.");
     }
@@ -150,15 +150,17 @@ string Board::toString() {
         return res;
 }
 
-ostream& operator<<(ostream& os, const Board& player){
+ostream& operator<<(ostream& os, const Board& board){
     string arr[3] = {"","",""};
 
     for (int i = Letter::A; i <= Letter::E; i++) {
         for (int j = Number::ONE; j <= Number::FIVE; j++) {
-            getCard((Letter) i, (Number) j)->printCard(arr);
+            board.getCard((Letter) i, (Number) j)->printCard(arr);
         }
         os << arr[0] << endl << arr[1] << endl << arr[2] << endl << endl;
-        arr[3] = {"","",""};
+        arr[0] = "";
+        arr[1] = "";
+        arr[2] = "";
     }
 }
 void Board::setExpDisp(bool disp){

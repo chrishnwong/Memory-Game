@@ -57,7 +57,7 @@ class Board {
         bool isFaceUp(const Letter&, const Number&) const;
         bool turnFaceUp(const Letter&, const Number&);
         bool turnFaceDown(const Letter&, const Number&);
-        Card* getCard(const Letter&, const Number&);
+        Card* getCard(const Letter&, const Number&) const;
         void setCard(const Letter&, const Number&, Card*);
         void reset();
         string toString();
