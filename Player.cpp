@@ -27,12 +27,21 @@ void Player::setDisplayMode(bool _endOfGame){
     endOfGame = _endOfGame;
 }
 
-Side Player::getSide(){
+Side Player::getSide() const{
     return side;
 }
 
 void Player::setSide(Side _side){
     side = _side;
+}
+Player& Player::operator=(const Player& p){
+    this->name = p.getName();
+    this->nRubies = p.getNRubies();
+    this->active = p.isActive();;
+    //this.endOfGame = p.;
+    this->side = p.getSide();
+
+    return *this;
 }
 
 ostream& operator<<(ostream& os, const Player& player) {
