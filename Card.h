@@ -16,7 +16,7 @@ class Card
     public:
         int getNRows() const;
         string operator()(int row);
-        void printCard(string*);
+        void printCard(string[3]);
 
         Card& operator=(const Card&);
 

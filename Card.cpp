@@ -12,10 +12,8 @@ int Card::getNRows() const{
     return nRows;
 }
 
-void Card::printCard(string* arr){
+void Card::printCard(string arr[3]){
     string colorChar, animalChar;
-
-
 
     switch (this->color) {
         case FaceBackground::Red:
