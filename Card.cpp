@@ -37,7 +37,7 @@ void Card::printCard(string arr[3]){
             cout << color << endl;
             break;
         default:
-            colorChar = "!";
+            colorChar = " ";
             cout << color << endl;
             break;
     }
@@ -64,7 +64,7 @@ void Card::printCard(string arr[3]){
             cout << animal << endl;
             break;
         default:
-            animalChar = "?";
+            animalChar = " ";
             cout << animal << endl;
             break;
     }
