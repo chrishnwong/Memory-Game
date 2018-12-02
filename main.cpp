@@ -31,16 +31,16 @@ int main() {
         game.addPlayer(player);
     }
 
-    CardDeck cardDeck = CardDeck::make_CardDeck();
-    RewardDeck rewardDeck = RewardDeck::make_RewardDeck();
+    Deck<Card> cardDeck = CardDeck::make_CardDeck();
+    Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
     Rules rules = Rules();
 
 
     //cout << board2.toString();
     Board board = Board();
 
-    //cardDeck.shuffle();
-    //rewardDeck.shuffle();
+    cardDeck.shuffle();
+    rewardDeck.shuffle();
 
     cout<<game<<endl;
 
@@ -84,7 +84,7 @@ int main() {
         }
 
 
-    /*
+
         for (int i = 0; i < numPlayers; i++) {
             Player player = game.getPlayer((Side) i);
             if (player.isActive()) {
@@ -92,18 +92,18 @@ int main() {
                 player.addReward(*reward);
             }
         }
-    */
+
 
             // update board
     }
 
-/*
+
     string result;
     for(int i=0; i<5; i++){
         result += (char) (i+65);
     }
     cout << result;
-*/
+
 
     string result;
 
