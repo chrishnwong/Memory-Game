@@ -60,7 +60,7 @@ class Board {
         Card* getCard(const Letter&, const Number&);
         void setCard(const Letter&, const Number&, Card*);
         void reset();
-        void toString();
+        string toString();
         void setExpDisp(bool);
         void setExpRules(bool);
     private:

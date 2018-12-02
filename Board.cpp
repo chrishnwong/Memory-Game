@@ -30,7 +30,7 @@ Board& Board::operator=(const Board& b){
     }
 
     this->expertDisplay = b.expertDisplay;
-    this->expertRules = b.expertRules;
+    this->expertRules = b.expertDisplay;
 
     return *this;
 }
@@ -102,19 +102,64 @@ void Board::reset() {
 
 }
 
-void Board::toString() {
+string Board::toString() {
+
+//    int k=0;
+//    for(int i=0; i<lines.size()-1; i++){
+//        for(int row = 0; row <cards[i][column].getNRows(); ++row){
+//            if (row == 2) {
+//                lines[k] = string((char)(i+64));
+//            }else{
+//                lines[k] = "  ";
+//            }
+//            for(int j=ONE; j<=FIVE; j++){
+//                lines[k] += cards[i][j](row);
+//            }
+//            lines[k++] += "\n";
+//
+//        }
+//         lines[k++] += "\n\n";
+//    }
+//    for(int m=0; m<column; m++){
+//        lines[lines.size()-1] = "   " + m;
+//    }
+//
+//    return lines;
+
+//    string result;
+//
+//    for(int i=0; i<row; i++){
+//        result += (char) (i+64);
+//
+//        for(int j=0, j<column; j++){
+//
+//        }
+//    }
+
+        string res;
+        if(!expertDisplay){
+            for(int i=0; i<row; i++){
+                for(int j=0; j<column; j++){
+                        res += (cRecords[i][j].cardStatus? "t":"f");
+                }
+            }
+        }
+        else{
+            //implement expert display
+        }
+        return res;
+}
+
+ostream& operator<<(ostream& os, const Board& player){
     string arr[3] = {"","",""};
 
     for (int i = Letter::A; i <= Letter::E; i++) {
         for (int j = Number::ONE; j <= Number::FIVE; j++) {
             getCard((Letter) i, (Number) j)->printCard(arr);
         }
-        cout << arr[0] << endl << arr[1] << endl << arr[2] << endl;
-        cout << endl;
+        os << arr[0] << endl << arr[1] << endl << arr[2] << endl << endl;
         arr[3] = {"","",""};
     }
-
-
 }
 void Board::setExpDisp(bool disp){
     expertDisplay = disp;
