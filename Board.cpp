@@ -3,12 +3,19 @@
 #include <iostream>
 
 Board::Board(){
-
-    for(int i=0; i<row; i++){
-        for(int j=0; j<column; j++){
-            cRecords[i][j].cardStatus = false;
+    try {
+        //if(crecords is empty)
+            //throw NoMoreCards;
+        for(int i=0; i<row; i++){
+            for(int j=0; j<column; j++){
+                cRecords[i][j].cardStatus = false;
+            }
         }
     }
+    catch (exception& e) {
+        cout << e.err() << endl;
+    }
+
 
 }
 

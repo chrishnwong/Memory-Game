@@ -72,4 +72,11 @@ class Board {
 
 };
 
+
+class zeroCards: public exception {
+    virtual const char* err() const throw() {
+        return "There are no more cards!";
+    }
+} NoMoreCards;
+
 #endif // BOARD_H
