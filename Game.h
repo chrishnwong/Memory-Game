@@ -23,11 +23,13 @@ class Game {
         const Card * previousCard;
         const Card * currentCard;
         string place[4] = {"1st", "2nd", "3rd", "4th"};
+        int current;
     public:
         //Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion);
         Game(int _gameVersion, int numPlayers);
         ~Game();
         int getRound() const;
+        void incRound(); //cant add public method
         void addPlayer(const Player&);
         Player& getPlayer(Side);
         const Card* getPreviousCard() const;
@@ -35,8 +37,10 @@ class Game {
         void setCurrentCard(const Card*);
         Card* getCard(const Letter&, const Number&);
         void setCard(const Letter&, const Number&, Card*);
-        void setBoard(Board);
-        Board getBoard();
+        void setBoard(Board); //cant add public method
+        Board getBoard(); //cant add public method
+        Player& getNextPlayer(int); //cant add public method
+        void resetCurrent(); //cant add public method
 
         void setCardDeck(CardDeck*);
         //Board& getBoard() const;

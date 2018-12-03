@@ -31,9 +31,10 @@ class Player
         int getNRubies() const;
         void addReward(const Reward&);
         void setDisplayMode(bool endOfGame);
-        Side getSide();
+        Side getSide() const; //why add constant
         void setSide(Side);
 
+        Player& operator=(const Player&);
         friend ostream& operator<<(ostream&, const Player&);
         bool operator<(const Player &rhs) const { return nRubies < rhs.getNRubies(); }
 

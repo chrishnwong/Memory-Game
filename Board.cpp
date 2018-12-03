@@ -75,7 +75,8 @@ bool Board::turnFaceDown(const Letter& let, const Number& num) {
     }
 }
 
-Card* Board::getCard(const Letter& let, const Number& num) {
+// why add constant at the end
+Card* Board::getCard(const Letter& let, const Number& num) const {
     if ( row < static_cast<int>(let) || column < static_cast<int>(num) ) {
         throw std::out_of_range("Letter or Number Index given is out of range.");
     }
@@ -103,6 +104,17 @@ void Board::reset() {
 }
 
 string Board::toString() {
+
+//     string arr[3] = {"","",""};
+//     for (int i = Letter::A; i <= Letter::E; i++) {
+//        for (int j = Number::ONE; j <= Number::FIVE; j++) {
+//            getCard((Letter) i, (Number) j)->printCard(arr);
+//        }
+//        cout << arr[0] << endl << arr[1] << endl << arr[2] << endl;
+//        cout << endl;
+//        arr[3] = {"","",""};
+//    }
+//}
 
 //    int k=0;
 //    for(int i=0; i<lines.size()-1; i++){
@@ -135,7 +147,7 @@ string Board::toString() {
 //
 //        }
 //    }
-
+//
         string res;
         if(!expertDisplay){
             for(int i=0; i<row; i++){
@@ -149,6 +161,21 @@ string Board::toString() {
         }
         return res;
 }
+
+ostream& operator<<(ostream& os, const Board& board){
+    string arr[3] = {"","",""};
+
+    for (int i = Letter::A; i <= Letter::E; i++) {
+        for (int j = Number::ONE; j <= Number::FIVE; j++) {
+            board.getCard((Letter) i, (Number) j)->printCard(arr);
+        }
+        os << arr[0] << endl << arr[1] << endl << arr[2] << endl << endl;
+        arr[0] = "";
+        arr[1] = "";
+        arr[2] = "";
+    }
+}
+
 void Board::setExpDisp(bool disp){
     expertDisplay = disp;
 }

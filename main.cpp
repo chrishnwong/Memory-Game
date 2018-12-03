@@ -61,12 +61,12 @@ int main() {
         game.getBoard().reset();
 
         for (int i = 0; i < numPlayers; i++) {
-            Player player = game.getPlayer((Side) i);
+            Player& player = game.getPlayer((Side) i);
             player.setActive(true);
 
             cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
             //game.threeCardReveal(player.getSide());
-            game.clearScreen();
+            //game.clearScreen();
 
         }
 
@@ -81,7 +81,14 @@ int main() {
 //
 //        Node* current = start;
 
+        Player* current = &game.getPlayer((Side) 0);
+        game.resetCurrent();
+        cout<< "starting round"<<endl;
+
+
         while (!rules.roundOver(game)) {
+            cout << "Round " << game.getRound() << ":" << endl;
+            cout << "It is now Player " << current->getName() << "'s turn" << endl;
 
             // select first card
             Letter letterInput = A;
@@ -120,6 +127,22 @@ int main() {
 
 
 
+            //if (!rules.isValid(game)){
+                current->setActive(false);
+            //}
+
+
+            // display game
+            for(int i=0;i<numPlayers;i++){
+                current = &game.getNextPlayer(numPlayers);
+                if(current->isActive()){
+                    break;
+                }
+            }
+        }
+        game.incRound();
+
+
 
 //        for (int i = 0; i < numPlayers; i++) {
 //            Player player = game.getPlayer((Side) i);
@@ -133,19 +156,18 @@ int main() {
             // update board
         //}
 
-
-//    string result;
-//    for(int i=0; i<5; i++){
-//        result += (char) (i+65);
-//    }
-//    cout << result;
-
+    }
 
     string result;
+    for(int i=0; i<5; i++){
+        result += (char) (i+65);
+    }
+    cout << result;
+
 
     game.getPlacements();
 
     return 0;
-    }
-    }
+
+
 }

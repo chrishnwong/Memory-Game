@@ -39,7 +39,7 @@ void Card::printCard(string* arr){
             cout << color << endl;
             break;
         default:
-            colorChar = "!";
+            colorChar = " ";
             cout << color << endl;
             break;
     }
@@ -66,7 +66,7 @@ void Card::printCard(string* arr){
             cout << animal << endl;
             break;
         default:
-            animalChar = "?";
+            animalChar = " ";
             cout << animal << endl;
             break;
     }
@@ -131,6 +131,8 @@ string Card::operator()(int row) {
 
 }
 
+// card cannot be copied or assigned
+// cannot add more public method
 Card& Card::operator=(const Card& c){
     this->animal = c.animal;
     this->color = c.color;

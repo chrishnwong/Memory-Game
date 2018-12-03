@@ -13,8 +13,10 @@ Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
 
     players.reserve(numPlayers);
 
-    round = 0;
+    round = 1;
     gameVersion = _gameVersion;
+
+    current = 0;
 }
 
 Game::~Game() {
@@ -23,6 +25,10 @@ Game::~Game() {
 
 int Game::getRound() const {
     return round;
+}
+
+void Game::incRound(){
+    round++;
 }
 
 void Game::addPlayer(const Player& p) {
@@ -63,7 +69,7 @@ Card* Game::getCard(const Letter& let, const Number& num){
 }
 
 void Game::setCard(const Letter& let, const Number& num, Card* c){
-    return board.setCard(let, num, c);
+    board.setCard(let, num, c);
     // why is a void type returning
 }
 
@@ -147,43 +153,54 @@ void Game::clearScreen(){
     cout<< endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 }
 
+Player& Game::getNextPlayer(int n){
+    current++;
+    current=current%n;
+    return getPlayer((Side) current);
+}
+
+void Game::resetCurrent(){
+    current = 0;
+}
+
+
 ostream& operator<<(ostream& os, const Game& game) {
     //os << board.toString();
     return os;
 }
 
-Node* Node::getNextNode(){
-    return next;
-}
-
-Node* Node::getPrevNode(){
-    return prev;
-}
-
-void Node::add(Node* n){
-    this->prev = n;
-    n->next = this;
-
-    this->traverseAdd(n, this);
-}
-
-void Node::traverseAdd(Node* n, Node* start){
-    if(next!=start)
-        this->next->traverseAdd(n, start);
-    else{
-        this->next = n;
-        n->prev = this;
-    }
-}
-
-void Node::remove(){
-    this->next->prev = this->prev;
-    this->prev->next = this->next;
-
-    //this->next = nullptr;
-    //this->prev = nullptr;
-}
-
-Player& Node::getPlayer(){
-    return p;
-}
+//Node* Node::getNextNode(){
+//    return next;
+//}
+//
+//Node* Node::getPrevNode(){
+//    return prev;
+//}
+//
+//void Node::add(Node* n){
+//    this->prev = n;
+//    n->next = this;
+//
+//    this->traverseAdd(n, this);
+//}
+//
+//void Node::traverseAdd(Node* n, Node* start){
+//    if(next!=start)
+//        this->next->traverseAdd(n, start);
+//    else{
+//        this->next = n;
+//        n->prev = this;
+//    }
+//}
+//
+//void Node::remove(){
+//    this->next->prev = this->prev;
+//    this->prev->next = this->next;
+//
+//    //this->next = nullptr;
+//    //this->prev = nullptr;
+//}
+//
+//Player& Node::getPlayer(){
+//    return p;
+//}
