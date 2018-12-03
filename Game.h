@@ -42,7 +42,7 @@ class Game {
 
         void setBoard(Board); //cant add public method
         Board getBoard(); //cant add public method
-        Player& getNextPlayer(int); //cant add public method
+        Player& getNextPlayer(); //cant add public method
         void resetCurrent(); //cant add public method
 
         void setCardDeck(CardDeck*);

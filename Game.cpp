@@ -153,9 +153,9 @@ void Game::clearScreen(){
     cout<< endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 }
 
-Player& Game::getNextPlayer(int n){
+Player& Game::getNextPlayer(){
     current++;
-    current=current%n;
+    current=current%players.size();
     return getPlayer((Side) current);
 }
 
