@@ -45,8 +45,8 @@ class Board {
         //bool cardsStatus[row][column];
 
         cardRecords cRecords[5][5];
-        bool expertDisplay = false;
-        bool expertRules = false;
+        bool expertDisplay;
+        bool expertRules;
     public:
         Board();
         ~Board();
