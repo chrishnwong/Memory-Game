@@ -6,9 +6,14 @@ Board::Board(){
     try {
         //if(crecords is empty)
             //throw NoMoreCards;
+            CardDeck cd = CardDeck();
+            cd.shuffle();
         for(int i=0; i<row; i++){
             for(int j=0; j<column; j++){
-                cRecords[i][j].cardStatus = false;
+                if(i != 2 &&j != 2){
+                    cRecords[i][j].cardStatus = false;
+                    cRecords[i][j].card = cd.getNext();
+                }
             }
         }
     }

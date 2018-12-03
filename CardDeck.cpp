@@ -12,6 +12,15 @@ CardDeck::CardDeck()
 //            items[k++] = new Card(static_cast<FaceAnimal>(i), static_cast<FaceBackground>(j));
 //        }
 //    }
+    if(deck == 0){
+        deck = new CardDeck();
+        for (int i = FaceAnimal::Crab; i <= FaceAnimal::Walrus; i++) {
+            for (int j = FaceBackground::Red; j <= FaceBackground::Yellow; j++) {
+                    Card *elePtr = new Card(static_cast<FaceAnimal> (i),static_cast<FaceBackground> (j));
+                    deck->elements.push_back(*elePtr);
+            }
+        }
+    }
 }
 
 //CardDeck::~CardDeck() {

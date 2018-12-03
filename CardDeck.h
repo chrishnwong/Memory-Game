@@ -6,14 +6,13 @@
 
 class CardDeck: public Deck<Card>
 {
+    friend class Board;
     public:
         static CardDeck& make_CardDeck();
 
+    private:
         CardDeck();
         //~CardDeck();
-
-
-    private:
         static const int size = 25;
         static CardDeck *deck;
         //CardDeck();

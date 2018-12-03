@@ -7,6 +7,7 @@
 
 class RewardDeck: public Deck<Reward>
 {
+    friend class Board;
     public:
         //virtual ~RewardDeck(){}
         static RewardDeck& make_RewardDeck();
@@ -15,6 +16,8 @@ class RewardDeck: public Deck<Reward>
         //~RewardDeck();
 
     private:
+        RewardDeck();
+        //~RewardDeck();
         static const int size = 7;
         static RewardDeck *rewDeck;
         //RewardDeck();

@@ -10,6 +10,7 @@ template <class C>
 
 class Deck
 {
+    friend class Board;
     public:
         void shuffle();
         C* getNext();
