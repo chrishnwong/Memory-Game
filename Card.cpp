@@ -16,7 +16,7 @@ void Card::printCard(string arr[3]){
     string colorChar, animalChar;
 
 
-    switch (getBackground()) {
+    switch (color) {
         case FaceBackground::Red:
             colorChar = "r";
             cout << color << endl;
@@ -43,7 +43,7 @@ void Card::printCard(string arr[3]){
             break;
     }
 
-    switch (getAnimal()) {
+    switch (animal) {
         case FaceAnimal::Crab:
             animalChar = "C";
             cout << animal << endl;
