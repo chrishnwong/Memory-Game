@@ -18,12 +18,16 @@ class Card
         string operator()(int row);
         void printCard(string*);
 
-        Card& operator=(const Card&);
+        //to be removed later
+        FaceAnimal getAnimal(){return animal;};
+        FaceBackground getBackground(){return color;};
+        //Card();
+        //Card& operator=(Card&);
 
     private:
         FaceAnimal animal;
         FaceBackground color;
-        const int nRows = 3;
+        const static int nRows = 3;
         friend CardDeck;
 
         Card(FaceAnimal, FaceBackground);

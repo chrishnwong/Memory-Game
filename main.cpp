@@ -5,12 +5,42 @@
 #include "RewardDeck.h"
 #include "Rules.h"
 #include "Board.h"
+#include "Card.h"
+#include <algorithm>
+#include <ctime>        // std::time
+#include <cstdlib>
+#include <list>
 
 using namespace std;
 
+//Initialize the board
 Board Game::board = Board();
 
+int myrandom (int i) { return std::rand()%i;}
+
 int main() {
+
+
+//    std::srand ( unsigned ( std::time(0) ) );
+//
+//    std::vector<int> myvector; //(5);  // 5 default-constructed ints
+//    for (int i=1; i<10; ++i) myvector.push_back(i);
+//    std::random_shuffle(myvector.begin(), myvector.end());
+//
+//  std::vector<int>::reverse_iterator rit = myvector.rbegin();
+//
+////  int i=0;
+////  for (rit = myvector.rbegin(); rit!= myvector.rend(); ++rit)
+////    *rit = ++i;
+//
+//  std::cout << "myvector contains:";
+//  for (std::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it)
+//    std::cout << ' ' << *it;
+//  std::cout << '\n';
+//
+
+
+
     int gameVersion;
     int numPlayers;
     int gameDisplay;
@@ -24,21 +54,26 @@ int main() {
 
     Deck<Card> cardDeck = CardDeck::make_CardDeck();
     Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
-    //cardDeck.shuffle();
-    //rewardDeck.shuffle();
-    //Board Game::board = Board();
+    cardDeck.shuffle();
+    rewardDeck.shuffle();
     Rules rules = Rules();
     Game game = Game(gameVersion, numPlayers);
 
     // set the board
-    int k=0;
     for (int i = Letter::A; i <= Letter::E; i++) {
         for (int j = Number::ONE; j <= Number::FIVE; j++) {
             game.setCard(Letter(i), Number(j), cardDeck.getNext());
 
         }
     }
-    cout <<Game::board;
+
+    if (cardDeck.isEmpty()){
+        cout << "EMPTY" <<endl;
+    }else{
+        cout << "NOT EMPTY" <<endl;
+    }
+
+
 
     for (int i = 0; i < numPlayers; i++) {
         string name;
@@ -50,24 +85,10 @@ int main() {
         game.addPlayer(player);
     }
 
+    cout << endl;
 
-
-//    int k=0;
-//    for(int i=0; i<5; i++){
-//        for(int j=0; j<5; j++){
-//            for(int r = 0; r<3; ++r){
-//              Card *card = cardDeck.items[k++];
-//              string rowString = &card(r);
-//              cout << rowString <<endl;
-//            }
-//
-//        }
-//    }
-
-
-    //cout << board2.toString();
-
-
+    cout << "Game Display:" << endl;
+    cout << Game::board;
 
 
     cout<<game<<endl;

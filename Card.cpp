@@ -20,54 +20,42 @@ void Card::printCard(string* arr){
     switch (this->color) {
         case FaceBackground::Red:
             colorChar = "r";
-            cout << color << endl;
             break;
         case FaceBackground::Green:
             colorChar = "g";
-            cout << color << endl;
             break;
         case FaceBackground::Purple:
             colorChar = "p";
-            cout << color << endl;
             break;
         case FaceBackground::Blue:
             colorChar = "b";
-            cout << color << endl;
             break;
         case FaceBackground::Yellow:
             colorChar = "y";
-            cout << color << endl;
             break;
         default:
             colorChar = " ";
-            cout << color << endl;
             break;
     }
 
     switch (this->animal) {
         case FaceAnimal::Crab:
             animalChar = "C";
-            cout << animal << endl;
             break;
         case FaceAnimal::Penguin:
             animalChar = "P";
-            cout << animal << endl;
             break;
         case FaceAnimal::Octopus:
             animalChar = "O";
-            cout << animal << endl;
             break;
         case FaceAnimal::Turtle:
             animalChar = "T";
-            cout << animal << endl;
             break;
         case FaceAnimal::Walrus:
             animalChar = "W";
-            cout << animal << endl;
             break;
         default:
             animalChar = " ";
-            cout << animal << endl;
             break;
     }
 
@@ -81,7 +69,15 @@ void Card::printCard(string* arr){
 
 string Card::operator()(int row) {
     char colorChar;
-    switch (color) {
+
+//    //to be removed
+//    if (getBackground() == 0){
+//        cout << "bcg null" <<endl;
+//    }else{
+//        cout << "bcg not null" <<endl;
+//    }
+
+    switch (getBackground()) {
         case 0:
             colorChar = 'r';
             break;
@@ -102,7 +98,15 @@ string Card::operator()(int row) {
     }
 
     char animalChar;
-    switch (animal) {
+
+    //to be removed
+//    if (getAnimal() == 0){
+//        cout << "animal null" <<endl;
+//    }else{
+//        cout << "animal not null" <<endl;
+//    }
+
+    switch (getAnimal()) {
         case 0:
             animalChar = 'C';
             break;
@@ -124,7 +128,7 @@ string Card::operator()(int row) {
 
     if (row == 1){
         char middleOfCard[3] = {colorChar, animalChar, colorChar};
-        return " " + string(middleOfCard);
+        return " " + string(1, colorChar) + string(1, animalChar) + string(1, colorChar);
     }else{
         return " " + string(3, colorChar);
     }
@@ -133,9 +137,9 @@ string Card::operator()(int row) {
 
 // card cannot be copied or assigned
 // cannot add more public method
-Card& Card::operator=(const Card& c){
-    this->animal = c.animal;
-    this->color = c.color;
-
-    return *this;
-}
+//Card& Card::operator=(Card& c){
+//    this->animal = c.animal;
+//    this->color = c.color;
+//
+//    return *this;
+//}

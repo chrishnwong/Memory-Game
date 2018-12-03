@@ -1,11 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Game.h"
 #include "Player.h"
 
 using namespace std;
-
-//Game::board = Board();
 
 Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
     players.reserve(numPlayers);
