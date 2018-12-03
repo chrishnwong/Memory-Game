@@ -8,6 +8,8 @@
 
 using namespace std;
 
+Board Game::board = Board();
+
 int main() {
     int gameVersion;
     int numPlayers;
@@ -24,7 +26,7 @@ int main() {
     Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
     //cardDeck.shuffle();
     //rewardDeck.shuffle();
-    Game::board = Board();
+    //Board Game::board = Board();
     Rules rules = Rules();
     Game game = Game(gameVersion, numPlayers);
 
@@ -36,7 +38,7 @@ int main() {
 
         }
     }
-    cout <<game.getBoard();
+    cout <<Game::board;
 
     for (int i = 0; i < numPlayers; i++) {
         string name;
