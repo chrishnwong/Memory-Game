@@ -36,12 +36,24 @@ int main() {
     Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
     Rules rules = Rules();
 
+//    int k=0;
+//    for(int i=0; i<5; i++){
+//        for(int j=0; j<5; j++){
+//            for(int r = 0; r<3; ++r){
+//              Card *card = cardDeck.items[k++];
+//              string rowString = &card(r);
+//              cout << rowString <<endl;
+//            }
+//
+//        }
+//    }
+
 
     //cout << board2.toString();
     //Board board = Board();
 
     cardDeck.shuffle();
-    //rewardDeck.shuffle();
+    rewardDeck.shuffle();
 
     cout<<game<<endl;
 
@@ -83,7 +95,7 @@ int main() {
                 cout << "Enter the coordinates of the first card you want to flip on the board."<< endl;
                 cout << "Row Letter: (EX: A)" <<endl;
                 //cin >> letterInput;
-                cout<< "Collumn Number: (EX: 3" <<endl;
+                cout<< "Collumn Number: (EX: 3)" <<endl;
                 //cin >> numberInput;
 
                 if(!(game.getBoard().isFaceUp(letterInput, numInput))){
