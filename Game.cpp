@@ -69,8 +69,12 @@ Card* Game::getCard(const Letter& let, const Number& num){
 }
 
 void Game::setCard(const Letter& let, const Number& num, Card* c){
-    return board.setCard(let, num, c);
+    board.setCard(let, num, c);
     // why is a void type returning
+}
+
+Board Game::getBoard() {
+    return board;
 }
 
 void Game::setBoard(Board b){
@@ -159,63 +163,8 @@ void Game::resetCurrent(){
     current = 0;
 }
 
+
 ostream& operator<<(ostream& os, const Game& game) {
     //os << board.toString();
     return os;
 }
-/*
-Node::Node(Player* _p){
-    p = _p;
-    next = nullptr;
-    prev = nullptr;
-}*/
-/*
-Node* Node::getNextNode() const{
-    return next;
-}
-
-Node* Node::getPrevNode() const{
-    return prev;
-}
-
-void Node::add(Node& n){
-    this->prev = n;
-    n.next = this;
-
-    this->traverseAdd(n, this);
-}
-
-void Node::traverseAdd(Node* n, Node* start){
-    if(next!=start)
-        this->next->traverseAdd(n, start);
-    else{
-        this->next = n;
-        n->prev = this;
-    }
-}
-
-void Node::remove(){
-    this->next->prev = this->prev;
-    this->prev->next = this->next;
-
-    //this->next = nullptr;
-    //this->prev = nullptr;
-}
-
-Node& Node::operator=(const Node& n){
-    this->p = n.p;
-    this->next = n.next;
-    this->prev = n.prev;
-
-    return *this;
-}
-
-bool Node::operator!=(const Node& n){
-    cout<<"success";
-    return this->p->getSide()==n.p->getSide();
-}
-
-Player* Node::getPlayer() const{
-    return p;
-}
-*/

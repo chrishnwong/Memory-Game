@@ -1,0 +1,80 @@
+# depslib dependency file v1.0
+1543809015 source:c:\users\bomby\cplusplus\memory-game\board.cpp
+	"Board.h"
+	<stdexcept>
+	<iostream>
+
+1543810606 c:\users\bomby\cplusplus\memory-game\board.h
+	<string>
+	"Card.h"
+
+1543712370 c:\users\bomby\cplusplus\memory-game\card.h
+	<string>
+	<iostream>
+
+1543809286 source:c:\users\bomby\cplusplus\memory-game\card.cpp
+	"Card.h"
+	<iostream>
+
+1543803607 source:c:\users\bomby\cplusplus\memory-game\carddeck.cpp
+	"CardDeck.h"
+
+1543802798 c:\users\bomby\cplusplus\memory-game\carddeck.h
+	"Deck.h"
+	"Card.h"
+
+1543803015 c:\users\bomby\cplusplus\memory-game\deck.h
+	<algorithm>
+	<vector>
+
+1543810626 source:c:\users\bomby\cplusplus\memory-game\game.cpp
+	<iostream>
+	<vector>
+	"Game.h"
+	"Player.h"
+
+1543809909 c:\users\bomby\cplusplus\memory-game\game.h
+	<string>
+	<vector>
+	<algorithm>
+	"Board.h"
+	"Player.h"
+	"Card.h"
+	"Rules.h"
+
+1543810716 c:\users\bomby\cplusplus\memory-game\player.h
+	<string>
+	"Reward.h"
+
+1543712370 c:\users\bomby\cplusplus\memory-game\reward.h
+	<iostream>
+
+1543712370 c:\users\bomby\cplusplus\memory-game\rules.h
+	"Game.h"
+
+1543810716 source:c:\users\bomby\cplusplus\memory-game\player.cpp
+	<iostream>
+	"Player.h"
+
+1543712370 source:c:\users\bomby\cplusplus\memory-game\reward.cpp
+	"Reward.h"
+
+1543804544 source:c:\users\bomby\cplusplus\memory-game\rewarddeck.cpp
+	"RewardDeck.h"
+
+1543803898 c:\users\bomby\cplusplus\memory-game\rewarddeck.h
+	"Deck.h"
+	"Reward.h"
+
+1543809399 source:c:\users\bomby\cplusplus\memory-game\rules.cpp
+	"Rules.h"
+
+1543810565 source:c:\users\bomby\cplusplus\memory-game\main.cpp
+	<iostream>
+	"Game.h"
+	"Deck.h"
+	"CardDeck.h"
+	"RewardDeck.h"
+	"Rules.h"
+	"Board.h"
+

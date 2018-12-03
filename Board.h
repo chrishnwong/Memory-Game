@@ -57,12 +57,16 @@ class Board {
         bool isFaceUp(const Letter&, const Number&) const;
         bool turnFaceUp(const Letter&, const Number&);
         bool turnFaceDown(const Letter&, const Number&);
-        Card* getCard(const Letter&, const Number&) const;
+
+        Card* getCard(const Letter&, const Number&) const; //why add constant at the end
+
         void setCard(const Letter&, const Number&, Card*);
         void reset();
         string toString();
         void setExpDisp(bool);
         void setExpRules(bool);
+        friend ostream& operator<<(ostream&, const Board&);
+
     private:
         cardRecords* getcRecords();
 

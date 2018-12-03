@@ -130,14 +130,6 @@ string Card::operator()(int row) {
 
 }
 
-FaceAnimal Card::getAnimal(){
-    return animal;
-}
-FaceBackground Card::getBackground(){
-    return color;
-}
-
-
 Card& Card::operator=(const Card& c){
     this->animal = c.animal;
     this->color = c.color;

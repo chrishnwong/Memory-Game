@@ -12,7 +12,7 @@ class RewardDeck: public Deck<Reward>
         static RewardDeck& make_RewardDeck();
 
         RewardDeck();
-        ~RewardDeck();
+        //~RewardDeck();
 
     private:
         static const int size = 7;

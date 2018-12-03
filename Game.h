@@ -29,7 +29,9 @@ class Game {
         Game(int _gameVersion, int numPlayers);
         ~Game();
         int getRound() const;
-        void incRound();
+
+        void incRound(); //cant add public method
+  
         void addPlayer(const Player&);
         Player& getPlayer(Side);
         const Card* getPreviousCard() const;
@@ -37,9 +39,11 @@ class Game {
         void setCurrentCard(const Card*);
         Card* getCard(const Letter&, const Number&);
         void setCard(const Letter&, const Number&, Card*);
-        void setBoard(Board);
-        Player& getNextPlayer(int);
-        void resetCurrent();
+
+        void setBoard(Board); //cant add public method
+        Board getBoard(); //cant add public method
+        Player& getNextPlayer(int); //cant add public method
+        void resetCurrent(); //cant add public method
 
         void setCardDeck(CardDeck*);
         //Board& getBoard() const;

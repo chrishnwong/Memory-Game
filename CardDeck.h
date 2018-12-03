@@ -10,7 +10,7 @@ class CardDeck: public Deck<Card>
         static CardDeck& make_CardDeck();
 
         CardDeck();
-        ~CardDeck();
+        //~CardDeck();
 
 
     private:

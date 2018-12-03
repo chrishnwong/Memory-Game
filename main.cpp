@@ -4,6 +4,7 @@
 #include "CardDeck.h"
 #include "RewardDeck.h"
 #include "Rules.h"
+#include "Board.h"
 
 using namespace std;
 
@@ -35,9 +36,21 @@ int main() {
     Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
     Rules rules = Rules();
 
+//    int k=0;
+//    for(int i=0; i<5; i++){
+//        for(int j=0; j<5; j++){
+//            for(int r = 0; r<3; ++r){
+//              Card *card = cardDeck.items[k++];
+//              string rowString = &card(r);
+//              cout << rowString <<endl;
+//            }
+//
+//        }
+//    }
+
 
     //cout << board2.toString();
-    Board board = Board();
+    //Board board = Board();
 
     //cardDeck.shuffle();
     //rewardDeck.shuffle();
@@ -46,7 +59,7 @@ int main() {
 
 
     while (!rules.gameOver(game)) {
-        board.reset();
+        game.getBoard().reset();
 
 
         for (int i = 0; i < numPlayers; i++) {
@@ -56,34 +69,51 @@ int main() {
             cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
             //game.threeCardReveal(player.getSide());
             //game.clearScreen();
-            //string asdf;
-            //cin >> asdf;
         }
-
-
-        //Node start = Node(game.getPlayer(top));
-
-
-        /*for(int i = 1; i < numPlayers; i++){
-            Node n = Node(game.getPlayer((Side) i));
-            start.add(n);
-            cout << "Round 2";
-        }*/
-
-        //Node current = start;
 
         Player* current = &game.getPlayer((Side) 0);
         game.resetCurrent();
         cout<< "starting round"<<endl;
 
+
         while (!rules.roundOver(game)) {
             cout << "Round " << game.getRound() << ":" << endl;
             cout << "It is now Player " << current->getName() << "'s turn" << endl;
-            //string test;
-            //cin >> test;
-            // select cards
+
+            // select first card
+            Letter letterInput = A;
+            //char letterInput;
+            Number numInput=ONE;
+            //int numInput;
+            bool cardValid = false;
+
+            //while(!cardValid){
+
+                cout << "Enter the coordinates of the first card you want to flip on the board."<< endl;
+                cout << "Row Letter: (EX: A)" <<endl;
+                //cin >> letterInput;
+                cout<< "Collumn Number: (EX: 3)" <<endl;
+                //cin >> numberInput;
+
+                if(!(game.getBoard().isFaceUp(letterInput, numInput))){
+                   cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
+                }else{
+                    cardValid = true;
+                }
+
+            // set current card pointer
+            Card* chosenFirstCard = game.getCard(letterInput, numInput);
+            game.setCurrentCard(chosenFirstCard);
+          
             // turn card faceup
+            if(game.getBoard().turnFaceUp(letterInput, numInput)){
+                cout << "Card Flipped Sucessfully." <<endl;
+            }else{
+                cout << "Card Flipping Failed." <<endl;
+            }
+
             // update board
+            // print the board
 
             //if (!rules.isValid(game)){
                 current->setActive(false);
@@ -112,8 +142,9 @@ int main() {
 
 
             // update board
-    }
+        //}
 
+    }
 
     string result;
     for(int i=0; i<5; i++){
@@ -124,4 +155,6 @@ int main() {
     game.getPlacements();
 
     return 0;
+
+
 }
