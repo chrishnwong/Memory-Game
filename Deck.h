@@ -43,7 +43,7 @@ C* Deck<C>::getNext(){
     //return items[current++];
 
     if(riter != elements.rend()){
-        return riter++;
+        return &(*riter++);
     }
 //    else{
 //        return nullptr;

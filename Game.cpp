@@ -5,14 +5,15 @@
 
 using namespace std;
 
+//Game::board = Board();
+
 Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
     players.reserve(numPlayers);
     previousCard = 0;
     currentCard = 0;
-    Board board = Board();
 
     players.reserve(numPlayers);
-
+    //board = _board;
     round = 1;
     gameVersion = _gameVersion;
 
@@ -165,7 +166,7 @@ void Game::resetCurrent(){
 
 
 ostream& operator<<(ostream& os, const Game& game) {
-    //os << board.toString();
+    //os << board;
     return os;
 }
 

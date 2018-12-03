@@ -10,12 +10,8 @@
 #include "Card.h"
 #include "Rules.h"
 
-//class Board;
-
 class Game {
     private:
-        //friend Board;
-        Board board;
         vector<Player> players;
         CardDeck* cards;
         int round;
@@ -25,6 +21,7 @@ class Game {
         string place[4] = {"1st", "2nd", "3rd", "4th"};
         int current;
     public:
+        static Board board;
         //Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion);
         Game(int _gameVersion, int numPlayers);
         ~Game();

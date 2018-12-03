@@ -20,7 +20,23 @@ int main() {
     cout << "Number of players: 2-4" << endl;
     cin >> numPlayers;
 
+    Deck<Card> cardDeck = CardDeck::make_CardDeck();
+    Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
+    //cardDeck.shuffle();
+    //rewardDeck.shuffle();
+    Game::board = Board();
+    Rules rules = Rules();
     Game game = Game(gameVersion, numPlayers);
+
+    // set the board
+    int k=0;
+    for (int i = Letter::A; i <= Letter::E; i++) {
+        for (int j = Number::ONE; j <= Number::FIVE; j++) {
+            game.setCard(Letter(i), Number(j), cardDeck.getNext());
+
+        }
+    }
+    cout <<game.getBoard();
 
     for (int i = 0; i < numPlayers; i++) {
         string name;
@@ -32,9 +48,7 @@ int main() {
         game.addPlayer(player);
     }
 
-    Deck<Card> cardDeck = CardDeck::make_CardDeck();
-    Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
-    Rules rules = Rules();
+
 
 //    int k=0;
 //    for(int i=0; i<5; i++){
@@ -50,10 +64,9 @@ int main() {
 
 
     //cout << board2.toString();
-    //Board board = Board();
 
-    cardDeck.shuffle();
-    rewardDeck.shuffle();
+
+
 
     cout<<game<<endl;
 
