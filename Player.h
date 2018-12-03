@@ -31,7 +31,7 @@ class Player
         int getNRubies() const;
         void addReward(const Reward&);
         void setDisplayMode(bool endOfGame);
-        Side getSide() const; //why add constant
+        Side getSide() const;
         void setSide(Side);
 
         Player& operator=(const Player&);

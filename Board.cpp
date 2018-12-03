@@ -30,7 +30,7 @@ Board& Board::operator=(const Board& b){
     }
 
     this->expertDisplay = b.expertDisplay;
-    this->expertRules = b.expertRules;
+    this->expertRules = b.expertDisplay;
 
     return *this;
 }
@@ -75,8 +75,8 @@ bool Board::turnFaceDown(const Letter& let, const Number& num) {
     }
 }
 
-// why add constant at the end
 Card* Board::getCard(const Letter& let, const Number& num) const {
+
     if ( row < static_cast<int>(let) || column < static_cast<int>(num) ) {
         throw std::out_of_range("Letter or Number Index given is out of range.");
     }

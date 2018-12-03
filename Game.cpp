@@ -168,39 +168,3 @@ ostream& operator<<(ostream& os, const Game& game) {
     //os << board.toString();
     return os;
 }
-
-//Node* Node::getNextNode(){
-//    return next;
-//}
-//
-//Node* Node::getPrevNode(){
-//    return prev;
-//}
-//
-//void Node::add(Node* n){
-//    this->prev = n;
-//    n->next = this;
-//
-//    this->traverseAdd(n, this);
-//}
-//
-//void Node::traverseAdd(Node* n, Node* start){
-//    if(next!=start)
-//        this->next->traverseAdd(n, start);
-//    else{
-//        this->next = n;
-//        n->prev = this;
-//    }
-//}
-//
-//void Node::remove(){
-//    this->next->prev = this->prev;
-//    this->prev->next = this->next;
-//
-//    //this->next = nullptr;
-//    //this->prev = nullptr;
-//}
-//
-//Player& Node::getPlayer(){
-//    return p;
-//}

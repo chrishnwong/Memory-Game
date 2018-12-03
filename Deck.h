@@ -28,7 +28,6 @@ class Deck
 
 };
 
-
 template <class C>
 void Deck<C>::shuffle(){
     //random_shuffle(items, items+size);

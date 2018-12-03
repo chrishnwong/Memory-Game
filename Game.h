@@ -29,7 +29,9 @@ class Game {
         Game(int _gameVersion, int numPlayers);
         ~Game();
         int getRound() const;
+
         void incRound(); //cant add public method
+  
         void addPlayer(const Player&);
         Player& getPlayer(Side);
         const Card* getPreviousCard() const;
@@ -37,6 +39,7 @@ class Game {
         void setCurrentCard(const Card*);
         Card* getCard(const Letter&, const Number&);
         void setCard(const Letter&, const Number&, Card*);
+
         void setBoard(Board); //cant add public method
         Board getBoard(); //cant add public method
         Player& getNextPlayer(int); //cant add public method
@@ -55,19 +58,22 @@ class Game {
         friend ostream& operator<<(ostream&, const Game&);
 };
 
-struct Node{
-    Player& p;
-    Node* next;
-    Node* prev;
+/*struct Node{
+    Player p;
+    Node *next;
+    Node *prev;
 
     public:
-        Node();
-        Node* getNextNode();
-        Node* getPrevNode();
-        void add(Node*);
+        Node(Player& _p): p(_p), next(nullptr), prev(nullptr){};
+        Node& operator=(const Node& n);
+        bool operator!=(const Node& n);
+        Node* getNextNode() const;
+        Node* getPrevNode() const;
+        void add(Node&);
         void remove();
         void traverseAdd(Node*, Node*);
-        Player& getPlayer();
+        Player* getPlayer() const;
 };
+*/
 
 #endif // GAME_H

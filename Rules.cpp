@@ -31,5 +31,9 @@ bool Rules::roundOver(const Game& game) {
 
     }
 
+    //if(flag)
+    //    cout<<"true"<<endl;
+    //else
+    //    cout<<"false"<<endl;
     return flag;
 }

@@ -52,13 +52,15 @@ int main() {
     //cout << board2.toString();
     //Board board = Board();
 
-    cardDeck.shuffle();
-    rewardDeck.shuffle();
+    //cardDeck.shuffle();
+    //rewardDeck.shuffle();
 
-    cout<<game<<endl;
+    cout << game << endl;
+
 
     while (!rules.gameOver(game)) {
         game.getBoard().reset();
+
 
         for (int i = 0; i < numPlayers; i++) {
             Player& player = game.getPlayer((Side) i);
@@ -67,19 +69,7 @@ int main() {
             cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
             //game.threeCardReveal(player.getSide());
             //game.clearScreen();
-
         }
-
-//        Node* start;
-//        start->p = game.getPlayer(top);
-//
-//        for(int i = 1; i < numPlayers; i++){
-//            Node* n;
-//            n->p = game.getPlayer((Side) i);
-//            start->add(n);
-//        }
-//
-//        Node* current = start;
 
         Player* current = &game.getPlayer((Side) 0);
         game.resetCurrent();
@@ -114,7 +104,7 @@ int main() {
             // set current card pointer
             Card* chosenFirstCard = game.getCard(letterInput, numInput);
             game.setCurrentCard(chosenFirstCard);
-
+          
             // turn card faceup
             if(game.getBoard().turnFaceUp(letterInput, numInput)){
                 cout << "Card Flipped Sucessfully." <<endl;
@@ -125,12 +115,9 @@ int main() {
             // update board
             // print the board
 
-
-
             //if (!rules.isValid(game)){
                 current->setActive(false);
             //}
-
 
             // display game
             for(int i=0;i<numPlayers;i++){
@@ -139,18 +126,19 @@ int main() {
                     break;
                 }
             }
+
         }
         game.incRound();
 
 
-
-//        for (int i = 0; i < numPlayers; i++) {
-//            Player player = game.getPlayer((Side) i);
-//            if (player.isActive()) {
-//                Reward *reward = rewardDeck.getNext();
-//                player.addReward(*reward);
-//            }
-//        }
+/*
+        for (int i = 0; i < numPlayers; i++) {
+            Player player = game.getPlayer((Side) i);
+            if (player.isActive()) {
+                //Reward *reward = rewardDeck.getNext();
+                player.addReward(*reward);
+            }
+        }*/
 
 
             // update board
@@ -163,7 +151,6 @@ int main() {
         result += (char) (i+65);
     }
     cout << result;
-
 
     game.getPlacements();
 

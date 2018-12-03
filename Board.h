@@ -45,8 +45,8 @@ class Board {
         //bool cardsStatus[row][column];
 
         cardRecords cRecords[5][5];
-        bool expertDisplay = false;
-        bool expertRules = false;
+        bool expertDisplay;
+        bool expertRules;
     public:
         Board();
         ~Board();
@@ -57,7 +57,9 @@ class Board {
         bool isFaceUp(const Letter&, const Number&) const;
         bool turnFaceUp(const Letter&, const Number&);
         bool turnFaceDown(const Letter&, const Number&);
+
         Card* getCard(const Letter&, const Number&) const; //why add constant at the end
+
         void setCard(const Letter&, const Number&, Card*);
         void reset();
         string toString();

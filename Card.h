@@ -16,7 +16,10 @@ class Card
     public:
         int getNRows() const;
         string operator()(int row);
-        void printCard(string*);
+        void printCard(string[3]);
+        FaceAnimal getAnimal();
+        FaceBackground getBackground();
+        
 
         Card& operator=(const Card&);
 

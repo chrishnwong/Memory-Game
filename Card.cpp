@@ -12,12 +12,11 @@ int Card::getNRows() const{
     return nRows;
 }
 
-void Card::printCard(string* arr){
+void Card::printCard(string arr[3]){
     string colorChar, animalChar;
 
 
-
-    switch (this->color) {
+    switch (getBackground()) {
         case FaceBackground::Red:
             colorChar = "r";
             cout << color << endl;
@@ -44,7 +43,7 @@ void Card::printCard(string* arr){
             break;
     }
 
-    switch (this->animal) {
+    switch (getAnimal()) {
         case FaceAnimal::Crab:
             animalChar = "C";
             cout << animal << endl;
@@ -131,8 +130,6 @@ string Card::operator()(int row) {
 
 }
 
-// card cannot be copied or assigned
-// cannot add more public method
 Card& Card::operator=(const Card& c){
     this->animal = c.animal;
     this->color = c.color;
