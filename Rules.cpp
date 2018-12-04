@@ -24,15 +24,19 @@ bool Rules::gameOver(const Game& game) {
 }
 
 bool Rules::roundOver(const Game& game) {
-    bool flag = true;
+    //bool flag = true;
+    int numActivePlayers=0;
 
     for(int i = 0; i < game.getPlayerVector()->size(); i++){
         if((game.getPlayerVector()->at(i).isActive())){
-            flag = false;
-            break;
+            numActivePlayers++;
+            //break;
         }
-
+    }
+    if (numActivePlayers > 1){
+        return false;
+    }else{
+        return true;
     }
 
-    return flag;
 }

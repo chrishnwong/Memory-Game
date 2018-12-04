@@ -98,6 +98,7 @@ int main() {
     cout<<game<<endl;
 
     while (!rules.gameOver(game)) {
+        //int survivors = numplayers;
         Game::board.reset();
 
         for (int i = 0; i < numPlayers; i++) {
@@ -244,8 +245,9 @@ int main() {
                 Game::board.turnFaceDown(letterInput, numInput);
                 Game::board.turnFaceDown(letterInput2, numInput2);
                 current->setActive(false);
+                //survivors--;
             }else{
-                cout << "Congratz you have a match! You survive this round!" <<endl;
+                cout << "Congratz you have a match! You survive this turn!" <<endl;
             }
 
             cout << "Game Display:" << endl;
@@ -255,36 +257,42 @@ int main() {
 
 
             // display game
+
             for(int i=0;i<numPlayers;i++){
                 current = &game.getNextPlayer(numPlayers);
                 if(current->isActive()){
                     break;
                 }
             }
-        }
+        }// end of round
+
         game.incRound();
 
+        for (int i = 0; i < numPlayers; i++) {
+                Player player = game.getPlayer((Side) i);
+                if (player.isActive()) {
+                    Reward *reward = rewardDeck.getNext();
+                    player.addReward(*reward);
+                    cout << "You won this round! You got " <<*reward << " rubies for this round!" <<endl;
+                }
+        }
 
 
-//        for (int i = 0; i < numPlayers; i++) {
-//            Player player = game.getPlayer((Side) i);
-//            if (player.isActive()) {
-//                Reward *reward = rewardDeck.getNext();
-//                player.addReward(*reward);
-//            }
-//        }
 
 
             // update board
         //}
 
-    }
+    }// end of game
 
-    string result;
-    for(int i=0; i<5; i++){
-        result += (char) (i+65);
-    }
-    cout << result;
+
+
+
+//    string result;
+//    for(int i=0; i<5; i++){
+//        result += (char) (i+65);
+//    }
+//    cout << result;
 
 
     game.getPlacements();

@@ -8,7 +8,7 @@ using namespace std;
 class RewardDeck;
 
 enum Rubies{
-    one,
+    one=1,
     two,
     three,
     four

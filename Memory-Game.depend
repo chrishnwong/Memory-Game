@@ -33,7 +33,7 @@
 	"Card.h"
 	<iterator>
 
-1543893643 source:c:\users\bomby\cplusplus\memory-game\game.cpp
+1543897069 source:c:\users\bomby\cplusplus\memory-game\game.cpp
 	<iostream>
 	<vector>
 	<algorithm>
@@ -73,10 +73,10 @@
 	"Deck.h"
 	"Reward.h"
 
-1543893605 source:c:\users\bomby\cplusplus\memory-game\rules.cpp
+1543899617 source:c:\users\bomby\cplusplus\memory-game\rules.cpp
 	"Rules.h"
 
-1543895434 source:c:\users\bomby\cplusplus\memory-game\main.cpp
+1543904594 source:c:\users\bomby\cplusplus\memory-game\main.cpp
 	<iostream>
 	"Game.h"
 	"Deck.h"
