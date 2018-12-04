@@ -71,13 +71,6 @@ int main() {
         }
     }
 
-    if (cardDeck.isEmpty()){
-        cout << "EMPTY" <<endl;
-    }else{
-        cout << "NOT EMPTY" <<endl;
-    }
-
-
 
     for (int i = 0; i < numPlayers; i++) {
         string name;
@@ -268,14 +261,11 @@ int main() {
 
         game.incRound();
 
-        for (int i = 0; i < numPlayers; i++) {
-                Player player = game.getPlayer((Side) i);
-                if (player.isActive()) {
-                    Reward *reward = rewardDeck.getNext();
-                    player.addReward(*reward);
-                    cout << "You won this round! You got " <<*reward << " rubies for this round!" <<endl;
-                }
-        }
+
+        Reward *reward = rewardDeck.getNext();
+        current->addReward(*reward);
+        cout << "Player "<< current->getName() << ", you won this round! You got " <<*reward << " rubies for this round!" <<endl;
+
 
 
 

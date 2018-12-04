@@ -16,11 +16,11 @@ bool Player::isActive() const{
 }
 
 int Player:: getNRubies() const{
-    return nRubies;
+    return numRubies;
 }
 
 void Player::addReward(const Reward &reward){
-    nRubies += reward.getNRubies();
+    numRubies = numRubies + reward.getNRubies();
 }
 
 void Player::setDisplayMode(bool _endOfGame){
@@ -37,14 +37,14 @@ void Player::setSide(Side _side){
 
 
 //cant add more public method
-Player& Player::operator=(const Player& p){
-    this->name = p.getName();
-    this->nRubies = p.getNRubies();
-    this->active = p.isActive();;
-    //this.endOfGame = p.;
-    this->side = p.getSide();
-     return *this;
-}
+//Player& Player::operator=(const Player& p){
+//    this->name = p.getName();
+//    this->numRubies = p.getNRubies();
+//    this->active = p.isActive();;
+//    //this.endOfGame = p.;
+//    this->side = p.getSide();
+//     return *this;
+//}
 
 
 
@@ -73,7 +73,7 @@ ostream& operator<<(ostream& os, const Player& player) {
 
         os << player.name << ": " << side << " (" << activeStr << ")";
     } else {
-        os << player.name << ": " << player.nRubies << " rubies";
+        os << player.name << ": " << player.numRubies << " rubies";
     }
     return os;
 }

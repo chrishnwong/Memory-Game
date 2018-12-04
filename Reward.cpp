@@ -6,7 +6,7 @@
 //}
 
 Reward::Reward(Rubies _nRubies){
-        nRubies = _nRubies;//missed an underscore
+        nRubies = _nRubies;
 }
 
 int Reward::getNRubies() const{

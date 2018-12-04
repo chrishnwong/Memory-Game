@@ -11,7 +11,7 @@ Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
     previousCard = 0;
     currentCard = 0;
 
-    players.reserve(numPlayers);
+    //players.reserve(numPlayers);
     //board = _board;
     round = 1;
     gameVersion = _gameVersion;
@@ -103,7 +103,12 @@ bool Game::sortRubies(const Player& i, const Player& j){
 void Game::getPlacements(){
 
     int i = 0;
-    sort(players.begin(), players.end());
+    sort(players.begin(),
+         players.end(),
+         [](const Player& lhs, const Player& rhs)
+         {
+             return lhs.getNRubies() > rhs.getNRubies();
+         });
 
     cout<<"The game has ended, here are the placements:"<<endl<<endl;
 
