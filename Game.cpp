@@ -48,11 +48,11 @@ Player& Game::getPlayer(Side side) {
 
 }
 
-const Card* Game::getPreviousCard() const {
+const Card* Game::getPreviousCard()const {
     return previousCard;
 }
 
-const Card* Game::getCurrentCard() const {
+const Card* Game::getCurrentCard()const{
     return currentCard;
 }
 
@@ -73,13 +73,13 @@ void Game::setCard(const Letter& let, const Number& num, Card* c){
     // why is a void type returning
 }
 
-Board Game::getBoard() {
-    return board;
-}
-
-void Game::setBoard(Board b){
-    board = b;
-}
+//Board Game::getBoard() {
+//    return board;
+//}
+//
+//void Game::setBoard(Board b){
+//    board = b;
+//}
 
 //string Game::toString() const {
 //    return "";

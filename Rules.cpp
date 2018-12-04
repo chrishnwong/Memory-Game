@@ -1,11 +1,14 @@
 #include "Rules.h"
+//#include "Card.h"
 
 Rules::Rules(){
     // TODO Should something be here?
 }
 
-bool Rules::isValid(const Game& game) {
-    if(game.getPreviousCard() == game.getCurrentCard()){
+bool Rules::isValid(const Game& game){  //adding const hmmm..
+    if(game.getPreviousCard()->getAnimal() == game.getCurrentCard()->getAnimal()){
+        return true;
+    }else if(game.getPreviousCard()->getBackground() == game.getCurrentCard()->getBackground()){
         return true;
     }else{
         return false;

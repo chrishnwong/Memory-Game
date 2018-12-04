@@ -29,13 +29,13 @@ class Game {
         void incRound(); //cant add public method
         void addPlayer(const Player&);
         Player& getPlayer(Side);
-        const Card* getPreviousCard() const;
-        const Card* getCurrentCard() const;
+        const Card* getPreviousCard()const; //adding constant
+        const Card* getCurrentCard()const; //adding constant
         void setCurrentCard(const Card*);
         Card* getCard(const Letter&, const Number&);
         void setCard(const Letter&, const Number&, Card*);
-        void setBoard(Board); //cant add public method
-        Board getBoard(); //cant add public method
+        //void setBoard(Board); //cant add public method
+        //Board getBoard(); //cant add public method
         Player& getNextPlayer(int); //cant add public method
         void resetCurrent(); //cant add public method
 

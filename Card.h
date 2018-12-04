@@ -18,9 +18,10 @@ class Card
         string operator()(int row);
         void printCard(string*);
 
+
         //to be removed later
-        FaceAnimal getAnimal(){return animal;};
-        FaceBackground getBackground(){return color;};
+        FaceAnimal getAnimal()const{return animal;};
+        FaceBackground getBackground()const{return color;};
         //Card();
         //Card& operator=(Card&);
 

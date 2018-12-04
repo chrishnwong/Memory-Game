@@ -15,8 +15,6 @@ int Card::getNRows() const{
 void Card::printCard(string* arr){
     string colorChar, animalChar;
 
-
-
     switch (this->color) {
         case FaceBackground::Red:
             colorChar = "r";
@@ -70,14 +68,7 @@ void Card::printCard(string* arr){
 string Card::operator()(int row) {
     char colorChar;
 
-//    //to be removed
-//    if (getBackground() == 0){
-//        cout << "bcg null" <<endl;
-//    }else{
-//        cout << "bcg not null" <<endl;
-//    }
-
-    switch (getBackground()) {
+    switch (this->color) {
         case 0:
             colorChar = 'r';
             break;
@@ -99,14 +90,7 @@ string Card::operator()(int row) {
 
     char animalChar;
 
-    //to be removed
-//    if (getAnimal() == 0){
-//        cout << "animal null" <<endl;
-//    }else{
-//        cout << "animal not null" <<endl;
-//    }
-
-    switch (getAnimal()) {
+    switch (this->animal) {
         case 0:
             animalChar = 'C';
             break;
@@ -134,6 +118,10 @@ string Card::operator()(int row) {
     }
 
 }
+
+
+
+
 
 // card cannot be copied or assigned
 // cannot add more public method

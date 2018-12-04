@@ -11,14 +11,11 @@ class RewardDeck: public Deck<Reward>
         //virtual ~RewardDeck(){}
         static RewardDeck& make_RewardDeck();
 
-        RewardDeck();
-        //~RewardDeck();
-
     private:
         static const int size = 7;
         static RewardDeck *rewDeck;
-        //RewardDeck();
-        //~RewardDeck();
+        RewardDeck();
+        ~RewardDeck();
 };
 
 #endif // REWARDDECK_H
