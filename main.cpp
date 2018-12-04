@@ -146,7 +146,7 @@ int main() {
                 //cout << "Row Letter: (EX: A)" <<endl;
                 cin >> letterInput;
 
-                cout << "On which Collumn is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
+                cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
                 cout << "Enter the number of your choice.";
                 //cout<< "Collumn Number: (EX: 3)" <<endl;
                 cin >> numInput;
@@ -199,7 +199,7 @@ int main() {
                 //cout << "Row Letter: (EX: A)" <<endl;
                 cin >> letterInput2;
 
-                cout << "On which Collumn is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
+                cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
                 cout << "Enter the number of your choice.";
                 //cout<< "Collumn Number: (EX: 3)" <<endl;
                 cin >> numInput2;

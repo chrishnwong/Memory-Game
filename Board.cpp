@@ -55,7 +55,7 @@ bool Board::turnFaceUp(const Letter& let, const Number& num) {
     if (cRecords[let][num].cardStatus == true) {
         return false;
     }else{
-        cRecords[static_cast<int>(let)][static_cast<int>(num)].cardStatus = true;
+        cRecords[let][num].cardStatus = true;
         return true;
     }
 }

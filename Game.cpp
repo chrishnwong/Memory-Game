@@ -58,7 +58,6 @@ const Card* Game::getCurrentCard()const{
 
 void Game::setCurrentCard(const Card* c) {
     //if (previousCard == nullptr)
-    delete previousCard;
     previousCard = currentCard;
     currentCard = c;
 
