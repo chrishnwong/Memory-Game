@@ -6,19 +6,19 @@ Board::Board(){
     try {
         //if(crecords is empty)
             //throw NoMoreCards;
-            CardDeck cd = CardDeck();
-            cd.shuffle();
+            //CardDeck cd = CardDeck();
+            //cd.shuffle();
         for(int i=0; i<row; i++){
             for(int j=0; j<column; j++){
-                if(i != 2 &&j != 2){
+                if(i!=2 && j!=2){
                     cRecords[i][j].cardStatus = false;
-                    cRecords[i][j].card = cd.getNext();
+                    //cRecords[i][j].card = cd.getNext();
                 }
             }
         }
     }
     catch (exception& e) {
-        cout << e.err() << endl;
+        //cout << e.err() << endl;
     }
 
 
@@ -176,8 +176,12 @@ string Board::toString() {
 
 ostream& operator<<(ostream& os, const Board& board){
     string arr[3] = {"","",""};
+    string letterName[5] = {"A", "B", "C", "D", "E"};
 
     for (int i = Letter::A; i <= Letter::E; i++) {
+        arr[0] = "  ";
+        arr[1] = letterName[i] + " ";
+        arr[2] = "  ";
         for (int j = Number::ONE; j <= Number::FIVE; j++) {
             board.getCard((Letter) i, (Number) j)->printCard(arr);
         }
@@ -186,6 +190,8 @@ ostream& operator<<(ostream& os, const Board& board){
         arr[1] = "";
         arr[2] = "";
     }
+
+    os << "    1   2   3   4   5   ";
 }
 
 void Board::setExpDisp(bool disp){
