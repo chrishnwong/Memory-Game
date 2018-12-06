@@ -127,8 +127,8 @@ int main() {
                 }
             }
 
+            game.incRound();
         }
-        game.incRound();
 
 
 /*
