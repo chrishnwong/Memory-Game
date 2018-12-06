@@ -177,22 +177,39 @@ string Board::toString() {
 ostream& operator<<(ostream& os, const Board& board){
     string arr[3] = {"","",""};
     string letterName[5] = {"A", "B", "C", "D", "E"};
+    string numberName[5] = {"1", "2", "3", "4", "5"};
+    string coord = "";
 
-    for (int i = Letter::A; i <= Letter::E; i++) {
-        arr[0] = "  ";
-        arr[1] = letterName[i] + " ";
-        arr[2] = "  ";
-        for (int j = Number::ONE; j <= Number::FIVE; j++) {
-            if(j!=2&&i!=2)
-                board.getCard((Letter) i, (Number) j)->printCard(arr);
+    if(!expertDisplay){
+        for (int i = Letter::A; i <= Letter::E; i++) {
+            arr[0] = "  ";
+            arr[1] = letterName[i] + " ";
+            arr[2] = "  ";
+            for (int j = Number::ONE; j <= Number::FIVE; j++) {
+                if(j!=2&&i!=2)
+                    board.getCard((Letter) i, (Number) j)->printCard(arr);
+            }
+            os << arr[0] << endl << arr[1] << endl << arr[2] << endl << endl;
+            arr[0] = "";
+            arr[1] = "";
+            arr[2] = "";
         }
-        os << arr[0] << endl << arr[1] << endl << arr[2] << endl << endl;
-        arr[0] = "";
-        arr[1] = "";
-        arr[2] = "";
+        os << "    1   2   3   4   5   ";
     }
-
-    os << "    1   2   3   4   5   ";
+    else{
+        for (int i = Letter::A; i <= Letter::E; i++) {
+            arr[0] = "  ";
+            arr[1] = letterName[i] + " ";
+            arr[2] = "  ";
+            for (int j = Number::ONE; j <= Number::FIVE; j++) {
+                if(board.getCard((Letter) i, (Number) j).cardStatus){
+                    board.getCard((Letter) i, (Number) j)->printCard(arr);
+                    coord += letterName[i] + numberName[j] + "   ";
+                }
+            }
+        }
+        arr += "\n\n" + coord;
+    }
 }
 
 void Board::setExpDisp(bool disp){
