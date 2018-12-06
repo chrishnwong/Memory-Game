@@ -183,7 +183,8 @@ ostream& operator<<(ostream& os, const Board& board){
         arr[1] = letterName[i] + " ";
         arr[2] = "  ";
         for (int j = Number::ONE; j <= Number::FIVE; j++) {
-            board.getCard((Letter) i, (Number) j)->printCard(arr);
+            if(j!=2&&i!=2)
+                board.getCard((Letter) i, (Number) j)->printCard(arr);
         }
         os << arr[0] << endl << arr[1] << endl << arr[2] << endl << endl;
         arr[0] = "";
