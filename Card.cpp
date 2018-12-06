@@ -19,54 +19,42 @@ void Card::printCard(string arr[3]){
     switch (color) {
         case FaceBackground::Red:
             colorChar = "r";
-            cout << color << endl;
             break;
         case FaceBackground::Green:
             colorChar = "g";
-            cout << color << endl;
             break;
         case FaceBackground::Purple:
             colorChar = "p";
-            cout << color << endl;
             break;
         case FaceBackground::Blue:
             colorChar = "b";
-            cout << color << endl;
             break;
         case FaceBackground::Yellow:
             colorChar = "y";
-            cout << color << endl;
             break;
         default:
             colorChar = " ";
-            cout << color << endl;
             break;
     }
 
     switch (animal) {
         case FaceAnimal::Crab:
             animalChar = "C";
-            cout << animal << endl;
             break;
         case FaceAnimal::Penguin:
             animalChar = "P";
-            cout << animal << endl;
             break;
         case FaceAnimal::Octopus:
             animalChar = "O";
-            cout << animal << endl;
             break;
         case FaceAnimal::Turtle:
             animalChar = "T";
-            cout << animal << endl;
             break;
         case FaceAnimal::Walrus:
             animalChar = "W";
-            cout << animal << endl;
             break;
         default:
             animalChar = " ";
-            cout << animal << endl;
             break;
     }
 
