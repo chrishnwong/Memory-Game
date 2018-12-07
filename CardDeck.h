@@ -15,8 +15,8 @@ class CardDeck: public Deck<Card>
         //~CardDeck();
         static const int size = 25;
         static CardDeck *deck;
-        //CardDeck();
-        //~CardDeck();
+        CardDeck();
+        ~CardDeck();
 
 };
 

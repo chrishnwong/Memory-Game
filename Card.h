@@ -20,12 +20,17 @@ class Card {
         FaceBackground getBackground();
         
 
-        Card& operator=(const Card&);
+
+        //to be removed later
+        FaceAnimal getAnimal()const{return animal;};
+        FaceBackground getBackground()const{return color;};
+        //Card();
+        //Card& operator=(Card&);
 
     private:
         FaceAnimal animal;
         FaceBackground color;
-        const int nRows = 3;
+        const static int nRows = 3;
         friend CardDeck;
 
         Card(FaceAnimal, FaceBackground);

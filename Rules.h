@@ -9,7 +9,7 @@ class Game;
 class Rules {
     public:
         Rules();
-        bool isValid(const Game&);
+        bool isValid(const Game&); //adding constant hmm...
         bool gameOver(const Game&);
         bool roundOver(const Game&);
 };

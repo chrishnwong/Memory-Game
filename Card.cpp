@@ -68,7 +68,8 @@ void Card::printCard(string arr[3]){
 
 string Card::operator()(int row) {
     char colorChar;
-    switch (color) {
+
+    switch (this->color) {
         case 0:
             colorChar = 'r';
             break;
@@ -89,7 +90,8 @@ string Card::operator()(int row) {
     }
 
     char animalChar;
-    switch (animal) {
+
+    switch (this->animal) {
         case 0:
             animalChar = 'C';
             break;
@@ -111,7 +113,7 @@ string Card::operator()(int row) {
 
     if (row == 1){
         char middleOfCard[3] = {colorChar, animalChar, colorChar};
-        return " " + string(middleOfCard);
+        return " " + string(1, colorChar) + string(1, animalChar) + string(1, colorChar);
     }else{
         return " " + string(3, colorChar);
     }

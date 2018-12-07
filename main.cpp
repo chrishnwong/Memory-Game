@@ -5,10 +5,46 @@
 #include "RewardDeck.h"
 #include "Rules.h"
 #include "Board.h"
+#include "Card.h"
+#include <algorithm>
+#include <ctime>        // std::time
+#include <cstdlib>
+#include <list>
 
 using namespace std;
 
+//Initialize the board
+Board Game::board = Board();
+
+
+
+istream& operator>>(istream& is, Letter& let)
+{
+    int a;
+    is >> a;
+    let = static_cast<Letter>(a);
+
+    return is;
+}
+
+istream& operator>>(istream& is, Number& num)
+{
+    int a;
+    is >> a;
+    num = static_cast<Number>(a);
+
+    return is;
+}
+
+
+
+int myrandom (int i) { return std::rand()%i;}
+
 int main() {
+
+
+
+
     int gameVersion;
     int numPlayers;
     int gameDisplay;
@@ -20,7 +56,21 @@ int main() {
     cout << "Number of players: 2-4" << endl;
     cin >> numPlayers;
 
+    Deck<Card> cardDeck = CardDeck::make_CardDeck();
+    Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
+    cardDeck.shuffle();
+    rewardDeck.shuffle();
+    Rules rules = Rules();
     Game game = Game(gameVersion, numPlayers);
+
+    // set the board
+    for (int i = Letter::A; i <= Letter::E; i++) {
+        for (int j = Number::ONE; j <= Number::FIVE; j++) {
+            game.setCard(Letter(i), Number(j), cardDeck.getNext());
+
+        }
+    }
+
 
     for (int i = 0; i < numPlayers; i++) {
         string name;
@@ -32,22 +82,10 @@ int main() {
         game.addPlayer(player);
     }
 
-    Deck<Card> cardDeck = CardDeck::make_CardDeck();
-    Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
-    Rules rules = Rules();
+    cout << endl;
 
-//    int k=0;
-//    for(int i=0; i<5; i++){
-//        for(int j=0; j<5; j++){
-//            for(int r = 0; r<3; ++r){
-//              Card *card = cardDeck.items[k++];
-//              string rowString = &card(r);
-//              cout << rowString <<endl;
-//            }
-//
-//        }
-//    }
-
+    cout << "Game Display:" << endl;
+    cout << Game::board;
 
     //cout << board2.toString();
     //Board board = Board();
@@ -59,7 +97,8 @@ int main() {
 
 
     while (!rules.gameOver(game)) {
-        game.getBoard().reset();
+        //int survivors = numplayers;
+        Game::board.reset();
 
 
         for (int i = 0; i < numPlayers; i++) {
@@ -83,54 +122,148 @@ int main() {
             cout << "It is now Player " << current->getName() << "'s turn" << endl;
 
             // select first card
-            Letter letterInput = A;
+            Letter letterInput; //= A;
             //char letterInput;
-            Number numInput=ONE;
+            Number numInput;
             //int numInput;
             bool cardValid = false;
+            Card* chosenCard;
 
-            //while(!cardValid){
+            while(!cardValid){
 
                 cout << "Enter the coordinates of the first card you want to flip on the board."<< endl;
-                cout << "Row Letter: (EX: A)" <<endl;
-                //cin >> letterInput;
-                cout<< "Collumn Number: (EX: 3)" <<endl;
-                //cin >> numberInput;
+                cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
+                cout << "Enter the number of your choice.";
+                //cout << "Row Letter: (EX: A)" <<endl;
+                cin >> letterInput;
 
-                if(!(game.getBoard().isFaceUp(letterInput, numInput))){
+                cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
+                cout << "Enter the number of your choice.";
+                //cout<< "Collumn Number: (EX: 3)" <<endl;
+                cin >> numInput;
+
+                if((Game::board.isFaceUp(letterInput, numInput))){
                    cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
                 }else{
                     cardValid = true;
+
                 }
+            }
 
             // set current card pointer
-            Card* chosenFirstCard = game.getCard(letterInput, numInput);
-            game.setCurrentCard(chosenFirstCard);
-          
+            chosenCard = game.getCard(letterInput, numInput);
+            game.setCurrentCard(chosenCard);
+
             // turn card faceup
-            if(game.getBoard().turnFaceUp(letterInput, numInput)){
+            if(Game::board.turnFaceUp(letterInput, numInput)){
                 cout << "Card Flipped Sucessfully." <<endl;
             }else{
                 cout << "Card Flipping Failed." <<endl;
             }
 
+
             // update board
             // print the board
+            if((Game::board.isFaceUp(letterInput, numInput))){
+                cout << "Now its flipped" <<endl;
+            }else{
+                cout << "It's still not flipped" <<endl;
 
-            //if (!rules.isValid(game)){
+            }
+            cout << "Game Display:" << endl;
+            cout << Game::board;
+
+
+            //////////////////////////second card/////////////////////////
+            // select second card
+            Letter letterInput2;
+            //char letterInput;
+            Number numInput2;
+            //int numInput;
+            cardValid = false;
+
+            while(!cardValid){
+
+                cout << "Enter the coordinates of the second card you want to flip on the board."<< endl;
+                cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
+                cout << "Enter the number of your choice.";
+                //cout << "Row Letter: (EX: A)" <<endl;
+                cin >> letterInput2;
+
+                cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
+                cout << "Enter the number of your choice.";
+                //cout<< "Collumn Number: (EX: 3)" <<endl;
+                cin >> numInput2;
+
+                if((Game::board.isFaceUp(letterInput2, numInput2))){
+                   cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
+                }else{
+                    cardValid = true;
+
+                }
+            }
+
+            // set current card pointer
+            Card* chosenFirstCard = game.getCard(letterInput, numInput);
+            game.setCurrentCard(chosenFirstCard);
+
+            // turn card faceup
+            if(Game::board.turnFaceUp(letterInput2, numInput2)){
+                cout << "Card Flipped Sucessfully." <<endl;
+            }else{
+                cout << "Card Flipping Failed." <<endl;
+            }
+
+
+            // update board
+            // print the board
+            if((Game::board.isFaceUp(letterInput2, numInput2))){
+                cout << "Now its flipped" <<endl;
+            }else{
+                cout << "It's still not flipped" <<endl;
+
+            }
+            cout << "Game Display:" << endl;
+            cout << Game::board;
+
+
+
+
+            if (!rules.isValid(game)){
+                cout << "You don't have a match, you lose this round!" <<endl;
+                cout << "Board is resetting." <<endl;
+                Game::board.turnFaceDown(letterInput, numInput);
+                Game::board.turnFaceDown(letterInput2, numInput2);
                 current->setActive(false);
-            //}
+                //survivors--;
+            }else{
+                cout << "Congratz you have a match! You survive this turn!" <<endl;
+            }
+
+            cout << "Game Display:" << endl;
+            cout << Game::board;
+
+
 
             // display game
+
             for(int i=0;i<numPlayers;i++){
                 current = &game.getNextPlayer();
                 if(current->isActive()){
                     break;
                 }
             }
+        }// end of round
+
+        game.incRound();
 
             game.incRound();
         }
+
+        Reward *reward = rewardDeck.getNext();
+        current->addReward(*reward);
+        cout << "Player "<< current->getName() << ", you won this round! You got " <<*reward << " rubies for this round!" <<endl;
+
 
 
 /*
@@ -146,13 +279,16 @@ int main() {
             // update board
         //}
 
-    }
+    }// end of game
 
-    string result;
-    for(int i=0; i<5; i++){
-        result += (char) (i+65);
-    }
-    cout << result;
+
+
+
+//    string result;
+//    for(int i=0; i<5; i++){
+//        result += (char) (i+65);
+//    }
+//    cout << result;
 
     game.getPlacements();
 

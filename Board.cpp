@@ -4,6 +4,7 @@
 #include "Card.h"
 #include <stdexcept>
 #include <iostream>
+#include <istream>
 
 Board::Board(){
     //try {
@@ -50,7 +51,7 @@ Board& Board::operator=(const Board& b){
     return *this;
 }
 
-bool Board::isFaceUp(const Letter& let, const Number& num) const {
+bool Board::isFaceUp(const Letter& let, const Number& num)const{
     if ( row < static_cast<int>(let) || column < static_cast<int>(num) ) {
         throw std::out_of_range("Letter or Number Index given is out of range.");
     }
@@ -66,11 +67,9 @@ bool Board::turnFaceUp(const Letter& let, const Number& num) {
     if ( row < static_cast<int>(let) || column < static_cast<int>(num) ) {
         throw std::out_of_range("Letter or Number Index given is out of range.");
     }
-    //if (cardsStatus[let][num] == true) {
     if (cRecords[let][num].cardStatus == true) {
         return false;
     }else{
-        //cardsStatus[let][num] = true;
         cRecords[let][num].cardStatus = true;
         return true;
     }
@@ -224,6 +223,15 @@ ostream& operator<<(ostream& os, const Board& board){
         arr[3] += "\n\n" + coord;
     }
 }
+
+//istream& operator>>(istream& is, Letter& let)
+//{
+//    int a;
+//    is >> a;
+//    let = static_cast<Letter>(a);
+//
+//    return is;
+//}
 
 void Board::setExpDisp(bool disp){
     expertDisplay = disp;

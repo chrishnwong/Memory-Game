@@ -16,11 +16,11 @@ bool Player::isActive() const{
 }
 
 int Player:: getNRubies() const{
-    return nRubies;
+    return numRubies;
 }
 
 void Player::addReward(const Reward &reward){
-    nRubies += reward.getNRubies();
+    numRubies = numRubies + reward.getNRubies();
 }
 
 void Player::setDisplayMode(bool _endOfGame){
@@ -70,7 +70,7 @@ ostream& operator<<(ostream& os, const Player& player) {
 
         os << player.name << ": " << side << " (" << activeStr << ")";
     } else {
-        os << player.name << ": " << player.nRubies << " rubies";
+        os << player.name << ": " << player.numRubies << " rubies";
     }
     return os;
 }

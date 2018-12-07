@@ -54,7 +54,7 @@ class Board {
         // assignment operator here
 
 
-        bool isFaceUp(const Letter&, const Number&) const;
+        bool isFaceUp(const Letter&, const Number&)const; //why add constant at the end, not in spec
         bool turnFaceUp(const Letter&, const Number&);
         bool turnFaceDown(const Letter&, const Number&);
 
@@ -68,6 +68,7 @@ class Board {
         bool getExpDisp() const;
         bool getExpRules() const;
         friend ostream& operator<<(ostream&, const Board&);
+        //friend istream& operator>>(istream&, Letter&);
 
     private:
         cardRecords* getcRecords();

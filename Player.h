@@ -9,6 +9,8 @@ enum Side {top, left, bottom, right};
 
 class Player
 {
+    int numRubies=0;
+
     private:
         string name;
         int nRubies;
@@ -18,11 +20,12 @@ class Player
         string getEnumSides[4] {"top", "left", "bottom", "right"};
 
     public:
-        Player();
+
+        //Player();
         Player(string _name, Side _side): name(_name), side(_side){
             active = false;
             endOfGame = false;
-            nRubies = 0;
+            numRubies = 0;
         }
 
         string getName() const;
@@ -34,9 +37,9 @@ class Player
         Side getSide() const;
         void setSide(Side);
 
-        Player& operator=(const Player&);
+        //Player& operator=(const Player&);
         friend ostream& operator<<(ostream&, const Player&);
-        bool operator<(const Player &rhs) const { return nRubies < rhs.getNRubies(); }
+        bool operator<(const Player &rhs) const { return numRubies < rhs.getNRubies(); }
 
 
 };

@@ -1,11 +1,14 @@
 #include "Rules.h"
+//#include "Card.h"
 
 Rules::Rules(){
     // TODO Should something be here?
 }
 
-bool Rules::isValid(const Game& game) {
-    if(game.getPreviousCard() == game.getCurrentCard()){
+bool Rules::isValid(const Game& game){  //adding const hmmm..
+    if(game.getPreviousCard()->getAnimal() == game.getCurrentCard()->getAnimal()){
+        return true;
+    }else if(game.getPreviousCard()->getBackground() == game.getCurrentCard()->getBackground()){
         return true;
     }else{
         return false;
@@ -21,14 +24,19 @@ bool Rules::gameOver(const Game& game) {
 }
 
 bool Rules::roundOver(const Game& game) {
-    bool flag = true;
+    //bool flag = true;
+    int numActivePlayers=0;
 
     for(int i = 0; i < game.getPlayerVector()->size(); i++){
         if((game.getPlayerVector()->at(i).isActive())){
-            flag = false;
-            break;
+            numActivePlayers++;
+            //break;
         }
-
+    }
+    if (numActivePlayers > 1){
+        return false;
+    }else{
+        return true;
     }
 
     //if(flag)

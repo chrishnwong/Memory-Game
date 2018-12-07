@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Game.h"
 #include "Player.h"
 
@@ -9,10 +10,9 @@ Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
     players.reserve(numPlayers);
     previousCard = 0;
     currentCard = 0;
-    Board board = Board();
 
-    players.reserve(numPlayers);
-
+    //players.reserve(numPlayers);
+    //board = _board;
     round = 1;
     gameVersion = _gameVersion;
 
@@ -48,17 +48,16 @@ Player& Game::getPlayer(Side side) {
 
 }
 
-const Card* Game::getPreviousCard() const {
+const Card* Game::getPreviousCard()const {
     return previousCard;
 }
 
-const Card* Game::getCurrentCard() const {
+const Card* Game::getCurrentCard()const{
     return currentCard;
 }
 
 void Game::setCurrentCard(const Card* c) {
     //if (previousCard == nullptr)
-    delete previousCard;
     previousCard = currentCard;
     currentCard = c;
 
@@ -73,13 +72,13 @@ void Game::setCard(const Letter& let, const Number& num, Card* c){
     // why is a void type returning
 }
 
-Board Game::getBoard() {
-    return board;
-}
-
-void Game::setBoard(Board b){
-    board = b;
-}
+//Board Game::getBoard() {
+//    return board;
+//}
+//
+//void Game::setBoard(Board b){
+//    board = b;
+//}
 
 //string Game::toString() const {
 //    return "";
@@ -104,7 +103,12 @@ bool Game::sortRubies(const Player& i, const Player& j){
 void Game::getPlacements(){
 
     int i = 0;
-    sort(players.begin(), players.end());
+    sort(players.begin(),
+         players.end(),
+         [](const Player& lhs, const Player& rhs)
+         {
+             return lhs.getNRubies() > rhs.getNRubies();
+         });
 
     cout<<"The game has ended, here are the placements:"<<endl<<endl;
 
@@ -164,6 +168,6 @@ void Game::resetCurrent(){
 
 
 ostream& operator<<(ostream& os, const Game& game) {
-    //os << board.toString();
+    //os << board;
     return os;
 }

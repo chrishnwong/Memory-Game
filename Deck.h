@@ -3,8 +3,18 @@
 
 #include <algorithm>
 #include <vector>
+#include <stdexcept>
+#include <string>
+#include <iostream>
+#include "Card.h"
+#include <iterator>
 
 using namespace std;
+using std::random_shuffle;
+
+//template <typename T>
+//Iter<typename std::vector<C>::
+
 
 template <class C>
 
@@ -16,23 +26,16 @@ class Deck
         C* getNext();
         bool isEmpty() const;
         int getSize() const;
-        //C **items;
 
     protected:
-        int size;
-        int current;
         C **items;
-        //C *items;
         vector<C> elements;
-        typename vector<C>::reverse_iterator riter;
-        Deck(){riter = elements.rbegin();}
+        int counter =0;
 
 };
 
 template <class C>
 void Deck<C>::shuffle(){
-    //random_shuffle(items, items+size);
-    //random_shuffle(&items[0], &items[size-1]);
 
     if(!elements.empty())
         random_shuffle(elements.begin(), elements.end());
@@ -40,20 +43,27 @@ void Deck<C>::shuffle(){
 
 template <class C>
 C* Deck<C>::getNext(){
-    //return items[current++];
 
-    if(riter != elements.rend()){
-        return riter++;
+    if(counter < 25){
+        auto it = elements.begin();
+        auto nx = next(it, counter);
+
+        if(counter == 0){
+            counter++;
+            return &(*it);
+        }else{
+            counter++;
+            return &(*nx);
+        }
+    }else{
+        return nullptr;
     }
-//    else{
-//        return nullptr;
-//    }
+
 }
 
 template <class C>
 bool Deck<C>::isEmpty() const{
-    //return current == size;
-    return vector<C>::empty();
+    return elements.empty();
 }
 
 #endif // DECK_H
