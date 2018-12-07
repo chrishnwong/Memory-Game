@@ -11,8 +11,7 @@ enum FaceBackground {Red, Green, Purple, Blue, Yellow};
 
 class CardDeck;
 
-class Card
-{
+class Card {
     public:
         int getNRows() const;
         string operator()(int row);
