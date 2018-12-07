@@ -45,7 +45,7 @@ Board& Board::operator=(const Board& b){
     }
 
     this->expertDisplay = b.expertDisplay;
-    this->expertRules = b.expertDisplay;
+    this->expertRules = b.expertRules;
 
     return *this;
 }
