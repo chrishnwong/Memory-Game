@@ -1,13 +1,16 @@
 #include "Board.h"
+#include "CardDeck.h"
+#include "Deck.h"
+#include "Card.h"
 #include <stdexcept>
 #include <iostream>
 
 Board::Board(){
-    try {
+    //try {
         //if(crecords is empty)
             //throw NoMoreCards;
-            //CardDeck cd = CardDeck();
-            //cd.shuffle();
+            Deck<Card> cd = CardDeck();
+            cd.shuffle();
         for(int i=0; i<row; i++){
             for(int j=0; j<column; j++){
                 if(i!=2 && j!=2){
@@ -16,10 +19,10 @@ Board::Board(){
                 }
             }
         }
-    }
-    catch (exception& e) {
+    //}
+    //catch (exception& e) {
         //cout << e.err() << endl;
-    }
+    //}
 
 
 }
@@ -186,8 +189,21 @@ ostream& operator<<(ostream& os, const Board& board){
             arr[1] = letterName[i] + " ";
             arr[2] = "  ";
             for (int j = Number::ONE; j <= Number::FIVE; j++) {
-                if(j!=2&&i!=2)
-                    board.getCard((Letter) i, (Number) j)->printCard(arr);
+                if(j!=2&&i!=2){
+                    if(board.isFaceup((Letter) i, (Number) j))){
+                        board.getCard((Letter) i, (Number) j)->printCard(arr);
+                    }
+                    else{
+                        for(int i = 0; i < 3; i++){
+                            arr[i] += "zzz ";
+                        }
+                    }
+                }
+                else{
+                    for(int i = 0; i < 3; i++){
+                        arr[i] += "    ";
+                    }
+                }
             }
             os << arr[0] << endl << arr[1] << endl << arr[2] << endl << endl;
             arr[0] = "";
@@ -198,9 +214,6 @@ ostream& operator<<(ostream& os, const Board& board){
     }
     else{
         for (int i = Letter::A; i <= Letter::E; i++) {
-            arr[0] = "  ";
-            arr[1] = letterName[i] + " ";
-            arr[2] = "  ";
             for (int j = Number::ONE; j <= Number::FIVE; j++) {
                 if(board.isFaceUp((Letter) i, (Number) j)){
                     board.getCard((Letter) i, (Number) j)->printCard(arr);
