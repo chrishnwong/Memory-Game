@@ -120,9 +120,9 @@ string Card::operator()(int row) {
 
 }
 
-Card& Card::operator=(const Card& c){
+/*Card& Card::operator=(const Card& c){
     this->animal = c.animal;
     this->color = c.color;
 
     return *this;
-}
+}*/

@@ -11,12 +11,10 @@ class CardDeck: public Deck<Card>
         static CardDeck& make_CardDeck();
 
     private:
-        CardDeck();
-        //~CardDeck();
         static const int size = 25;
         static CardDeck *deck;
         CardDeck();
-        ~CardDeck();
+        //~CardDeck();
 
 };
 

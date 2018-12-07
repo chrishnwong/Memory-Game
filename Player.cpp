@@ -35,7 +35,7 @@ Side Player::getSide() const{
 void Player::setSide(Side _side){
     side = _side;
 }
-Player& Player::operator=(const Player& p){
+/*Player& Player::operator=(const Player& p){
     this->name = p.getName();
     this->nRubies = p.getNRubies();
     this->active = p.isActive();;
@@ -43,7 +43,7 @@ Player& Player::operator=(const Player& p){
     this->side = p.getSide();
 
     return *this;
-}
+}*/
 
 ostream& operator<<(ostream& os, const Player& player) {
     if (player.endOfGame) {

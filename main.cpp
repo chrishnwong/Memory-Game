@@ -42,9 +42,6 @@ int myrandom (int i) { return std::rand()%i;}
 
 int main() {
 
-
-
-
     int gameVersion;
     int numPlayers;
     int gameDisplay;
@@ -107,8 +104,8 @@ int main() {
 
             cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
             game.threeCardReveal(player.getSide());
-            cout << board endl;
-            board.reset();
+            cout << Game::board;
+            Game::board.reset();
             //game.clearScreen();
         }
 
@@ -255,16 +252,12 @@ int main() {
             }
         }// end of round
 
-        game.incRound();
-
-            game.incRound();
-        }
-
         Reward *reward = rewardDeck.getNext();
         current->addReward(*reward);
         cout << "Player "<< current->getName() << ", you won this round! You got " <<*reward << " rubies for this round!" <<endl;
 
-
+        game.incRound();
+        }
 
 /*
         for (int i = 0; i < numPlayers; i++) {
@@ -279,7 +272,7 @@ int main() {
             // update board
         //}
 
-    }// end of game
+    // end of game
 
 
 
@@ -292,7 +285,7 @@ int main() {
 
     game.getPlacements();
 
-    return 0;
+    //return 0;
 
 
 }
