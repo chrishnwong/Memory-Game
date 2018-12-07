@@ -180,7 +180,7 @@ ostream& operator<<(ostream& os, const Board& board){
     string numberName[5] = {"1", "2", "3", "4", "5"};
     string coord = "";
 
-    if(!expertDisplay){
+    if(!board.getExpDisp()){
         for (int i = Letter::A; i <= Letter::E; i++) {
             arr[0] = "  ";
             arr[1] = letterName[i] + " ";
@@ -202,13 +202,13 @@ ostream& operator<<(ostream& os, const Board& board){
             arr[1] = letterName[i] + " ";
             arr[2] = "  ";
             for (int j = Number::ONE; j <= Number::FIVE; j++) {
-                if(board.getCard((Letter) i, (Number) j).cardStatus){
+                if(board.isFaceUp((Letter) i, (Number) j)){
                     board.getCard((Letter) i, (Number) j)->printCard(arr);
                     coord += letterName[i] + numberName[j] + "   ";
                 }
             }
         }
-        arr += "\n\n" + coord;
+        arr[3] += "\n\n" + coord;
     }
 }
 
@@ -218,4 +218,11 @@ void Board::setExpDisp(bool disp){
 
 void Board::setExpRules(bool rules){
     expertRules = rules;
+}
+
+bool Board::getExpDisp() const{
+    return expertDisplay;
+}
+bool Board::getExpRules() const{
+    return expertRules;
 }

@@ -65,6 +65,8 @@ class Board {
         string toString();
         void setExpDisp(bool);
         void setExpRules(bool);
+        bool getExpDisp() const;
+        bool getExpRules() const;
         friend ostream& operator<<(ostream&, const Board&);
 
     private:
@@ -73,10 +75,10 @@ class Board {
 };
 
 
-class zeroCards: public exception {
+/*class zeroCards: public exception {
     virtual const char* err() const throw() {
         return "There are no more cards!";
     }
-} NoMoreCards;
+} NoMoreCards;*/
 
 #endif // BOARD_H
