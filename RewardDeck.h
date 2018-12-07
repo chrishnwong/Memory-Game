@@ -12,7 +12,7 @@ class RewardDeck: public Deck<Reward>
         //virtual ~RewardDeck(){}
         static RewardDeck& make_RewardDeck();
 
-        RewardDeck();
+        //RewardDeck();
         //~RewardDeck();
 
     private:

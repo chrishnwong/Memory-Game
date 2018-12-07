@@ -49,7 +49,7 @@ RewardDeck& RewardDeck::make_RewardDeck(){
 //        rewDeck = new RewardDeck;
 //    }
 //    return *rewDeck;\
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
         if (rewDeck == 0){
             rewDeck = new RewardDeck();
             Reward *elePtr = new Reward(static_cast<Rubies>(0));
@@ -66,7 +66,6 @@ RewardDeck& RewardDeck::make_RewardDeck(){
             Reward *elePtr3 = new Reward(static_cast<Rubies>(3));
             rewDeck->elements.push_back(*elePtr);
         }
-    }
-    return *rewDeck;
 
+    return *rewDeck;
 }
