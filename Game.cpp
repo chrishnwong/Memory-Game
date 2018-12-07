@@ -118,35 +118,34 @@ void Game::getPlacements(){
 }
 
 void Game::threeCardReveal(Side side){
-    string arr[3] = {"","",""};
+    //string arr[3] = {"","",""};
 
     switch (side) {
         case Side::top:
-        board.getCard((Letter) A, (Number) TWO)->printCard(arr);
-        board.getCard((Letter) A, (Number) THREE)->printCard(arr);
-        board.getCard((Letter) A, (Number) FOUR)->printCard(arr);
+        board.turnFaceUp((Letter) A, (Number) TWO);
+        board.turnFaceUp((Letter) A, (Number) THREE);
+        board.turnFaceUp((Letter) A, (Number) FOUR);
         break;
     case Side::left:
-        board.getCard((Letter) B, (Number) ONE)->printCard(arr);
-        board.getCard((Letter) C, (Number) ONE)->printCard(arr);
-        board.getCard((Letter) D, (Number) ONE)->printCard(arr);
+        board.turnFaceUp((Letter) B, (Number) ONE);
+        board.turnFaceUp((Letter) C, (Number) ONE);
+        board.turnFaceUp((Letter) D, (Number) ONE);
         break;
     case Side::bottom:
-        board.getCard((Letter) E, (Number) TWO)->printCard(arr);
-        board.getCard((Letter) E, (Number) THREE)->printCard(arr);
-        board.getCard((Letter) E, (Number) FOUR)->printCard(arr);
+        board.turnFaceUp((Letter) E, (Number) TWO);
+        board.turnFaceUp((Letter) E, (Number) THREE);
+        board.turnFaceUp((Letter) E, (Number) FOUR);
         break;
     case Side::right:
-        board.getCard((Letter) B, (Number) FIVE)->printCard(arr);
-        board.getCard((Letter) C, (Number) FIVE)->printCard(arr);
-        board.getCard((Letter) D, (Number) FIVE)->printCard(arr);
+        board.turnFaceUp((Letter) B, (Number) FIVE);
+        board.turnFaceUp((Letter) C, (Number) FIVE);
+        board.turnFaceUp((Letter) D, (Number) FIVE);
         break;
     default:
         cout << "Invalid side" << endl;
         break;
     }
-
-    cout << arr[0] << endl << arr[1] << endl << arr[2] << endl;
+    //cout << arr[0] << endl << arr[1] << endl << arr[2] << endl;
 }
 
 void Game::clearScreen(){

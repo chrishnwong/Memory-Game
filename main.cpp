@@ -67,7 +67,9 @@ int main() {
             player.setActive(true);
 
             cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
-            //game.threeCardReveal(player.getSide());
+            game.threeCardReveal(player.getSide());
+            cout << board endl;
+            board.reset();
             //game.clearScreen();
         }
 
@@ -121,7 +123,7 @@ int main() {
 
             // display game
             for(int i=0;i<numPlayers;i++){
-                current = &game.getNextPlayer(numPlayers);
+                current = &game.getNextPlayer();
                 if(current->isActive()){
                     break;
                 }
