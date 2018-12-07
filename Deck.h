@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <vector>
 
-using std::random_shuffle;
+using namespace std;
 
 template <class C>
 
@@ -23,8 +23,8 @@ class Deck
         int current;
         C **items;
         //C *items;
-        std::vector<C> elements;
-        typename std::vector<C>::reverse_iterator riter;
+        vector<C> elements;
+        typename vector<C>::reverse_iterator riter;
         Deck(){riter = elements.rbegin();}
 
 };
@@ -53,7 +53,7 @@ C* Deck<C>::getNext(){
 template <class C>
 bool Deck<C>::isEmpty() const{
     //return current == size;
-    return std::vector<C>::empty();
+    return vector<C>::empty();
 }
 
 #endif // DECK_H
