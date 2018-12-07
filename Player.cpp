@@ -45,19 +45,6 @@ Player& Player::operator=(const Player& p){
     return *this;
 }
 
-
-//cant add more public method
-Player& Player::operator=(const Player& p){
-    this->name = p.getName();
-    this->nRubies = p.getNRubies();
-    this->active = p.isActive();;
-    //this.endOfGame = p.;
-    this->side = p.getSide();
-     return *this;
-}
-
-
-
 ostream& operator<<(ostream& os, const Player& player) {
     if (player.endOfGame) {
         string side=player.getEnumSides[player.side];
