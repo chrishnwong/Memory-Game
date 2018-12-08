@@ -199,8 +199,8 @@ int main() {
             }
 
             // set current card pointer
-            Card* chosenFirstCard = game.getCard(letterInput, numInput);
-            game.setCurrentCard(chosenFirstCard);
+            chosenCard = game.getCard(letterInput2, numInput2);
+            game.setCurrentCard(chosenCard);
 
             // turn card faceup
             if(Game::board.turnFaceUp(letterInput2, numInput2)){
