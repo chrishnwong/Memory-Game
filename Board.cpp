@@ -188,19 +188,16 @@ ostream& operator<<(ostream& os, const Board& board){
             arr[1] = letterName[i] + " ";
             arr[2] = "  ";
             for (int j = Number::ONE; j <= Number::FIVE; j++) {
-                if(j!=2&&i!=2){
-                    if(board.isFaceUp((Letter) i, (Number) j)){
+                if(board.isFaceUp((Letter) i, (Number) j)){
+                    if(i==2&&j==2)
+                        for(int i = 0; i < 3; i++)
+                            arr[i] += "    ";
+                    else
                         board.getCard((Letter) i, (Number) j)->printCard(arr);
-                    }
-                    else{
-                        for(int i = 0; i < 3; i++){
-                            arr[i] += "zzz ";
-                        }
-                    }
                 }
                 else{
                     for(int i = 0; i < 3; i++){
-                        arr[i] += "    ";
+                        arr[i] += "zzz ";
                     }
                 }
             }
@@ -209,7 +206,7 @@ ostream& operator<<(ostream& os, const Board& board){
             arr[1] = "";
             arr[2] = "";
         }
-        os << "    1   2   3   4   5   ";
+        os << "   1   2   3   4   5   \n";
     }
     else{
         for (int i = Letter::A; i <= Letter::E; i++) {

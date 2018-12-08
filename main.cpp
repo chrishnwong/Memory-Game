@@ -52,7 +52,6 @@ int main() {
     cin >> gameDisplay;
     cout << "Number of players: 2-4" << endl;
     cin >> numPlayers;
-
     Deck<Card> cardDeck = CardDeck::make_CardDeck();
     Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
     cardDeck.shuffle();
@@ -97,7 +96,6 @@ int main() {
         //int survivors = numplayers;
         Game::board.reset();
 
-
         for (int i = 0; i < numPlayers; i++) {
             Player& player = game.getPlayer((Side) i);
             player.setActive(true);
@@ -106,7 +104,6 @@ int main() {
             game.threeCardReveal(player.getSide());
             cout << Game::board;
             Game::board.reset();
-            //game.clearScreen();
         }
 
         Player* current = &game.getPlayer((Side) 0);
@@ -271,11 +268,6 @@ int main() {
 
             // update board
         //}
-
-    // end of game
-
-
-
 
 //    string result;
 //    for(int i=0; i<5; i++){

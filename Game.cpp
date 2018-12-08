@@ -150,10 +150,14 @@ void Game::threeCardReveal(Side side){
         break;
     }
     //cout << arr[0] << endl << arr[1] << endl << arr[2] << endl;
+    //clearScreen();
 }
 
 void Game::clearScreen(){
-    cout<< endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+    string s;
+    cout << "Press any key to continue... ";
+    cin >> s;
+    cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 }
 
 Player& Game::getNextPlayer(){

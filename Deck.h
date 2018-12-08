@@ -10,7 +10,6 @@
 #include <iterator>
 
 using namespace std;
-using std::random_shuffle;
 
 //template <typename T>
 //Iter<typename std::vector<C>::
