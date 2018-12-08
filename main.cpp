@@ -50,6 +50,7 @@ int main() {
     cin >> gameVersion;
     cout << "Expert display mode: Off (0), On (1)" << endl;
     cin >> gameDisplay;
+    Game::board.setExpDisp(gameDisplay);
     cout << "Number of players: 2-4" << endl;
     cin >> numPlayers;
     Deck<Card> cardDeck = CardDeck::make_CardDeck();

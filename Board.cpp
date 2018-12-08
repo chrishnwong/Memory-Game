@@ -209,15 +209,18 @@ ostream& operator<<(ostream& os, const Board& board){
         os << "   1   2   3   4   5   \n";
     }
     else{
+
         for (int i = Letter::A; i <= Letter::E; i++) {
             for (int j = Number::ONE; j <= Number::FIVE; j++) {
                 if(board.isFaceUp((Letter) i, (Number) j)){
                     board.getCard((Letter) i, (Number) j)->printCard(arr);
-                    coord += letterName[i] + numberName[j] + "   ";
+                    coord += letterName[i] + numberName[j] + "  ";
                 }
             }
         }
-        arr[3] += "\n\n" + coord;
+        arr[2] += "\n\n" + coord;
+        os << arr[0] << endl << arr[1] << endl << arr[2] << endl << endl;
+
     }
 }
 
