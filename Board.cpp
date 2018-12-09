@@ -198,4 +198,3 @@ void Board::setExpRules(bool rules){
     expertRules = rules;
 }
 
-
