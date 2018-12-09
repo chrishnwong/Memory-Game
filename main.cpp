@@ -106,12 +106,10 @@ int main() {
         Letter letterForbid = Letter(2);
         Number numForbid = Number(2);
 
+        //players are active again after the end of every round
         for (int i = 0; i < numPlayers; i++) {
         Player& player = game.getPlayer((Side) i);
         player.setActive(true);
-
-        //game.threeCardReveal(player.getSide());
-        //game.clearScreen();
 
     }
 
