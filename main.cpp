@@ -93,7 +93,7 @@ int main() {
     cout << game << endl;
 
 
-    while (!rules.gameOver(game)) {
+
         //int survivors = numplayers;
         Game::board.reset();
         int coord[4][3][2] ={{{0,1},{0,2},{0,3}},
@@ -113,7 +113,7 @@ int main() {
             cout << Game::board;
             Game::board.reset();
         }
-
+        while (!rules.gameOver(game)) {
         Player* current = &game.getPlayer((Side) 0);
         game.resetCurrent();
         cout<< "starting round"<<endl;
