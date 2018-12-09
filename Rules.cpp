@@ -45,3 +45,10 @@ bool Rules::roundOver(const Game& game) {
     //    cout<<"false"<<endl;
     // return flag;
 }
+const Player& Rules::getNextPlayer(const Game& game){
+    for(int i = 0; i < game.getPlayerVector()->size(); i++){
+        if((game.getPlayerVector()->at(i).isActive())){
+            return game.getPlayerVector()->at(i);
+        }
+    }
+}

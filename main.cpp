@@ -175,7 +175,7 @@ int main() {
             cout << "Game Display:" << endl;
             cout << Game::board;
 
-
+/*
             //////////////////////////second card/////////////////////////
             // select second card
             Letter letterInput2;
@@ -227,19 +227,19 @@ int main() {
             }
             cout << "Game Display:" << endl;
             cout << Game::board;
-
+*/
 
 
 
             if (!rules.isValid(game)){
                 cout << "You don't have a match, you lose this round!" <<endl;
-                cout << "Board is resetting." <<endl;
-                Game::board.turnFaceDown(letterInput, numInput);
-                Game::board.turnFaceDown(letterInput2, numInput2);
+                //cout << "Board is resetting." <<endl;
+                //Game::board.turnFaceDown(letterInput, numInput);
+                //Game::board.turnFaceDown(letterInput2, numInput2);
                 current->setActive(false);
                 //survivors--;
             }else{
-                cout << "Congratz you have a match! You survive this turn!" <<endl;
+                cout << "You survive this turn!" <<endl;
             }
 
             cout << "Game Display:" << endl;
@@ -261,7 +261,7 @@ int main() {
         current->addReward(*reward);
         cout << "Player "<< current->getName() << ", you won this round! You got " <<*reward << " rubies for this round!" <<endl;
 
-        game.incRound();
+        game.nextRound();
         }
 
 /*

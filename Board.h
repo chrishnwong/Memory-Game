@@ -62,15 +62,16 @@ class Board {
 
         void setCard(const Letter&, const Number&, Card*);
         void reset();
+
         string toString();
         void setExpDisp(bool);
         void setExpRules(bool);
-        bool getExpDisp() const;
-        bool getExpRules() const;
         friend ostream& operator<<(ostream&, const Board&);
         //friend istream& operator>>(istream&, Letter&);
 
     private:
+        bool getExpDisp() const;
+        bool getExpRules() const;
         cardRecords* getcRecords();
 
 };

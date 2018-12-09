@@ -10,8 +10,8 @@ Board::Board(){
     //try {
         //if(crecords is empty)
             //throw NoMoreCards;
-            Deck<Card> cd = CardDeck();
-            cd.shuffle();
+            //Deck<Card> cd = CardDeck();
+            //cd.shuffle();
         for(int i=0; i<row; i++){
             for(int j=0; j<column; j++){
                 if(i!=2 && j!=2){

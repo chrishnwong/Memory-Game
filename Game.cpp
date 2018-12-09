@@ -27,7 +27,10 @@ int Game::getRound() const {
     return round;
 }
 
-void Game::incRound(){
+void Game::nextRound(){
+    setCurrentCard(nullptr);
+    setCurrentCard(nullptr);
+    board.reset();
     round++;
 }
 
@@ -45,6 +48,10 @@ Player& Game::getPlayer(Side side) {
 //            return nullptr;
 //        }
     }
+    /*for(int i = 0;i < players.size(); i++){
+        if(players.at(i).getSide() == side)
+            return getPlayerVector->at(i);
+    }*/
 
 }
 
@@ -57,8 +64,10 @@ const Card* Game::getCurrentCard()const{
 }
 
 void Game::setCurrentCard(const Card* c) {
-    //if (previousCard == nullptr)
-    previousCard = currentCard;
+    if (previousCard == nullptr)
+        previousCard = c;
+    else
+        previousCard = currentCard;
     currentCard = c;
 
 }
@@ -114,43 +123,11 @@ void Game::getPlacements(){
 
 
     for(Player &p : players){
-        cout << place[i] << " - " << p.getName() << " with " << p.getNRubies() << " Rubies" << endl;
+        cout << place[i] << " - " << p << endl;
         i++;
     }
 
     cout << endl << "Thank you for playing!" << endl;
-}
-
-void Game::threeCardReveal(Side side){
-    //string arr[3] = {"","",""};
-
-    switch (side) {
-        case Side::top:
-        board.turnFaceUp((Letter) A, (Number) TWO);
-        board.turnFaceUp((Letter) A, (Number) THREE);
-        board.turnFaceUp((Letter) A, (Number) FOUR);
-        break;
-    case Side::left:
-        board.turnFaceUp((Letter) B, (Number) ONE);
-        board.turnFaceUp((Letter) C, (Number) ONE);
-        board.turnFaceUp((Letter) D, (Number) ONE);
-        break;
-    case Side::bottom:
-        board.turnFaceUp((Letter) E, (Number) TWO);
-        board.turnFaceUp((Letter) E, (Number) THREE);
-        board.turnFaceUp((Letter) E, (Number) FOUR);
-        break;
-    case Side::right:
-        board.turnFaceUp((Letter) B, (Number) FIVE);
-        board.turnFaceUp((Letter) C, (Number) FIVE);
-        board.turnFaceUp((Letter) D, (Number) FIVE);
-        break;
-    default:
-        cout << "Invalid side" << endl;
-        break;
-    }
-    //cout << arr[0] << endl << arr[1] << endl << arr[2] << endl;
-    //clearScreen();
 }
 
 void Game::clearScreen(){
