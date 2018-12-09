@@ -59,10 +59,11 @@ void Card::printCard(string arr[3]){
     }
 
     for(int i = 0; i < 3; i++){
-        if(i != 1)
+        if(i != 1){
             arr[i] += colorChar + colorChar + colorChar + " ";
-        else
+        }else{
             arr[i] += colorChar + animalChar + colorChar + " ";
+        }
     }
 }
 

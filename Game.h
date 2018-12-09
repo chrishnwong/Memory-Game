@@ -51,7 +51,7 @@ class Game {
         friend ostream& operator<<(ostream&, const Game&);
         void getPlacements();
     private:
-
+        void resetPlayers();
         void setCardDeck(CardDeck*);
         bool sortRubies(const Player&, const Player&);
 

@@ -30,8 +30,14 @@ int Game::getRound() const {
 void Game::nextRound(){
     setCurrentCard(nullptr);
     setCurrentCard(nullptr);
+    //resetPlayers();
     board.reset();
     round++;
+}
+
+void Game::resetPlayers(){
+    for(auto i:players)
+        i.setActive(true);
 }
 
 void Game::addPlayer(const Player& p) {
@@ -64,10 +70,11 @@ const Card* Game::getCurrentCard()const{
 }
 
 void Game::setCurrentCard(const Card* c) {
-    if (previousCard == nullptr)
+    if (previousCard == nullptr){
         previousCard = c;
-    else
+    }else{
         previousCard = currentCard;
+    }
     currentCard = c;
 
 }

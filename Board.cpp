@@ -189,10 +189,10 @@ ostream& operator<<(ostream& os, const Board& board){
             arr[2] = "  ";
             for (int j = Number::ONE; j <= Number::FIVE; j++) {
                 if(board.isFaceUp((Letter) i, (Number) j)){
-                    if(i==2&&j==2)
+                    if(i==2&&j==2){
                         for(int i = 0; i < 3; i++)
                             arr[i] += "    ";
-                    else
+                    }else
                         board.getCard((Letter) i, (Number) j)->printCard(arr);
                 }
                 else{

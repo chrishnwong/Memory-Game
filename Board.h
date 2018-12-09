@@ -54,11 +54,11 @@ class Board {
         // assignment operator here
 
 
-        bool isFaceUp(const Letter&, const Number&)const; //why add constant at the end, not in spec
+        bool isFaceUp(const Letter&, const Number&)const;
         bool turnFaceUp(const Letter&, const Number&);
         bool turnFaceDown(const Letter&, const Number&);
 
-        Card* getCard(const Letter&, const Number&) const; //why add constant at the end
+        Card* getCard(const Letter&, const Number&) const;
 
         void setCard(const Letter&, const Number&, Card*);
         void reset();

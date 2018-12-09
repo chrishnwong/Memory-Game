@@ -71,7 +71,7 @@ int main() {
         }
     }
 
-
+    //Player creation
     for (int i = 0; i < numPlayers; i++) {
         string name;
         cout << "Enter name for player " << (i + 1) << endl;
@@ -87,39 +87,38 @@ int main() {
     cout << "Game Display:" << endl;
     cout << Game::board;
 
+    int coord[4][3][2] ={{{0,1},{0,2},{0,3}},
+                        {{1,0},{2,0},{3,0}},
+                        {{4,1},{4,2},{4,3}},
+                        {{1,4},{2,4},{3,4}}};
+
     for (int i = 0; i < numPlayers; i++) {
         Player& player = game.getPlayer((Side) i);
+        player.setActive(true);
         cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
-        //game.threeCardReveal(player.getSide());
-        //game.clearScreen();
+        for(int j = 0; j < 3; j++)
+            Game::board.turnFaceUp((Letter) coord[i][j][0], (Number) coord[i][j][1]);
 
+        cout << Game::board;
+        Game::board.reset();
     }
 
 
+    while (!rules.gameOver(game)) {
         //int survivors = numplayers;
         Game::board.reset();
-        int coord[4][3][2] ={{{0,1},{0,2},{0,3}},
-                            {{1,0},{2,0},{3,0}},
-                            {{4,1},{4,2},{4,3}},
-                            {{1,4},{2,4},{3,4}}};
         bool firstPlay = true;
         Letter letterForbid = Letter(2);
         Number numForbid = Number(2);
 
         //players are active again after the end of every round
         for (int i = 0; i < numPlayers; i++) {
-            Player& player = game.getPlayer((Side) i);
-            player.setActive(true);
+        Player& player = game.getPlayer((Side) i);
+        player.setActive(true);
 
-            cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
-
-            for(int j = 0; j < 3; j++)
-                Game::board.turnFaceUp((Letter) coord[i][j][0], (Number) coord[i][j][1]);
-
-            cout << Game::board;
-            Game::board.reset();
         }
-        while (!rules.gameOver(game)) {
+
+
         Player* current = &game.getPlayer((Side) 0);
         game.resetCurrent();
 
@@ -133,7 +132,7 @@ int main() {
         cout << endl;
 
 
-
+        int cardsFlipped=0;
         while (!rules.roundOver(game)) {
             cout << "Round " << game.getRound() << ":" << endl;
             cout << "It is now Player " << current->getName() << "'s turn" << endl;
@@ -148,218 +147,96 @@ int main() {
             bool resetForbidden = false;
             bool cardValid = false;
             Card* chosenCard;
-            int cardsFlipped=0;
 
-            while(cardsFlipped < 24 ){
+            if(cardsFlipped<24){
                 while(!cardValid){
 
-                cout << "Enter the coordinates of the first card you want to flip on the board."<< endl;
-                cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
-                cout << "Enter the number of your choice.";
-                cin >> letterInput;
-                cout << endl;
-
-                cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
-                cout << "Enter the number of your choice.";
-                cin >> numInput;
-                cout << endl;
-
-                if((Game::board.isFaceUp(letterInput, numInput))){
-                    cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
+                    cout << "Enter the coordinates of the first card you want to flip on the board."<< endl;
+                    cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
+                    cout << "Enter the number of your choice.";
+                    cin >> letterInput;
                     cout << endl;
-                }else if(letterInput == letterForbid && numInput == numForbid){
-                    cout << "This card is blocked.";
-                    cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
+
+                    cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
+                    cout << "Enter the number of your choice.";
+                    cin >> numInput;
                     cout << endl;
-                    resetForbidden = true;
-                }else{
-                    cardValid = true;
+
+                    if((Game::board.isFaceUp(letterInput, numInput))){
+                        cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
+                        cout << endl;
+                    }else if(letterInput == letterForbid && numInput == numForbid){
+                        cout << "This card is blocked.";
+                        cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
+                        cout << endl;
+                        resetForbidden = true;
+                    }else{
+                        cardValid = true;
+
                     }
                 }
-            }
 
-            if(resetForbidden){
-                letterForbid = Letter(2);
-                numForbid = Number(2);
+                if(resetForbidden){
+                    letterForbid = Letter(2);
+                    numForbid = Number(2);
 
-            }
-            resetForbidden = false;
-
-            // set current card pointer
-            chosenCard = game.getCard(letterInput, numInput);
-            game.setCurrentCard(chosenCard);
-
-            // turn card faceup
-            if(Game::board.turnFaceUp(letterInput, numInput)){
-                cout << "Card Flipped Sucessfully." <<endl;
-                cardsFlipped++;
-                cout << endl;
-            }else{
-                cout << "Card Flipping Failed." <<endl;
-                cout << endl;
-            }
+                }
+                resetForbidden = false;
 
                 // set current card pointer
                 chosenCard = game.getCard(letterInput, numInput);
                 game.setCurrentCard(chosenCard);
 
-            // print the updated board
-            cout << "Game Display:" << endl;
-            cout << Game::board;
-            cout << endl;
-
-                // update board
-                // print the board
-                if((Game::board.isFaceUp(letterInput, numInput))){
-                    cout << "Now its flipped" <<endl;
-                }else{
-                    cout << "It's still not flipped" <<endl;
-
-
-            //Expert Mode Variables
-            bool isCrab = false;
-            bool isTurtle = false;
-            bool isWalrus = false;
-            bool fromCrab = false;
-
-            if (!firstPlay){
-                if (!rules.isValid(game)||cardsFlipped>=24){
-                    cout << "You don't have a match, you lose this round!" <<endl;
+                // turn card faceup
+                if(Game::board.turnFaceUp(letterInput, numInput)){
+                    cout << "Card Flipped Sucessfully." <<endl;
+                    cardsFlipped++;
                     cout << endl;
-
-                    current->setActive(false);
-
                 }else{
-                    cout << "Congratz you have a match! You survive this turn!" <<endl;
+                    cout << "Card Flipping Failed." <<endl;
                     cout << endl;
+                }
 
-                    //EXPERT MODE SECTION
-                    //Expert ability activated only when there is a match
-                    if(gameVersion == 2){
-                        bool cardValidExp = false;
-                        Letter letterInputExp;
-                        Number numInputExp;
 
-                        //Crab Card
-                        do{
-                            if(chosenCard->getAnimal()==FaceAnimal::Crab){
-                                cout << "You flipped a Crab Card! Please flip another card on the board that is not already faced up!" <<endl;
-                                cout << endl;
-                                while(!cardValidExp){
+                // print the updated board
+                cout << "Game Display:" << endl;
+                cout << Game::board;
+                cout << endl;
 
-                                    cout << "Enter the coordinates of the card you want to face up on the board."<< endl;
-                                    cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
-                                    cout << "Enter the number of your choice.";
-                                    cin >> letterInputExp;
+
+
+                //Expert Mode Variables
+                bool isCrab = false;
+                bool isTurtle = false;
+                bool isWalrus = false;
+                bool fromCrab = false;
+
+                if (!firstPlay){
+                    if (!rules.isValid(game)||cardsFlipped>=24){
+                        cout << "You don't have a match, you lose this round!" <<endl;
+                        cout << endl;
+
+                        current->setActive(false);
+
+                    }else{
+                        cout << "Congratz you have a match! You survive this turn!" <<endl;
+                        cout << endl;
+
+                        //EXPERT MODE SECTION
+                        //Expert ability activated only when there is a match
+                        if(gameVersion == 2){
+                            bool cardValidExp = false;
+                            Letter letterInputExp;
+                            Number numInputExp;
+
+                            //Crab Card
+                            do{
+                                if(chosenCard->getAnimal()==FaceAnimal::Crab){
+                                    cout << "You flipped a Crab Card! Please flip another card on the board that is not already faced up!" <<endl;
                                     cout << endl;
-
-                                    cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
-                                    cout << "Enter the number of your choice.";
-                                    cin >> numInputExp;
-                                    cout << endl;
-
-                                    if((Game::board.isFaceUp(letterInputExp, numInputExp))){
-                                       cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
-                                       cout << endl;
-                                    }else{
-                                        cardValidExp = true;
-
-                                    }
-                                    // turn card facedown
-                                    if(Game::board.turnFaceUp(letterInputExp, numInputExp)){
-                                        cout << "Card Facing Up Sucessfully." <<endl;
-                                        cout << endl;
-                                    }else{
-                                        cout << "Card Flipping Failed." <<endl;
-                                        cout << endl;
-                                    }
-                                }
-                                cardValidExp = false;
-
-                                Card* chosenExpCard = game.getCard(letterInputExp, numInputExp);
-                                if(chosenExpCard->getAnimal() != FaceAnimal::Crab)
-                                    isCrab = false;
-                                else
-                                    isCrab = true;
-
-                                game.setCurrentCard(chosenExpCard);
-                                chosenCard = chosenExpCard;
-                                letterInput = letterInputExp;
-                                numInput = numInputExp;
-                                fromCrab = true;
-
-                                // print the updated board
-                                cout << "Game Display:" << endl;
-                                cout << Game::board;
-                                cout << endl;
-                            }
-                        }while(isCrab);
-
-
-                        if(rules.isValid(game)){
-                            if(fromCrab){
-                                cout << "Congratz you have a match! You survive this turn!" <<endl;
-                                cout << endl;
-                            }
-
-                            //Penguin Card
-                            if (!firstPlay){
-                                if(chosenCard->getAnimal()==FaceAnimal::Penguin){
-                                    cout << "You flipped a Penguin Card! Please face down a card on the board that is already faced up!" <<endl <<endl;
-
                                     while(!cardValidExp){
 
-                                        cout << "Enter the coordinates of the card you want to face down on the board."<< endl;
-                                        cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
-                                        cout << "Enter the number of your choice.";
-                                        cin >> letterInputExp;
-                                        cout << endl;
-
-                                        cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
-                                        cout << "Enter the number of your choice.";
-                                        cin >> numInputExp;
-                                        cout << endl;
-
-                                        if(!(Game::board.isFaceUp(letterInputExp, numInputExp))){
-                                           cout << "Please enter coordinates of a card that is valid and not faced down." <<endl <<endl;
-                                        }else{
-                                            cardValidExp = true;
-
-                                        }
-                                        // turn card facedown
-                                        if(Game::board.turnFaceDown(letterInputExp, numInputExp)){
-                                            cout << "Card Facing Down Sucessfully." <<endl<<endl;
-                                        }else{
-                                            cout << "Card Flipping Failed." <<endl <<endl ;
-                                        }
-                                    }
-                                    cardValidExp = false;
-
-                                    // if facing down current card, current card becomes the previous card
-                                    if(game.getCard(letterInputExp, numInputExp) == game.getCurrentCard()){
-                                        game.setCurrentCard(game.getPreviousCard());
-                                    }
-
-                                }
-                            }
-
-
-
-                            //Turtle Card
-                            if(chosenCard->getAnimal()==FaceAnimal::Turtle){
-                                cout << "You flipped a Turtle Card! Next player will be skipped!" <<endl << endl;
-                                isTurtle = true;
-                            }
-
-
-
-                            //Walrus Card
-                            if(chosenCard->getAnimal()==FaceAnimal::Walrus){
-                                cout << "You flipped a Walrus Card! Point at a card that is faced down that will be blocked for the next player!" <<endl;
-                                cout << endl;
-                                while(!cardValidExp){
-
-                                        cout << "Enter the coordinates of the card you want to block on the board for the next player."<< endl;
+                                        cout << "Enter the coordinates of the card you want to face up on the board."<< endl;
                                         cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
                                         cout << "Enter the number of your choice.";
                                         cin >> letterInputExp;
@@ -377,172 +254,315 @@ int main() {
                                             cardValidExp = true;
 
                                         }
-                                        //store blocking coard coordinates
-                                        letterForbid = letterInputExp;
-                                        numForbid = numInputExp;
+                                        // turn card facedown
+                                        if(Game::board.turnFaceUp(letterInputExp, numInputExp)){
+                                            cout << "Card Facing Up Sucessfully." <<endl;
+                                            cardsFlipped++;
+                                            cout << endl;
+                                        }else{
+                                            cout << "Card Flipping Failed." <<endl;
+                                            cout << endl;
+                                        }
                                     }
                                     cardValidExp = false;
 
-                            }
+                                    Card* chosenExpCard = game.getCard(letterInputExp, numInputExp);
+                                    if(chosenExpCard->getAnimal() != FaceAnimal::Crab){
+                                        isCrab = false;
+                                    }else{
+                                        isCrab = true;
+                                    }
+                                    game.setCurrentCard(chosenExpCard);
+                                    chosenCard = chosenExpCard;
+                                    letterInput = letterInputExp;
+                                    numInput = numInputExp;
+                                    fromCrab = true;
 
-
-
-                            //Octopus Card
-                            int neighborPos;
-                            if(chosenCard->getAnimal()==FaceAnimal::Octopus){
-                                cout << "You flipped an Octopus Card! Choose a neighbor card you want to swap with your current card!" <<endl;
-                                cout << endl;
-                                while(!cardValidExp){
-                                    cout << "What is the position of the neighbor card?  Top (0), Left (1), Bottom (2), Right (3)" <<endl;
-                                    cout << "Enter the number of your choice.";
-                                    cin >> neighborPos;
+                                    // print the updated board
+                                    cout << "Game Display:" << endl;
+                                    cout << Game::board;
                                     cout << endl;
+                                }
+                            }while(isCrab);
 
-                                    if((letterInput == Letter::A) && neighborPos == 0){
-                                        cout << "You reach the top edge of the board. There is no neighbor card at the top." <<endl;
-                                        cout << endl;
-                                        neighborPos = 4;
-                                    }
-                                    if((letterInput == Letter::E) && neighborPos == 2){
-                                        cout << "You reach the bottom edge of the board. There is no neighbor card at the bottom." <<endl;
-                                        cout << endl;
-                                        neighborPos = 4;
-                                    }
-                                    if((numInput == Number::ONE) && neighborPos == 1){
-                                        cout << "You reach the left edge of the board. There is no neighbor card at the left." <<endl;
-                                        cout << endl;
-                                        neighborPos = 4;
-                                    }
-                                    if((numInput == Number::FIVE) && neighborPos == 3){
-                                        cout << "You reach the right edge of the board. There is no neighbor card at the right." <<endl;
-                                        cout << endl;
-                                        neighborPos = 4;
-                                    }
 
-                                    Card* tempSwap;
-                                    bool tempCardStatus, tempCardStatus2;
-                                    switch (neighborPos) {
-                                        case 0:
-                                            tempSwap = game.getCard(Letter(letterInput-1), numInput);
-                                            game.setCard(letterInput, numInput, tempSwap);
-                                            game.setCard(Letter(letterInput-1), numInput, chosenCard);
+                            if(rules.isValid(game)){
+                                if(fromCrab){
+                                    cout << "Congratz you have a match! You survive this turn!" <<endl;
+                                    cout << endl;
+                                }
 
-                                            tempCardStatus = Game::board.isFaceUp(Letter(letterInput-1), numInput);
-                                            tempCardStatus2 = Game::board.isFaceUp(letterInput, numInput);
+                                //Penguin Card
+                                if (!firstPlay){
+                                    if(chosenCard->getAnimal()==FaceAnimal::Penguin){
+                                        cout << "You flipped a Penguin Card! Please face down a card on the board that is already faced up!" <<endl <<endl;
 
-                                            if(tempCardStatus)
-                                                Game::board.turnFaceUp(letterInput, numInput);
-                                            else
-                                                Game::board.turnFaceDown(letterInput, numInput);
+                                        while(!cardValidExp){
 
-                                            if(tempCardStatus2)
-                                                Game::board.turnFaceUp(Letter(letterInput-1), numInput);
-                                            else
-                                                Game::board.turnFaceDown(Letter(letterInput-1), numInput);
-
-                                            cardValidExp = true;
-                                            break;
-                                        case 1:
-                                            tempSwap = game.getCard(letterInput, Number(numInput-1));
-                                            game.setCard(letterInput, numInput, tempSwap);
-                                            game.setCard(letterInput, Number(numInput-1), chosenCard);
-
-                                            tempCardStatus = Game::board.isFaceUp(letterInput, Number(numInput-1));
-                                            tempCardStatus2 = Game::board.isFaceUp(letterInput, numInput);
-
-                                            if(tempCardStatus)
-                                                Game::board.turnFaceUp(letterInput, numInput);
-                                            else
-                                                Game::board.turnFaceDown(letterInput, numInput);
-
-                                            if(tempCardStatus2)
-                                                Game::board.turnFaceUp(letterInput, Number(numInput-1));
-                                            else
-                                                Game::board.turnFaceDown(letterInput, Number(numInput-1));
-
-                                            cardValidExp = true;
-                                            break;
-                                        case 2:
-                                            tempSwap = game.getCard(Letter(letterInput+1), numInput);
-                                            game.setCard(letterInput, numInput, tempSwap);
-                                            game.setCard(Letter(letterInput+1), numInput, chosenCard);
-
-                                            tempCardStatus = Game::board.isFaceUp(Letter(letterInput+1), numInput);
-                                            tempCardStatus2 = Game::board.isFaceUp(letterInput, numInput);
-
-                                            if(tempCardStatus)
-                                                Game::board.turnFaceUp(letterInput, numInput);
-                                            else
-                                                Game::board.turnFaceDown(letterInput, numInput);
-
-                                            if(tempCardStatus2)
-                                                Game::board.turnFaceUp(Letter(letterInput+1), numInput);
-                                            else
-                                                Game::board.turnFaceDown(Letter(letterInput+1), numInput);
-
-                                            cardValidExp = true;
-                                            break;
-                                        case 3:
-                                            tempSwap = game.getCard(letterInput, Number(numInput+1));
-                                            game.setCard(letterInput, numInput, tempSwap);
-                                            game.setCard(letterInput, Number(numInput+1), chosenCard);
-
-                                            tempCardStatus = Game::board.isFaceUp(letterInput, Number(numInput+1));
-                                            tempCardStatus2 = Game::board.isFaceUp(letterInput, numInput);
-
-                                            if(tempCardStatus)
-                                                Game::board.turnFaceUp(letterInput, numInput);
-                                            else
-                                                Game::board.turnFaceDown(letterInput, numInput);
-
-                                            if(tempCardStatus2)
-                                                Game::board.turnFaceUp(letterInput, Number(numInput+1));
-                                            else
-                                                Game::board.turnFaceDown(letterInput, Number(numInput+1));
-
-                                            cardValidExp = true;
-                                            break;
-                                        default:
-                                            cardValidExp = false;
-                                            cout << "Please enter position of a card that is valid." << endl;
+                                            cout << "Enter the coordinates of the card you want to face down on the board."<< endl;
+                                            cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
+                                            cout << "Enter the number of your choice.";
+                                            cin >> letterInputExp;
                                             cout << endl;
-                                            break;
+
+                                            cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
+                                            cout << "Enter the number of your choice.";
+                                            cin >> numInputExp;
+                                            cout << endl;
+
+                                            if(!(Game::board.isFaceUp(letterInputExp, numInputExp))){
+                                               cout << "Please enter coordinates of a card that is valid and not faced down." <<endl <<endl;
+                                            }else{
+                                                cardValidExp = true;
+
+                                            }
+                                            // turn card facedown
+                                            if(Game::board.turnFaceDown(letterInputExp, numInputExp)){
+                                                cout << "Card Facing Down Sucessfully." <<endl<<endl;
+                                                cardsFlipped--;
+                                            }else{
+                                                cout << "Card Flipping Failed." <<endl <<endl ;
+                                            }
+                                        }
+                                        cardValidExp = false;
+
+                                        // if facing down current card, current card becomes the previous card
+                                        if(game.getCard(letterInputExp, numInputExp) == game.getCurrentCard()){
+                                            game.setCurrentCard(game.getPreviousCard());
+                                        }
+
                                     }
                                 }
 
+
+
+                                //Turtle Card
+                                if(chosenCard->getAnimal()==FaceAnimal::Turtle){
+                                    cout << "You flipped a Turtle Card! Next player will be skipped!" <<endl << endl;
+                                    isTurtle = true;
+                                }
+
+
+
+                                //Walrus Card
+                                if(chosenCard->getAnimal()==FaceAnimal::Walrus){
+                                    if(cardsFlipped<23){
+                                        cout << "You flipped a Walrus Card! Point at a card that is faced down that will be blocked for the next player!" <<endl;
+                                        cout << endl;
+                                        while(!cardValidExp){
+
+                                            cout << "Enter the coordinates of the card you want to block on the board for the next player."<< endl;
+                                            cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
+                                            cout << "Enter the number of your choice.";
+                                            cin >> letterInputExp;
+                                            cout << endl;
+
+                                            cout << "On which Column is your card: 1 (0), 2 (1), 3 (2), 4 (3), 5 (4)" <<endl;
+                                            cout << "Enter the number of your choice.";
+                                            cin >> numInputExp;
+                                            cout << endl;
+
+                                            if((Game::board.isFaceUp(letterInputExp, numInputExp))){
+                                               cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
+                                               cout << endl;
+                                            }else{
+                                                cardValidExp = true;
+
+                                            }
+                                            //store blocking coard coordinates
+                                            letterForbid = letterInputExp;
+                                            numForbid = numInputExp;
+                                        }
+                                        cardValidExp = false;
+                                    }else{
+                                        cout << "You flipped a Walrus Card! Unfortunately since there is only one card left, you can't ban it. Nothing happens." <<endl;
+                                    }
+
+                                }
+
+
+
+                                //Octopus Card
+                                int neighborPos;
+                                if(chosenCard->getAnimal()==FaceAnimal::Octopus){
+                                    cout << "You flipped an Octopus Card! Choose a neighbor card you want to swap with your current card!" <<endl;
+                                    cout << endl;
+                                    while(!cardValidExp){
+                                        cout << "What is the position of the neighbor card?  Top (0), Left (1), Bottom (2), Right (3)" <<endl;
+                                        cout << "Enter the number of your choice.";
+                                        cin >> neighborPos;
+                                        cout << endl;
+
+                                        if((letterInput == Letter::A) && neighborPos == 0){
+                                            cout << "You reach the top edge of the board. There is no neighbor card at the top." <<endl;
+                                            cout << endl;
+                                            neighborPos = 4;
+                                        }
+                                        if((letterInput == Letter::E) && neighborPos == 2){
+                                            cout << "You reach the bottom edge of the board. There is no neighbor card at the bottom." <<endl;
+                                            cout << endl;
+                                            neighborPos = 4;
+                                        }
+                                        if((numInput == Number::ONE) && neighborPos == 1){
+                                            cout << "You reach the left edge of the board. There is no neighbor card at the left." <<endl;
+                                            cout << endl;
+                                            neighborPos = 4;
+                                        }
+                                        if((numInput == Number::FIVE) && neighborPos == 3){
+                                            cout << "You reach the right edge of the board. There is no neighbor card at the right." <<endl;
+                                            cout << endl;
+                                            neighborPos = 4;
+                                        }
+
+                                        Card* tempSwap;
+                                        bool tempCardStatus, tempCardStatus2;
+                                        switch (neighborPos) {
+                                            case 0:
+                                                tempSwap = game.getCard(Letter(letterInput-1), numInput);
+                                                game.setCard(letterInput, numInput, tempSwap);
+                                                game.setCard(Letter(letterInput-1), numInput, chosenCard);
+
+                                                tempCardStatus = Game::board.isFaceUp(Letter(letterInput-1), numInput);
+                                                tempCardStatus2 = Game::board.isFaceUp(letterInput, numInput);
+
+                                                if(tempCardStatus){
+                                                    Game::board.turnFaceUp(letterInput, numInput);
+                                                    cardsFlipped++;
+                                                }else{
+                                                    Game::board.turnFaceDown(letterInput, numInput);
+                                                    cardsFlipped--;
+                                                }
+
+                                                if(tempCardStatus2){
+                                                    Game::board.turnFaceUp(Letter(letterInput-1), numInput);
+                                                    cardsFlipped++;
+                                                }else{
+                                                    Game::board.turnFaceDown(Letter(letterInput-1), numInput);
+                                                    cardsFlipped--;
+                                                }
+
+                                                cardValidExp = true;
+                                                break;
+                                            case 1:
+                                                tempSwap = game.getCard(letterInput, Number(numInput-1));
+                                                game.setCard(letterInput, numInput, tempSwap);
+                                                game.setCard(letterInput, Number(numInput-1), chosenCard);
+
+                                                tempCardStatus = Game::board.isFaceUp(letterInput, Number(numInput-1));
+                                                tempCardStatus2 = Game::board.isFaceUp(letterInput, numInput);
+
+                                                if(tempCardStatus){
+                                                    Game::board.turnFaceUp(letterInput, numInput);
+                                                    cardsFlipped++;
+                                                }else{
+                                                    Game::board.turnFaceDown(letterInput, numInput);
+                                                    cardsFlipped--;
+                                                }
+
+                                                if(tempCardStatus2){
+                                                    Game::board.turnFaceUp(letterInput, Number(numInput-1));
+                                                    cardsFlipped++;
+                                                }else{
+                                                    Game::board.turnFaceDown(letterInput, Number(numInput-1));
+                                                    cardsFlipped--;
+                                                }
+
+                                                cardValidExp = true;
+                                                break;
+                                            case 2:
+                                                tempSwap = game.getCard(Letter(letterInput+1), numInput);
+                                                game.setCard(letterInput, numInput, tempSwap);
+                                                game.setCard(Letter(letterInput+1), numInput, chosenCard);
+
+                                                tempCardStatus = Game::board.isFaceUp(Letter(letterInput+1), numInput);
+                                                tempCardStatus2 = Game::board.isFaceUp(letterInput, numInput);
+
+                                                if(tempCardStatus){
+                                                    Game::board.turnFaceUp(letterInput, numInput);
+                                                    cardsFlipped++;
+                                                }else{
+                                                    Game::board.turnFaceDown(letterInput, numInput);
+                                                    cardsFlipped--;
+                                                }
+
+                                                if(tempCardStatus2){
+                                                    Game::board.turnFaceUp(Letter(letterInput+1), numInput);
+                                                    cardsFlipped++;
+                                                }else{
+                                                    Game::board.turnFaceDown(Letter(letterInput+1), numInput);
+                                                    cardsFlipped--;
+                                                }
+
+                                                cardValidExp = true;
+                                                break;
+                                            case 3:
+                                                tempSwap = game.getCard(letterInput, Number(numInput+1));
+                                                game.setCard(letterInput, numInput, tempSwap);
+                                                game.setCard(letterInput, Number(numInput+1), chosenCard);
+
+                                                tempCardStatus = Game::board.isFaceUp(letterInput, Number(numInput+1));
+                                                tempCardStatus2 = Game::board.isFaceUp(letterInput, numInput);
+
+                                                if(tempCardStatus){
+                                                    Game::board.turnFaceUp(letterInput, numInput);
+                                                    cardsFlipped++;
+                                                }else{
+                                                    Game::board.turnFaceDown(letterInput, numInput);
+                                                    cardsFlipped--;
+                                                }
+
+                                                if(tempCardStatus2){
+                                                    Game::board.turnFaceUp(letterInput, Number(numInput+1));
+                                                    cardsFlipped++;
+                                                }else{
+                                                    Game::board.turnFaceDown(letterInput, Number(numInput+1));
+                                                    cardsFlipped--;
+                                                }
+
+                                                cardValidExp = true;
+                                                break;
+                                            default:
+                                                cardValidExp = false;
+                                                cout << "Please enter position of a card that is valid." << endl;
+                                                cout << endl;
+                                                break;
+                                        }
+                                    }
+
+                                }
+
+                            }else{
+                               if(fromCrab||cardsFlipped>=24){
+                                    cout << "You don't have a match, you lose this round!" <<endl;
+                                    cout << endl;
+                                    current->setActive(false);
+                               }
                             }
-
-                        }else{
-                           if(fromCrab){
-                                cout << "You don't have a match, you lose this round!" <<endl;
-                                cout << endl;
-                           }
-                        }
-
-
-
-
-
-
-                    }//expert section end
+                        }//expert section end
+                    }// not first play, match, and less than 24 cards flipped
+                    // display game
+                    cout << "Game Display:" << endl;
+                    cout << Game::board;
+                    cout << endl;
                 }
-                // display game
-                cout << "Game Display:" << endl;
-                cout << Game::board;
+
+                firstPlay = false;
+            }else{
+                cout << "You don't have any cards to match, you lose this round!" <<endl;
                 cout << endl;
+                current->setActive(false);
             }
 
-            firstPlay = false;
 
 
 
             for(int i=0;i<numPlayers;i++){
 
-                current = &game.getNextPlayer(numPlayers);
+                current = &game.getNextPlayer();
 
                 // Turtle card skips next player
                 if(isTurtle){
-                    current = &game.getNextPlayer(numPlayers);
+                    current = &game.getNextPlayer();
                 }
                 if(current->isActive()){
                     break;
@@ -561,14 +581,13 @@ int main() {
         cout << endl;
 
         game.nextRound();
-        }
 
     }// end of game
 
 
     game.getPlacements();
 
-    //return 0;
+    return 0;
 
 
 }

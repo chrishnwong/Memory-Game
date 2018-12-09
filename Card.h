@@ -16,9 +16,8 @@ class Card {
         int getNRows() const;
         string operator()(int row);
         void printCard(string[3]);
-        FaceAnimal getAnimal();
-        FaceBackground getBackground();
-        
+        FaceAnimal getAnimal(){return animal;};
+        FaceBackground getBackground(){return color;};
 
 
         //to be removed later

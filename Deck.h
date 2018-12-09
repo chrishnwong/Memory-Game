@@ -36,8 +36,9 @@ class Deck
 template <class C>
 void Deck<C>::shuffle(){
 
-    if(!elements.empty())
+    if(!elements.empty()){
         random_shuffle(elements.begin(), elements.end());
+    }
 }
 
 template <class C>
