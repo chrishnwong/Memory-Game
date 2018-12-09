@@ -96,13 +96,20 @@ int main() {
     while (!rules.gameOver(game)) {
         //int survivors = numplayers;
         Game::board.reset();
+        int coord[4][3][2] ={{{0,1},{0,2},{0,3}},
+                            {{1,0},{2,0},{3,0}},
+                            {{4,1},{4,2},{4,3}},
+                            {{1,4},{2,4},{3,4}}};
 
         for (int i = 0; i < numPlayers; i++) {
             Player& player = game.getPlayer((Side) i);
             player.setActive(true);
 
             cout << "Revealing cards for " << player.getName() << ". All other players please look away" << endl << endl;
-            game.threeCardReveal(player.getSide());
+
+            for(int j = 0; j < 3; j++)
+                Game::board.turnFaceUp((Letter) coord[i][j][0], (Number) coord[i][j][1]);
+
             cout << Game::board;
             Game::board.reset();
         }
