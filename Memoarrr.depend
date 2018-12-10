@@ -1,0 +1,96 @@
+# depslib dependency file v1.0
+1544409710 source:c:\users\bomby\cplusplus\finalproject\memoarrr\board.cpp
+	"Board.h"
+	"CardDeck.h"
+	"Deck.h"
+	"Card.h"
+	<stdexcept>
+	<iostream>
+	<istream>
+
+1544406869 c:\users\bomby\cplusplus\finalproject\memoarrr\board.h
+	<string>
+	"Card.h"
+
+1544413020 c:\users\bomby\cplusplus\finalproject\memoarrr\card.h
+	<string>
+	<iostream>
+
+1544406327 c:\users\bomby\cplusplus\finalproject\memoarrr\carddeck.h
+	"Deck.h"
+	"Card.h"
+
+1544405134 c:\users\bomby\cplusplus\finalproject\memoarrr\deck.h
+	<algorithm>
+	<vector>
+	<stdexcept>
+	<string>
+	<iostream>
+	"Card.h"
+	<iterator>
+
+1544413136 source:c:\users\bomby\cplusplus\finalproject\memoarrr\card.cpp
+	"Card.h"
+	<iostream>
+
+1544405134 source:c:\users\bomby\cplusplus\finalproject\memoarrr\carddeck.cpp
+	"CardDeck.h"
+
+1544408008 source:c:\users\bomby\cplusplus\finalproject\memoarrr\game.cpp
+	<iostream>
+	<istream>
+	<vector>
+	<algorithm>
+	"Game.h"
+	"Player.h"
+
+1544408008 c:\users\bomby\cplusplus\finalproject\memoarrr\game.h
+	<string>
+	<vector>
+	<algorithm>
+	"Board.h"
+	"Player.h"
+	"Card.h"
+	"Rules.h"
+
+1544406471 c:\users\bomby\cplusplus\finalproject\memoarrr\player.h
+	<string>
+	"Reward.h"
+
+1544411817 c:\users\bomby\cplusplus\finalproject\memoarrr\reward.h
+	<iostream>
+
+1544405134 c:\users\bomby\cplusplus\finalproject\memoarrr\rules.h
+	"Game.h"
+
+1544412296 source:c:\users\bomby\cplusplus\finalproject\memoarrr\main.cpp
+	<iostream>
+	"Game.h"
+	"Deck.h"
+	"CardDeck.h"
+	"RewardDeck.h"
+	"Rules.h"
+	"Board.h"
+	"Card.h"
+	<algorithm>
+	<ctime>
+	<cstdlib>
+	<list>
+
+1544406505 c:\users\bomby\cplusplus\finalproject\memoarrr\rewarddeck.h
+	"Deck.h"
+	"Reward.h"
+
+1544406470 source:c:\users\bomby\cplusplus\finalproject\memoarrr\player.cpp
+	<iostream>
+	"Player.h"
+
+1544411784 source:c:\users\bomby\cplusplus\finalproject\memoarrr\reward.cpp
+	"Reward.h"
+
+1544405134 source:c:\users\bomby\cplusplus\finalproject\memoarrr\rewarddeck.cpp
+	"RewardDeck.h"
+
+1544413020 source:c:\users\bomby\cplusplus\finalproject\memoarrr\rules.cpp
+	"Rules.h"
+
