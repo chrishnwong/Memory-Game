@@ -1,5 +1,68 @@
 #include <iostream>
 #include "Player.h"
+#include "RewardDeck.h"
+
+//#define PLAYER_TEST;
+
+#ifdef PLAYER_TEST
+int main(){
+    Player p = ("test", Side::top)
+    cout << "Creating player with name test and on top side" << endl;
+
+    p.setActive(true);
+    cout << "Setting test as active" << endl;
+
+    if(p.isActive()){
+        cout << "test is active" << endl;
+    }
+    else{
+        cout << "test is inactive, something is wrong" << endl;
+    }
+
+    cout << "Printing test's name, output should be test" << endl;
+    cout << p.getName() << endl;
+
+    cout << "Printing test when not end of game" << endl;
+    cout << p << endl;
+
+    cout << "Printing number of Rubies for test" << endl;
+    cout<< p.getNRubies();<<endl;
+
+    Deck<Reward> rewardDeck = RewardDeck::make_RewardDeck();
+
+    Reward *reward = rewardDeck.getNext();
+
+    p.addReward(*reward);
+    cout << "Adding reward to test" << endl;
+
+
+    p.setDisplayMode(true);
+    cout << "Setting DisplayMode to end of game" << endl;
+
+    cout << "Printing test when end of game" << endl;
+    cout << p << endl;
+
+
+    if(p.getSide()==Side::top){
+        cout << "test is top side" << endl;
+    }
+    else{
+        cout << "test is not top side, something is wrong" << endl;
+    }
+
+    cout << "Setting test side to bottom" << endl;
+    p.setSide(Side::Bottom);
+
+    if(p.getSide()==Side::bottom){
+        cout << "test is bottom side" << endl;
+    }
+    else{
+        cout << "test is not bottom side, something is wrong" << endl;
+    }
+
+    cout << "This concludes the public method tests for Player.cpp" << endl;
+}
+#endif
 
 using namespace std;
 
