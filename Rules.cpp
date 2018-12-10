@@ -1,4 +1,10 @@
 #include "Rules.h"
+#include "Game.h"
+#include "Deck.h"
+#include "CardDeck.h"
+#include "RewardDeck.h"
+#include "Board.h"
+#include "Card.h"
 //#include "Card.h"
 
 //#define RULES_TEST;
@@ -62,7 +68,7 @@ int main(){
     else{
         cout << "A1 and A2  do not match" <<  endl;
     }
-    
+
     cout << "Setting top as inactive" << endl;
     game.getPlayer(Side::top).setActive(false);
 

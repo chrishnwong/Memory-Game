@@ -22,7 +22,7 @@ class Reward
     public:
         int getNRubies() const;
         friend ostream& operator<<(ostream&, const Reward&);
-
+        operator int();
     private:
         Rubies nRubies;
         Reward(Rubies);

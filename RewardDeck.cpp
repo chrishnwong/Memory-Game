@@ -1,4 +1,10 @@
+#include "Rules.h"
+#include "Game.h"
+#include "Deck.h"
+#include "CardDeck.h"
 #include "RewardDeck.h"
+#include "Board.h"
+#include "Card.h"
 //#define REWARDDECK_TEST
 
 #ifdef REWARDDECK_TEST
