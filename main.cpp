@@ -168,7 +168,7 @@ int main() {
                     cin >> numInput;
                     cout << endl;
 
-                    if((Game::board.isFaceUp(letterInput, numInput))){
+                    if((Game::board.isFaceUp(letterInput, numInput))&&(letterInputExp!=2 && numInputExp!=2)){
                         cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
                         cout << endl;
                     }else if(letterInput == letterForbid && numInput == numForbid){
@@ -179,6 +179,15 @@ int main() {
                     }else{
                         cardValid = true;
 
+                    }
+                    // turn card faceup
+                    if(Game::board.turnFaceUp(letterInput, numInput)){
+                        cout << "Card Flipped Sucessfully." <<endl;
+                        cardsFlipped++;
+                        cout << endl;
+                    }else{
+                        cout << "Card Flipping Failed." <<endl;
+                        cout << endl;
                     }
                 }
 
@@ -193,17 +202,6 @@ int main() {
                 chosenCard = game.getCard(letterInput, numInput);
                 game.setCurrentCard(chosenCard);
 
-                // turn card faceup
-                if(Game::board.turnFaceUp(letterInput, numInput)){
-                    cout << "Card Flipped Sucessfully." <<endl;
-                    cardsFlipped++;
-                    cout << endl;
-                }else{
-                    cout << "Card Flipping Failed." <<endl;
-                    cout << endl;
-                }
-
-
                 // print the updated board
                 cout << "Game Display:" << endl;
                 cout << Game::board;
@@ -214,7 +212,7 @@ int main() {
 
 
                 if (!firstPlay){
-                    if (!rules.isValid(game)||cardsFlipped>=24){
+                    if (!rules.isValid(game)){
                         cout << "You don't have a match, you lose this round!" <<endl;
                         cout << endl;
 
@@ -249,23 +247,30 @@ int main() {
                                         cin >> numInputExp;
                                         cout << endl;
 
-                                        if((Game::board.isFaceUp(letterInputExp, numInputExp))){
+                                        if((Game::board.isFaceUp(letterInputExp, numInputExp))&&(letterInputExp!=2 && numInputExp!=2)){
                                            cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
                                            cout << endl;
+                                        }else if(letterInput == letterForbid && numInput == numForbid){
+                                            cout << "This card is blocked.";
+                                            cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
+                                            cout << endl;
+                                            resetForbidden = true;
                                         }else{
                                             cardValidExp = true;
 
                                         }
-                                        // turn card facedown
-                                        if(Game::board.turnFaceUp(letterInputExp, numInputExp)){
-                                            cout << "Card Facing Up Sucessfully." <<endl;
-                                            cardsFlipped++;
-                                            cout << endl;
-                                        }else{
-                                            cout << "Card Flipping Failed." <<endl;
-                                            cout << endl;
-                                        }
                                     }
+
+                                    // turn card facedown
+                                    if(Game::board.turnFaceUp(letterInputExp, numInputExp)){
+                                        cout << "Card Facing Up Sucessfully." <<endl;
+                                        cardsFlipped++;
+                                        cout << endl;
+                                    }else{
+                                        cout << "Card Flipping Failed." <<endl;
+                                        cout << endl;
+                                    }
+
                                     cardValidExp = false;
 
                                     Card* chosenExpCard = game.getCard(letterInputExp, numInputExp);
@@ -312,12 +317,13 @@ int main() {
                                             cin >> numInputExp;
                                             cout << endl;
 
-                                            if(!(Game::board.isFaceUp(letterInputExp, numInputExp))){
+                                            if(!(Game::board.isFaceUp(letterInputExp, numInputExp))&&(letterInputExp!=2 && numInputExp!=2)){
                                                cout << "Please enter coordinates of a card that is valid and not faced down." <<endl <<endl;
                                             }else{
                                                 cardValidExp = true;
 
                                             }
+
                                             // turn card facedown
                                             if(Game::board.turnFaceDown(letterInputExp, numInputExp)){
                                                 cout << "Card Facing Down Sucessfully." <<endl<<endl;
@@ -364,7 +370,7 @@ int main() {
                                             cin >> numInputExp;
                                             cout << endl;
 
-                                            if((Game::board.isFaceUp(letterInputExp, numInputExp))){
+                                            if((Game::board.isFaceUp(letterInputExp, numInputExp))&&(letterInputExp!=2 && numInputExp!=2)){
                                                cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
                                                cout << endl;
                                             }else{
@@ -395,23 +401,23 @@ int main() {
                                         cin >> neighborPos;
                                         cout << endl;
 
-                                        if((letterInput == Letter::A) && neighborPos == 0){
-                                            cout << "You reach the top edge of the board. There is no neighbor card at the top." <<endl;
+                                        if(((letterInput == Letter::A) || (letterInput == Letter::D && numInput == Number::THREE))&& neighborPos == 0){
+                                            cout << "You reach the top edge of the board, or you're switching with the volcano. Pick a valid choice." <<endl;
                                             cout << endl;
                                             neighborPos = 4;
                                         }
-                                        if((letterInput == Letter::E) && neighborPos == 2){
-                                            cout << "You reach the bottom edge of the board. There is no neighbor card at the bottom." <<endl;
+                                        if(((letterInput == Letter::E) || (letterInput == Letter::B && numInput == Number::THREE)) && neighborPos == 2){
+                                            cout << "You reach the bottom edge of the board, or you're switching with the volcano. Pick a valid choice." <<endl;
                                             cout << endl;
                                             neighborPos = 4;
                                         }
-                                        if((numInput == Number::ONE) && neighborPos == 1){
-                                            cout << "You reach the left edge of the board. There is no neighbor card at the left." <<endl;
+                                        if(((numInput == Number::ONE)|| (letterInput == Letter::C && numInput == Number::FOUR)) && neighborPos == 1){
+                                            cout << "You reach the left edge of the board, or you're switching with the volcano. Pick a valid choice." <<endl;
                                             cout << endl;
                                             neighborPos = 4;
                                         }
-                                        if((numInput == Number::FIVE) && neighborPos == 3){
-                                            cout << "You reach the right edge of the board. There is no neighbor card at the right." <<endl;
+                                        if(((numInput == Number::FIVE)|| (letterInput == Letter::C && numInput == Number::TWO)) && neighborPos == 3){
+                                            cout << "You reach the right edge of the board, or you're switching with the volcano. Pick a valid choice." <<endl;
                                             cout << endl;
                                             neighborPos = 4;
                                         }
@@ -534,7 +540,7 @@ int main() {
                                 }
 
                             }else{
-                               if(fromCrab||cardsFlipped>=24){
+                               if(fromCrab){
                                     cout << "You don't have a match, you lose this round!" <<endl;
                                     cout << endl;
                                     current->setActive(false);
@@ -593,3 +599,5 @@ int main() {
 
 
 }
+//Written by jacqui35 and chrishnwong
+//github link at https://github.com/chrishnwong/Memory-Game/

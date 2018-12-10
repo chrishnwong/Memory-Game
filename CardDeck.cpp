@@ -20,3 +20,5 @@ CardDeck& CardDeck::make_CardDeck() {
     }
     return *deck;
 }
+//Written by jacqui35 and chrishnwong
+//github link at https://github.com/chrishnwong/Memory-Game/

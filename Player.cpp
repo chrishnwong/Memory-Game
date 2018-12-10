@@ -56,3 +56,5 @@ ostream& operator<<(ostream& os, const Player& player) {
     }
     return os;
 }
+//Written by jacqui35 and chrishnwong
+//github link at https://github.com/chrishnwong/Memory-Game/

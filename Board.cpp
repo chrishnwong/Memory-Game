@@ -67,7 +67,7 @@ bool Board::turnFaceUp(const Letter& let, const Number& num) {
     if ( row < static_cast<int>(let) || column < static_cast<int>(num) ) {
         throw std::out_of_range("Letter or Number Index given is out of range.");
     }
-    if (cRecords[let][num].cardStatus == true) {
+    if (cRecords[let][num].cardStatus == true || (static_cast<int>(let)==2 && static_cast<int>(num)==2)) {
         return false;
     }else{
         cRecords[let][num].cardStatus = true;
@@ -80,7 +80,7 @@ bool Board::turnFaceDown(const Letter& let, const Number& num) {
         throw std::out_of_range("Letter or Number Index given is out of range.");
     }
     //if (cardsStatus[let][num] == false) {
-    if (cRecords[let][num].cardStatus == false) {
+    if (cRecords[let][num].cardStatus == false || (static_cast<int>(let)==2 && static_cast<int>(num)==2)) {
         return false;
     }else{
         //cardsStatus[let][num] = false;
@@ -188,14 +188,12 @@ ostream& operator<<(ostream& os, const Board& board){
             arr[1] = letterName[i] + " ";
             arr[2] = "  ";
             for (int j = Number::ONE; j <= Number::FIVE; j++) {
-                if(board.isFaceUp((Letter) i, (Number) j)){
-                    if(i==2&&j==2){
-                        for(int i = 0; i < 3; i++)
-                            arr[i] += "    ";
-                    }else
-                        board.getCard((Letter) i, (Number) j)->printCard(arr);
-                }
-                else{
+                if(i==2&&j==2){
+                    for(int i = 0; i < 3; i++)
+                        arr[i] += "    ";
+                }else if(board.isFaceUp((Letter) i, (Number) j)){
+                    board.getCard((Letter) i, (Number) j)->printCard(arr);
+                }else{
                     for(int i = 0; i < 3; i++){
                         arr[i] += "zzz ";
                     }
@@ -247,3 +245,5 @@ bool Board::getExpDisp() const{
 bool Board::getExpRules() const{
     return expertRules;
 }
+//Written by jacqui35 and chrishnwong
+//github link at https://github.com/chrishnwong/Memory-Game/

@@ -67,3 +67,5 @@ bool Deck<C>::isEmpty() const{
 }
 
 #endif // DECK_H
+//Written by jacqui35 and chrishnwong
+//github link at https://github.com/chrishnwong/Memory-Game/

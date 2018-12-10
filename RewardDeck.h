@@ -22,3 +22,5 @@ class RewardDeck: public Deck<Reward>
 };
 
 #endif // REWARDDECK_H
+//Written by jacqui35 and chrishnwong
+//github link at https://github.com/chrishnwong/Memory-Game/

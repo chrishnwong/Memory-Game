@@ -17,3 +17,5 @@ ostream& operator<<(ostream &os, const Reward &reward) {
     os << reward.nRubies;
     return os;
 }
+//Written by jacqui35 and chrishnwong
+//github link at https://github.com/chrishnwong/Memory-Game/
