@@ -168,7 +168,7 @@ int main() {
                     cin >> numInput;
                     cout << endl;
 
-                    if((Game::board.isFaceUp(letterInput, numInput))&&(letterInputExp!=2 && numInputExp!=2)){
+                    if((Game::board.isFaceUp(letterInput, numInput))&&(letterInput!=2 && numInput!=2)){
                         cout << "Please enter coordinates of a card that is valid and not faced up." <<endl;
                         cout << endl;
                     }else if(letterInput == letterForbid && numInput == numForbid){
