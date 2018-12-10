@@ -148,6 +148,12 @@ int main() {
             bool cardValid = false;
             Card* chosenCard;
 
+            //Expert Mode Variables
+            bool isCrab = false;
+            bool isTurtle = false;
+            bool isWalrus = false;
+            bool fromCrab = false;
+
             if(cardsFlipped<24){
                 while(!cardValid){
 
@@ -205,11 +211,7 @@ int main() {
 
 
 
-                //Expert Mode Variables
-                bool isCrab = false;
-                bool isTurtle = false;
-                bool isWalrus = false;
-                bool fromCrab = false;
+
 
                 if (!firstPlay){
                     if (!rules.isValid(game)||cardsFlipped>=24){
