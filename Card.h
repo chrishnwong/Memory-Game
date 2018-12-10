@@ -23,6 +23,8 @@ class Card {
         //to be removed later
         FaceAnimal getAnimal()const{return animal;};
         FaceBackground getBackground()const{return color;};
+        operator FaceAnimal() const;
+        operator FaceBackground() const;
         //Card();
         //Card& operator=(Card&);
 

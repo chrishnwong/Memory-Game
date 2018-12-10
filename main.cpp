@@ -10,7 +10,8 @@
 #include <ctime>        // std::time
 #include <cstdlib>
 #include <list>
-
+//8764900 Christopher Wong
+//8097711 Wen Jung Chen
 using namespace std;
 
 //Initialize the board
@@ -134,7 +135,7 @@ int main() {
 
         int cardsFlipped=0;
         while (!rules.roundOver(game)) {
-            cout << "Round " << game.getRound() << ":" << endl;
+            cout << "Round " << game.getRound() << ":" << endl <<endl;
             cout << "It is now Player " << current->getName() << "'s turn" << endl;
             cout << endl;
 
@@ -157,7 +158,7 @@ int main() {
             if(cardsFlipped<24){
                 while(!cardValid){
 
-                    cout << "Enter the coordinates of the first card you want to flip on the board."<< endl;
+                    cout << "Enter the coordinates of the card you want to flip on the board."<< endl;
                     cout << "On which Row is your card: A (0), B (1), C (2), D (3), E (4)" <<endl;
                     cout << "Enter the number of your choice.";
                     cin >> letterInput;
@@ -231,7 +232,7 @@ int main() {
 
                             //Crab Card
                             do{
-                                if(chosenCard->getAnimal()==FaceAnimal::Crab){
+                                if((FaceAnimal)*chosenCard==FaceAnimal::Crab){
                                     cout << "You flipped a Crab Card! Please flip another card on the board that is not already faced up!" <<endl;
                                     cout << endl;
                                     while(!cardValidExp){
@@ -274,7 +275,7 @@ int main() {
                                     cardValidExp = false;
 
                                     Card* chosenExpCard = game.getCard(letterInputExp, numInputExp);
-                                    if(chosenExpCard->getAnimal() != FaceAnimal::Crab){
+                                    if((FaceAnimal)*chosenExpCard != FaceAnimal::Crab){
                                         isCrab = false;
                                     }else{
                                         isCrab = true;
@@ -301,7 +302,7 @@ int main() {
 
                                 //Penguin Card
                                 if (!firstPlay){
-                                    if(chosenCard->getAnimal()==FaceAnimal::Penguin){
+                                    if((FaceAnimal)*chosenCard==FaceAnimal::Penguin){
                                         cout << "You flipped a Penguin Card! Please face down a card on the board that is already faced up!" <<endl <<endl;
 
                                         while(!cardValidExp){
@@ -345,7 +346,7 @@ int main() {
 
 
                                 //Turtle Card
-                                if(chosenCard->getAnimal()==FaceAnimal::Turtle){
+                                if((FaceAnimal)*chosenCard==FaceAnimal::Turtle){
                                     cout << "You flipped a Turtle Card! Next player will be skipped!" <<endl << endl;
                                     isTurtle = true;
                                 }
@@ -353,7 +354,7 @@ int main() {
 
 
                                 //Walrus Card
-                                if(chosenCard->getAnimal()==FaceAnimal::Walrus){
+                                if((FaceAnimal)*chosenCard==FaceAnimal::Walrus){
                                     if(cardsFlipped<23){
                                         cout << "You flipped a Walrus Card! Point at a card that is faced down that will be blocked for the next player!" <<endl;
                                         cout << endl;
@@ -392,7 +393,7 @@ int main() {
 
                                 //Octopus Card
                                 int neighborPos;
-                                if(chosenCard->getAnimal()==FaceAnimal::Octopus){
+                                if((FaceAnimal)*chosenCard==FaceAnimal::Octopus){
                                     cout << "You flipped an Octopus Card! Choose a neighbor card you want to swap with your current card!" <<endl;
                                     cout << endl;
                                     while(!cardValidExp){
@@ -587,6 +588,8 @@ int main() {
         cout << endl;
         cout << endl;
         cout << endl;
+
+
 
         game.nextRound();
 

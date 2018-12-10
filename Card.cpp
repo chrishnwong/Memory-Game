@@ -121,6 +121,16 @@ string Card::operator()(int row) {
 
 }
 
+Card::operator FaceAnimal() const{
+    return animal;
+
+}
+
+Card::operator FaceBackground()const{
+    return color;
+
+}
+
 /*Card& Card::operator=(const Card& c){
     this->animal = c.animal;
     this->color = c.color;
