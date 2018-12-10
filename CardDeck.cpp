@@ -1,6 +1,38 @@
 #include "CardDeck.h"
+#include "Deck.h"
 
+#ifdef CARDDECK_TEST
+int main(){
+    string getAnimalStr[4] = {"Crab", "Penguin", "Octopus", "Turtle", "Walrus"};
+    string getBackgroundStr[4] = {"Red", "Green", "Purple", "Blue", "Yellow"};
+
+    Deck<Card> cardDeck = CardDeck::make_CardDeck();
+    cout << "Deck created successfully" << endl;
+
+    cout << "In order, the animals in the deck created are: " << endl;
+    for(int i =0;i < 25;i++){
+        cout << getAnimalStr[static_cast<int> (cardDeck.getNext()->getAnimal())] << endl;
+    }
+
+    cardDeck = CardDeck::make_CardDeck();
+    cout << "Deck created successfully" << endl;
+
+    cout << "In order, the colours in the deck created are: " << endl;
+    for(int i =0;i < 25;i++){
+        cout << getBackgroundStr[static_cast<int> (cardDeck.getNext()->getBackground())] << endl;
+    }
+
+    cardDeck.shuffle();
+
+    cout << "Now shuffled, the animals in the deck created are: " << endl;
+    for(int i =0;i < 25;i++){
+        cout << getAnimalStr[static_cast<int> (cardDeck.getNext()->getAnimal())] << endl;
+    }
+
+    cout << "This concludes the public method tests for CardDeck.cpp" << endl;
+}
 CardDeck *CardDeck::deck = 0;
+
 
 CardDeck::CardDeck()
 {
