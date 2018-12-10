@@ -14,7 +14,7 @@ int main(){
     string getBackgroundStr[4] = {"Red", "Green", "Purple", "Blue", "Yellow"};
 
     cout << "Creating game without expert rules or expert Display" << endl;
-    Game game = Game(gameVersion, numPlayers);
+    Game game = Game(0, 1);
 
     cout << "Printing current round, should be 0" << endl;
     if(game.getRound() == 0){
