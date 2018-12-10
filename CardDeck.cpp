@@ -1,6 +1,10 @@
 #include "CardDeck.h"
 #include "Deck.h"
 
+CardDeck *CardDeck::deck = 0;
+
+//#define CARDDECK_TEST
+
 #ifdef CARDDECK_TEST
 int main(){
     string getAnimalStr[4] = {"Crab", "Penguin", "Octopus", "Turtle", "Walrus"};
@@ -14,6 +18,13 @@ int main(){
         cout << getAnimalStr[static_cast<int> (cardDeck.getNext()->getAnimal())] << endl;
     }
 
+    if(cardDeck.isEmpty()){
+        cout << "Card deck is empty" << endl;
+    }
+    else{
+        cout << "Card deck is not empty, something is wrong" << endl;
+    }
+    
     cardDeck = CardDeck::make_CardDeck();
     cout << "Deck created successfully" << endl;
 
@@ -30,9 +41,9 @@ int main(){
     }
 
     cout << "This concludes the public method tests for CardDeck.cpp" << endl;
+    return 0;
 }
-CardDeck *CardDeck::deck = 0;
-
+#endif
 
 CardDeck::CardDeck()
 {
