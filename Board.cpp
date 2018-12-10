@@ -6,6 +6,61 @@
 #include <iostream>
 #include <istream>
 
+//#define BOARD_TEST;
+
+#ifdef BOARD_TEST
+int main(){
+    Board b = Board();
+
+    // Should
+    if(b.turnFaceUp(Letter::A,Number::1)){
+        cout << "Flip up A1 success" << endl;
+    }
+    else{
+        cout << "Flip up A1 failure, something is wrong" << endl;
+    }
+
+    if(b.isFaceUp(Letter::A,Number::1)){
+        cout << "A1 is flipped up" << endl;
+    }
+    else{
+        cout << "A1 is flipped down, something is wrong" << endl;
+    }
+
+    if(b.turnFaceDown(Letter::A,Number::1)){
+        cout << "Flip down A1 success" << endl;
+    }
+    else{
+        cout << "Flip down A1 failure, something is wrong" << endl;
+    }
+
+    b.reset();
+    cout << "All cards should be face down now" << endl;
+
+    if(!(b.isFaceUp(Letter::A,Number::1))){
+        cout << "A1 is flipped up, something is wrong" << endl;
+    }
+    else{
+        cout << "A1 is flipped down" << endl;
+    }
+
+    Card testcard = Card(FaceAnimal::Crab, FaceBackground::Red);
+    cout << "Creating a card with animal of crab and red background" << endl;
+
+    b.setCard(Letter::A, Number::1, *newCard)
+    cout << "Setting the new card to A1" << endl;
+
+    if(b.getCard(Letter::A, Number::1)->getAnimal() == FaceAnimal::Crab){
+        cout << "The animal at A1 is a crab" << endl;
+    }
+    else{
+        cout << "The animal at A1 is not a crab, something is wrong" << endl;
+    }
+
+    cout << "This concludes the public method tests for Board.cpp" << endl;
+}
+#endif
+
 Board::Board(){
     //try {
         //if(crecords is empty)
