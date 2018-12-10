@@ -4,7 +4,70 @@
 #include "Game.h"
 #include "Player.h"
 
+//#define GAME_TEST;
+
 using namespace std;
+
+#ifdef GAME_TEST
+int main(){
+    string getAnimalStr[4] = {"Crab", "Penguin", "Octopus", "Turtle", "Walrus"};
+    string getBackgroundStr[4] = {"Red", "Green", "Purple", "Blue", "Yellow"};
+
+    cout << "Creating game without expert rules or expert Display" << endl;
+    Game game = Game(gameVersion, numPlayers);
+
+    cout << "Printing current round, should be 0" << endl;
+    if(game.getRound() == 0){
+        cout << "The current round is 0" << endl;
+    }
+    else{
+        cout << "The current round is not 0, something is wrong" << endl;
+    }
+
+    Player p = ("test", Side::top)
+    cout << "Creating player with name test and on top side" << endl;
+
+    game.addPlayer(p);
+
+    cout << "getting top player, should be test" << endl;
+    cout << game.getPlayer(Side::top).getName() << endl;
+
+    cout << "Creating cardDeck" << endl;
+    Deck<Card> cardDeck = CardDeck::make_CardDeck();
+
+    cout << "Setting cards" << endl;
+    for (int i = Letter::A; i <= Letter::E; i++) {
+        for (int j = Number::ONE; j <= Number::FIVE; j++) {
+            game.setCard(Letter(i), Number(j), cardDeck.getNext());
+
+        }
+    }
+
+    cout << "Getting card at A1" <<endl;
+    cout << "The animal at A1 is enum: "<< game.getCard(Letter::A, Number::1)->getAnimal() << endl;
+    cout << "The background at A1 is enum: "<< game.getCard(Letter::A, Number::1)->getBackground() << endl;
+
+    cout << "Getting card at A2" <<endl;
+    cout << "The animal at A2 is enum: " << game.getCard(Letter::A, Number::2)->getAnimal() << endl;
+    cout << "The background at A2 is enum: " << game.getCard(Letter::A, Number::2)->getBackground() << endl;
+
+    cout << "Setting A1 as current card" << endl;
+    game.setCurrentCard(Letter::A, Number::1);
+
+    cout << "Setting A2 as current card" << endl;
+    game.setCurrentCard(Letter::A, Number::2);
+
+    cout << "Getting current card, should be A2" << endl;
+    cout << "The animal at A2 is enum: " << game.getCurrentCard()->getAnimal() << endl;
+    cout << "The background at A2 is enum: " << game.getCurrentCard()->getBackground() << endl;
+
+    cout << "Getting previous card, should be A1" << endl;
+    cout << "The animal at A1 is enum: "<< game.getPreviousCard()->getAnimal() << endl;
+    cout << "The background at A1 is enum: "<< game.getPreviousCard()->getBackground() << endl;
+
+    cout << "This concludes the public method tests for Game.cpp" << endl;
+}
+#endif
 
 Game::Game(int _gameVersion, int numPlayers): gameVersion(_gameVersion){
     players.reserve(numPlayers);
