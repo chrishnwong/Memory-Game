@@ -43,6 +43,8 @@ int main(){
         }
     }
 
+    cout << game << endl;
+
     cout << "Getting card at A1" <<endl;
     cout << "The animal at A1 is enum: "<< game.getCard(Letter::A, Number::1)->getAnimal() << endl;
     cout << "The background at A1 is enum: "<< game.getCard(Letter::A, Number::1)->getBackground() << endl;
@@ -193,6 +195,7 @@ void Game::getPlacements(){
 
 
     for(Player &p : players){
+        p.setDisplayMode(true);
         cout << place[i] << " - " << p << endl;
         i++;
     }
